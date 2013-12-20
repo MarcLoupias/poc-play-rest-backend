@@ -1,0 +1,1419 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" hostname="debianmarco" id="0" name="CategoryServiceITest" package="integration" tests="5" time="0.002">
+            <properties>
+            <property name="jline.esc.timeout" value="0" />
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+      <property name="sun.boot.library.path" value="/opt/jdk1.7.0_25/jre/lib/i386" />
+      <property name="java.vm.version" value="23.25-b01" />
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+      <property name="java.vendor.url" value="http://java.oracle.com/" />
+      <property name="path.separator" value=":" />
+      <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+      <property name="file.encoding.pkg" value="sun.io" />
+      <property name="user.country" value="FR" />
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+      <property name="sun.os.patch.level" value="unknown" />
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+      <property name="user.dir" value="/home/marco/dev/poc-play-rest-backend" />
+      <property name="java.runtime.version" value="1.7.0_25-b15" />
+      <property name="sbt.boot.properties" value="/home/marco/dev/tools/play-2/framework/sbt/sbt.boot.properties" />
+      <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+      <property name="java.endorsed.dirs" value="/opt/jdk1.7.0_25/jre/lib/endorsed" />
+      <property name="os.arch" value="i386" />
+      <property name="java.io.tmpdir" value="/tmp" />
+      <property name="line.separator" value=" " />
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+      <property name="os.name" value="Linux" />
+      <property name="sun.jnu.encoding" value="UTF-8" />
+      <property name="java.library.path" value="/opt/idea-IU-129.713/bin::/usr/java/packages/lib/i386:/lib:/usr/lib" />
+      <property name="java.specification.name" value="Java Platform API Specification" />
+      <property name="java.class.version" value="51.0" />
+      <property name="play.home" value="/home/marco/dev/tools/play-2/framework" />
+      <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+      <property name="os.version" value="2.6.32-5-686" />
+      <property name="user.home" value="/home/marco" />
+      <property name="user.timezone" value="Europe/Paris" />
+      <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+      <property name="file.encoding" value="UTF-8" />
+      <property name="java.specification.version" value="1.7" />
+      <property name="java.class.path" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar" />
+      <property name="user.name" value="marco" />
+      <property name="jline.shutdownhook" value="false" />
+      <property name="play.version" value="2.2.1" />
+      <property name="java.vm.specification.version" value="1.7" />
+      <property name="sun.java.command" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar test" />
+      <property name="java.home" value="/opt/jdk1.7.0_25/jre" />
+      <property name="sun.arch.data.model" value="32" />
+      <property name="user.language" value="fr" />
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+      <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+      <property name="java.vm.info" value="mixed mode" />
+      <property name="java.version" value="1.7.0_25" />
+      <property name="java.ext.dirs" value="/opt/jdk1.7.0_25/jre/lib/ext:/usr/java/packages/lib/ext" />
+      <property name="sun.boot.class.path" value="/opt/jdk1.7.0_25/jre/lib/resources.jar:/opt/jdk1.7.0_25/jre/lib/rt.jar:/opt/jdk1.7.0_25/jre/lib/sunrsasign.jar:/opt/jdk1.7.0_25/jre/lib/jsse.jar:/opt/jdk1.7.0_25/jre/lib/jce.jar:/opt/jdk1.7.0_25/jre/lib/charsets.jar:/opt/jdk1.7.0_25/jre/lib/jfr.jar:/opt/jdk1.7.0_25/jre/classes" />
+      <property name="java.vendor" value="Oracle Corporation" />
+      <property name="file.separator" value="/" />
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+      <property name="sun.cpu.endian" value="little" />
+      <property name="sun.desktop" value="gnome" />
+      <property name="sun.cpu.isalist" value="" />
+
+        </properties>
+
+            <testcase classname="integration.CategoryServiceITest" name="testCan_PUT_Category" time="0.0">
+      
+    </testcase>
+    <testcase classname="integration.CategoryServiceITest" name="testCan_QUERY_Categories" time="0.0">
+      
+    </testcase>
+    <testcase classname="integration.CategoryServiceITest" name="testCan_POST_Category" time="0.0">
+      
+    </testcase>
+    <testcase classname="integration.CategoryServiceITest" name="testCan_GET_Category" time="0.0">
+      
+    </testcase>
+    <testcase classname="integration.CategoryServiceITest" name="testCan_DELETE_Category" time="0.0">
+      
+    </testcase>
+
+            <system-out>
+          
+        </system-out>
+
+            <system-err>
+          
+        </system-err>
+
+        </testsuite>
+  <testsuite errors="0" failures="0" hostname="debianmarco" id="1" name="CreateServiceTest" package="org.myweb.services.crud" tests="2" time="0.001">
+            <properties>
+            <property name="jline.esc.timeout" value="0" />
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+      <property name="sun.boot.library.path" value="/opt/jdk1.7.0_25/jre/lib/i386" />
+      <property name="java.vm.version" value="23.25-b01" />
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+      <property name="java.vendor.url" value="http://java.oracle.com/" />
+      <property name="path.separator" value=":" />
+      <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+      <property name="file.encoding.pkg" value="sun.io" />
+      <property name="user.country" value="FR" />
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+      <property name="sun.os.patch.level" value="unknown" />
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+      <property name="user.dir" value="/home/marco/dev/poc-play-rest-backend" />
+      <property name="java.runtime.version" value="1.7.0_25-b15" />
+      <property name="sbt.boot.properties" value="/home/marco/dev/tools/play-2/framework/sbt/sbt.boot.properties" />
+      <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+      <property name="java.endorsed.dirs" value="/opt/jdk1.7.0_25/jre/lib/endorsed" />
+      <property name="os.arch" value="i386" />
+      <property name="java.io.tmpdir" value="/tmp" />
+      <property name="line.separator" value=" " />
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+      <property name="os.name" value="Linux" />
+      <property name="sun.jnu.encoding" value="UTF-8" />
+      <property name="java.library.path" value="/opt/idea-IU-129.713/bin::/usr/java/packages/lib/i386:/lib:/usr/lib" />
+      <property name="java.specification.name" value="Java Platform API Specification" />
+      <property name="java.class.version" value="51.0" />
+      <property name="play.home" value="/home/marco/dev/tools/play-2/framework" />
+      <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+      <property name="os.version" value="2.6.32-5-686" />
+      <property name="user.home" value="/home/marco" />
+      <property name="user.timezone" value="Europe/Paris" />
+      <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+      <property name="file.encoding" value="UTF-8" />
+      <property name="java.specification.version" value="1.7" />
+      <property name="java.class.path" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar" />
+      <property name="user.name" value="marco" />
+      <property name="jline.shutdownhook" value="false" />
+      <property name="play.version" value="2.2.1" />
+      <property name="java.vm.specification.version" value="1.7" />
+      <property name="sun.java.command" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar test" />
+      <property name="java.home" value="/opt/jdk1.7.0_25/jre" />
+      <property name="sun.arch.data.model" value="32" />
+      <property name="user.language" value="fr" />
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+      <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+      <property name="java.vm.info" value="mixed mode" />
+      <property name="java.version" value="1.7.0_25" />
+      <property name="java.ext.dirs" value="/opt/jdk1.7.0_25/jre/lib/ext:/usr/java/packages/lib/ext" />
+      <property name="sun.boot.class.path" value="/opt/jdk1.7.0_25/jre/lib/resources.jar:/opt/jdk1.7.0_25/jre/lib/rt.jar:/opt/jdk1.7.0_25/jre/lib/sunrsasign.jar:/opt/jdk1.7.0_25/jre/lib/jsse.jar:/opt/jdk1.7.0_25/jre/lib/jce.jar:/opt/jdk1.7.0_25/jre/lib/charsets.jar:/opt/jdk1.7.0_25/jre/lib/jfr.jar:/opt/jdk1.7.0_25/jre/classes" />
+      <property name="java.vendor" value="Oracle Corporation" />
+      <property name="file.separator" value="/" />
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+      <property name="sun.cpu.endian" value="little" />
+      <property name="sun.desktop" value="gnome" />
+      <property name="sun.cpu.isalist" value="" />
+
+        </properties>
+
+            <testcase classname="org.myweb.services.crud.CreateServiceTest" name="test_JavaServiceResult_saveNew_CREATED" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.crud.CreateServiceTest" name="test_RestServiceResult_create_CREATED" time="0.0">
+      
+    </testcase>
+
+            <system-out>
+          
+        </system-out>
+
+            <system-err>
+          
+        </system-err>
+
+        </testsuite>
+  <testsuite errors="0" failures="0" hostname="debianmarco" id="2" name="DeleteServiceTest" package="org.myweb.services.crud" tests="3" time="0.001">
+            <properties>
+            <property name="jline.esc.timeout" value="0" />
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+      <property name="sun.boot.library.path" value="/opt/jdk1.7.0_25/jre/lib/i386" />
+      <property name="java.vm.version" value="23.25-b01" />
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+      <property name="java.vendor.url" value="http://java.oracle.com/" />
+      <property name="path.separator" value=":" />
+      <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+      <property name="file.encoding.pkg" value="sun.io" />
+      <property name="user.country" value="FR" />
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+      <property name="sun.os.patch.level" value="unknown" />
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+      <property name="user.dir" value="/home/marco/dev/poc-play-rest-backend" />
+      <property name="java.runtime.version" value="1.7.0_25-b15" />
+      <property name="sbt.boot.properties" value="/home/marco/dev/tools/play-2/framework/sbt/sbt.boot.properties" />
+      <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+      <property name="java.endorsed.dirs" value="/opt/jdk1.7.0_25/jre/lib/endorsed" />
+      <property name="os.arch" value="i386" />
+      <property name="java.io.tmpdir" value="/tmp" />
+      <property name="line.separator" value=" " />
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+      <property name="os.name" value="Linux" />
+      <property name="sun.jnu.encoding" value="UTF-8" />
+      <property name="java.library.path" value="/opt/idea-IU-129.713/bin::/usr/java/packages/lib/i386:/lib:/usr/lib" />
+      <property name="java.specification.name" value="Java Platform API Specification" />
+      <property name="java.class.version" value="51.0" />
+      <property name="play.home" value="/home/marco/dev/tools/play-2/framework" />
+      <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+      <property name="os.version" value="2.6.32-5-686" />
+      <property name="user.home" value="/home/marco" />
+      <property name="user.timezone" value="Europe/Paris" />
+      <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+      <property name="file.encoding" value="UTF-8" />
+      <property name="java.specification.version" value="1.7" />
+      <property name="java.class.path" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar" />
+      <property name="user.name" value="marco" />
+      <property name="jline.shutdownhook" value="false" />
+      <property name="play.version" value="2.2.1" />
+      <property name="java.vm.specification.version" value="1.7" />
+      <property name="sun.java.command" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar test" />
+      <property name="java.home" value="/opt/jdk1.7.0_25/jre" />
+      <property name="sun.arch.data.model" value="32" />
+      <property name="user.language" value="fr" />
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+      <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+      <property name="java.vm.info" value="mixed mode" />
+      <property name="java.version" value="1.7.0_25" />
+      <property name="java.ext.dirs" value="/opt/jdk1.7.0_25/jre/lib/ext:/usr/java/packages/lib/ext" />
+      <property name="sun.boot.class.path" value="/opt/jdk1.7.0_25/jre/lib/resources.jar:/opt/jdk1.7.0_25/jre/lib/rt.jar:/opt/jdk1.7.0_25/jre/lib/sunrsasign.jar:/opt/jdk1.7.0_25/jre/lib/jsse.jar:/opt/jdk1.7.0_25/jre/lib/jce.jar:/opt/jdk1.7.0_25/jre/lib/charsets.jar:/opt/jdk1.7.0_25/jre/lib/jfr.jar:/opt/jdk1.7.0_25/jre/classes" />
+      <property name="java.vendor" value="Oracle Corporation" />
+      <property name="file.separator" value="/" />
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+      <property name="sun.cpu.endian" value="little" />
+      <property name="sun.desktop" value="gnome" />
+      <property name="sun.cpu.isalist" value="" />
+
+        </properties>
+
+            <testcase classname="org.myweb.services.crud.DeleteServiceTest" name="test_RestServiceResult_delete_NO_CONTENT" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.crud.DeleteServiceTest" name="test_JavaServiceResult_remove_NO_CONTENT" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.crud.DeleteServiceTest" name="test_RestServiceResult_delete_BAD_REQUEST_idMissing" time="0.0">
+      
+    </testcase>
+
+            <system-out>
+          
+        </system-out>
+
+            <system-err>
+          
+        </system-err>
+
+        </testsuite>
+  <testsuite errors="0" failures="0" hostname="debianmarco" id="3" name="GetServiceTest" package="org.myweb.services.crud" tests="4" time="0.0">
+            <properties>
+            <property name="jline.esc.timeout" value="0" />
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+      <property name="sun.boot.library.path" value="/opt/jdk1.7.0_25/jre/lib/i386" />
+      <property name="java.vm.version" value="23.25-b01" />
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+      <property name="java.vendor.url" value="http://java.oracle.com/" />
+      <property name="path.separator" value=":" />
+      <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+      <property name="file.encoding.pkg" value="sun.io" />
+      <property name="user.country" value="FR" />
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+      <property name="sun.os.patch.level" value="unknown" />
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+      <property name="user.dir" value="/home/marco/dev/poc-play-rest-backend" />
+      <property name="java.runtime.version" value="1.7.0_25-b15" />
+      <property name="sbt.boot.properties" value="/home/marco/dev/tools/play-2/framework/sbt/sbt.boot.properties" />
+      <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+      <property name="java.endorsed.dirs" value="/opt/jdk1.7.0_25/jre/lib/endorsed" />
+      <property name="os.arch" value="i386" />
+      <property name="java.io.tmpdir" value="/tmp" />
+      <property name="line.separator" value=" " />
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+      <property name="os.name" value="Linux" />
+      <property name="sun.jnu.encoding" value="UTF-8" />
+      <property name="java.library.path" value="/opt/idea-IU-129.713/bin::/usr/java/packages/lib/i386:/lib:/usr/lib" />
+      <property name="java.specification.name" value="Java Platform API Specification" />
+      <property name="java.class.version" value="51.0" />
+      <property name="play.home" value="/home/marco/dev/tools/play-2/framework" />
+      <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+      <property name="os.version" value="2.6.32-5-686" />
+      <property name="user.home" value="/home/marco" />
+      <property name="user.timezone" value="Europe/Paris" />
+      <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+      <property name="file.encoding" value="UTF-8" />
+      <property name="java.specification.version" value="1.7" />
+      <property name="java.class.path" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar" />
+      <property name="user.name" value="marco" />
+      <property name="jline.shutdownhook" value="false" />
+      <property name="play.version" value="2.2.1" />
+      <property name="java.vm.specification.version" value="1.7" />
+      <property name="sun.java.command" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar test" />
+      <property name="java.home" value="/opt/jdk1.7.0_25/jre" />
+      <property name="sun.arch.data.model" value="32" />
+      <property name="user.language" value="fr" />
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+      <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+      <property name="java.vm.info" value="mixed mode" />
+      <property name="java.version" value="1.7.0_25" />
+      <property name="java.ext.dirs" value="/opt/jdk1.7.0_25/jre/lib/ext:/usr/java/packages/lib/ext" />
+      <property name="sun.boot.class.path" value="/opt/jdk1.7.0_25/jre/lib/resources.jar:/opt/jdk1.7.0_25/jre/lib/rt.jar:/opt/jdk1.7.0_25/jre/lib/sunrsasign.jar:/opt/jdk1.7.0_25/jre/lib/jsse.jar:/opt/jdk1.7.0_25/jre/lib/jce.jar:/opt/jdk1.7.0_25/jre/lib/charsets.jar:/opt/jdk1.7.0_25/jre/lib/jfr.jar:/opt/jdk1.7.0_25/jre/classes" />
+      <property name="java.vendor" value="Oracle Corporation" />
+      <property name="file.separator" value="/" />
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+      <property name="sun.cpu.endian" value="little" />
+      <property name="sun.desktop" value="gnome" />
+      <property name="sun.cpu.isalist" value="" />
+
+        </properties>
+
+            <testcase classname="org.myweb.services.crud.GetServiceTest" name="test_JavaServiceResult_load_OK" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.crud.GetServiceTest" name="test_RestServiceResult_load_NOT_FOUND" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.crud.GetServiceTest" name="test_RestServiceResult_load_OK" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.crud.GetServiceTest" name="test_JavaServiceResult_load_NOT_FOUND" time="0.0">
+      
+    </testcase>
+
+            <system-out>
+          
+        </system-out>
+
+            <system-err>
+          
+        </system-err>
+
+        </testsuite>
+  <testsuite errors="0" failures="0" hostname="debianmarco" id="4" name="JunitTest" package="" tests="1" time="0.004">
+            <properties>
+            <property name="jline.esc.timeout" value="0" />
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+      <property name="sun.boot.library.path" value="/opt/jdk1.7.0_25/jre/lib/i386" />
+      <property name="java.vm.version" value="23.25-b01" />
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+      <property name="java.vendor.url" value="http://java.oracle.com/" />
+      <property name="path.separator" value=":" />
+      <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+      <property name="file.encoding.pkg" value="sun.io" />
+      <property name="user.country" value="FR" />
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+      <property name="sun.os.patch.level" value="unknown" />
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+      <property name="user.dir" value="/home/marco/dev/poc-play-rest-backend" />
+      <property name="java.runtime.version" value="1.7.0_25-b15" />
+      <property name="sbt.boot.properties" value="/home/marco/dev/tools/play-2/framework/sbt/sbt.boot.properties" />
+      <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+      <property name="java.endorsed.dirs" value="/opt/jdk1.7.0_25/jre/lib/endorsed" />
+      <property name="os.arch" value="i386" />
+      <property name="java.io.tmpdir" value="/tmp" />
+      <property name="line.separator" value=" " />
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+      <property name="os.name" value="Linux" />
+      <property name="sun.jnu.encoding" value="UTF-8" />
+      <property name="java.library.path" value="/opt/idea-IU-129.713/bin::/usr/java/packages/lib/i386:/lib:/usr/lib" />
+      <property name="java.specification.name" value="Java Platform API Specification" />
+      <property name="java.class.version" value="51.0" />
+      <property name="play.home" value="/home/marco/dev/tools/play-2/framework" />
+      <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+      <property name="os.version" value="2.6.32-5-686" />
+      <property name="user.home" value="/home/marco" />
+      <property name="user.timezone" value="Europe/Paris" />
+      <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+      <property name="file.encoding" value="UTF-8" />
+      <property name="java.specification.version" value="1.7" />
+      <property name="java.class.path" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar" />
+      <property name="user.name" value="marco" />
+      <property name="jline.shutdownhook" value="false" />
+      <property name="play.version" value="2.2.1" />
+      <property name="java.vm.specification.version" value="1.7" />
+      <property name="sun.java.command" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar test" />
+      <property name="java.home" value="/opt/jdk1.7.0_25/jre" />
+      <property name="sun.arch.data.model" value="32" />
+      <property name="user.language" value="fr" />
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+      <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+      <property name="java.vm.info" value="mixed mode" />
+      <property name="java.version" value="1.7.0_25" />
+      <property name="java.ext.dirs" value="/opt/jdk1.7.0_25/jre/lib/ext:/usr/java/packages/lib/ext" />
+      <property name="sun.boot.class.path" value="/opt/jdk1.7.0_25/jre/lib/resources.jar:/opt/jdk1.7.0_25/jre/lib/rt.jar:/opt/jdk1.7.0_25/jre/lib/sunrsasign.jar:/opt/jdk1.7.0_25/jre/lib/jsse.jar:/opt/jdk1.7.0_25/jre/lib/jce.jar:/opt/jdk1.7.0_25/jre/lib/charsets.jar:/opt/jdk1.7.0_25/jre/lib/jfr.jar:/opt/jdk1.7.0_25/jre/classes" />
+      <property name="java.vendor" value="Oracle Corporation" />
+      <property name="file.separator" value="/" />
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+      <property name="sun.cpu.endian" value="little" />
+      <property name="sun.desktop" value="gnome" />
+      <property name="sun.cpu.isalist" value="" />
+
+        </properties>
+
+            <testcase classname="JunitTest" name="isJunitWorking" time="0.0">
+      
+    </testcase>
+
+            <system-out>
+          
+        </system-out>
+
+            <system-err>
+          
+        </system-err>
+
+        </testsuite>
+  <testsuite errors="0" failures="0" hostname="debianmarco" id="5" name="LoginServiceITest" package="integration" tests="1" time="0.001">
+            <properties>
+            <property name="jline.esc.timeout" value="0" />
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+      <property name="sun.boot.library.path" value="/opt/jdk1.7.0_25/jre/lib/i386" />
+      <property name="java.vm.version" value="23.25-b01" />
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+      <property name="java.vendor.url" value="http://java.oracle.com/" />
+      <property name="path.separator" value=":" />
+      <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+      <property name="file.encoding.pkg" value="sun.io" />
+      <property name="user.country" value="FR" />
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+      <property name="sun.os.patch.level" value="unknown" />
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+      <property name="user.dir" value="/home/marco/dev/poc-play-rest-backend" />
+      <property name="java.runtime.version" value="1.7.0_25-b15" />
+      <property name="sbt.boot.properties" value="/home/marco/dev/tools/play-2/framework/sbt/sbt.boot.properties" />
+      <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+      <property name="java.endorsed.dirs" value="/opt/jdk1.7.0_25/jre/lib/endorsed" />
+      <property name="os.arch" value="i386" />
+      <property name="java.io.tmpdir" value="/tmp" />
+      <property name="line.separator" value=" " />
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+      <property name="os.name" value="Linux" />
+      <property name="sun.jnu.encoding" value="UTF-8" />
+      <property name="java.library.path" value="/opt/idea-IU-129.713/bin::/usr/java/packages/lib/i386:/lib:/usr/lib" />
+      <property name="java.specification.name" value="Java Platform API Specification" />
+      <property name="java.class.version" value="51.0" />
+      <property name="play.home" value="/home/marco/dev/tools/play-2/framework" />
+      <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+      <property name="os.version" value="2.6.32-5-686" />
+      <property name="user.home" value="/home/marco" />
+      <property name="user.timezone" value="Europe/Paris" />
+      <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+      <property name="file.encoding" value="UTF-8" />
+      <property name="java.specification.version" value="1.7" />
+      <property name="java.class.path" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar" />
+      <property name="user.name" value="marco" />
+      <property name="jline.shutdownhook" value="false" />
+      <property name="play.version" value="2.2.1" />
+      <property name="java.vm.specification.version" value="1.7" />
+      <property name="sun.java.command" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar test" />
+      <property name="java.home" value="/opt/jdk1.7.0_25/jre" />
+      <property name="sun.arch.data.model" value="32" />
+      <property name="user.language" value="fr" />
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+      <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+      <property name="java.vm.info" value="mixed mode" />
+      <property name="java.version" value="1.7.0_25" />
+      <property name="java.ext.dirs" value="/opt/jdk1.7.0_25/jre/lib/ext:/usr/java/packages/lib/ext" />
+      <property name="sun.boot.class.path" value="/opt/jdk1.7.0_25/jre/lib/resources.jar:/opt/jdk1.7.0_25/jre/lib/rt.jar:/opt/jdk1.7.0_25/jre/lib/sunrsasign.jar:/opt/jdk1.7.0_25/jre/lib/jsse.jar:/opt/jdk1.7.0_25/jre/lib/jce.jar:/opt/jdk1.7.0_25/jre/lib/charsets.jar:/opt/jdk1.7.0_25/jre/lib/jfr.jar:/opt/jdk1.7.0_25/jre/classes" />
+      <property name="java.vendor" value="Oracle Corporation" />
+      <property name="file.separator" value="/" />
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+      <property name="sun.cpu.endian" value="little" />
+      <property name="sun.desktop" value="gnome" />
+      <property name="sun.cpu.isalist" value="" />
+
+        </properties>
+
+            <testcase classname="integration.LoginServiceITest" name="testCan_LoginAdminUser" time="0.0">
+      
+    </testcase>
+
+            <system-out>
+          
+        </system-out>
+
+            <system-err>
+          
+        </system-err>
+
+        </testsuite>
+  <testsuite errors="0" failures="0" hostname="debianmarco" id="6" name="ProductServiceITest" package="integration" tests="5" time="0.001">
+            <properties>
+            <property name="jline.esc.timeout" value="0" />
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+      <property name="sun.boot.library.path" value="/opt/jdk1.7.0_25/jre/lib/i386" />
+      <property name="java.vm.version" value="23.25-b01" />
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+      <property name="java.vendor.url" value="http://java.oracle.com/" />
+      <property name="path.separator" value=":" />
+      <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+      <property name="file.encoding.pkg" value="sun.io" />
+      <property name="user.country" value="FR" />
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+      <property name="sun.os.patch.level" value="unknown" />
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+      <property name="user.dir" value="/home/marco/dev/poc-play-rest-backend" />
+      <property name="java.runtime.version" value="1.7.0_25-b15" />
+      <property name="sbt.boot.properties" value="/home/marco/dev/tools/play-2/framework/sbt/sbt.boot.properties" />
+      <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+      <property name="java.endorsed.dirs" value="/opt/jdk1.7.0_25/jre/lib/endorsed" />
+      <property name="os.arch" value="i386" />
+      <property name="java.io.tmpdir" value="/tmp" />
+      <property name="line.separator" value=" " />
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+      <property name="os.name" value="Linux" />
+      <property name="sun.jnu.encoding" value="UTF-8" />
+      <property name="java.library.path" value="/opt/idea-IU-129.713/bin::/usr/java/packages/lib/i386:/lib:/usr/lib" />
+      <property name="java.specification.name" value="Java Platform API Specification" />
+      <property name="java.class.version" value="51.0" />
+      <property name="play.home" value="/home/marco/dev/tools/play-2/framework" />
+      <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+      <property name="os.version" value="2.6.32-5-686" />
+      <property name="user.home" value="/home/marco" />
+      <property name="user.timezone" value="Europe/Paris" />
+      <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+      <property name="file.encoding" value="UTF-8" />
+      <property name="java.specification.version" value="1.7" />
+      <property name="java.class.path" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar" />
+      <property name="user.name" value="marco" />
+      <property name="jline.shutdownhook" value="false" />
+      <property name="play.version" value="2.2.1" />
+      <property name="java.vm.specification.version" value="1.7" />
+      <property name="sun.java.command" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar test" />
+      <property name="java.home" value="/opt/jdk1.7.0_25/jre" />
+      <property name="sun.arch.data.model" value="32" />
+      <property name="user.language" value="fr" />
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+      <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+      <property name="java.vm.info" value="mixed mode" />
+      <property name="java.version" value="1.7.0_25" />
+      <property name="java.ext.dirs" value="/opt/jdk1.7.0_25/jre/lib/ext:/usr/java/packages/lib/ext" />
+      <property name="sun.boot.class.path" value="/opt/jdk1.7.0_25/jre/lib/resources.jar:/opt/jdk1.7.0_25/jre/lib/rt.jar:/opt/jdk1.7.0_25/jre/lib/sunrsasign.jar:/opt/jdk1.7.0_25/jre/lib/jsse.jar:/opt/jdk1.7.0_25/jre/lib/jce.jar:/opt/jdk1.7.0_25/jre/lib/charsets.jar:/opt/jdk1.7.0_25/jre/lib/jfr.jar:/opt/jdk1.7.0_25/jre/classes" />
+      <property name="java.vendor" value="Oracle Corporation" />
+      <property name="file.separator" value="/" />
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+      <property name="sun.cpu.endian" value="little" />
+      <property name="sun.desktop" value="gnome" />
+      <property name="sun.cpu.isalist" value="" />
+
+        </properties>
+
+            <testcase classname="integration.ProductServiceITest" name="testCan_QUERY_Products" time="0.0">
+      
+    </testcase>
+    <testcase classname="integration.ProductServiceITest" name="testCan_POST_Product" time="0.0">
+      
+    </testcase>
+    <testcase classname="integration.ProductServiceITest" name="testCan_PUT_Product" time="0.0">
+      
+    </testcase>
+    <testcase classname="integration.ProductServiceITest" name="testCan_DELETE_Product" time="0.0">
+      
+    </testcase>
+    <testcase classname="integration.ProductServiceITest" name="testCan_GET_Product" time="0.0">
+      
+    </testcase>
+
+            <system-out>
+          
+        </system-out>
+
+            <system-err>
+          
+        </system-err>
+
+        </testsuite>
+  <testsuite errors="0" failures="0" hostname="debianmarco" id="7" name="ProductValidationTest" package="models" tests="6" time="0.002">
+            <properties>
+            <property name="jline.esc.timeout" value="0" />
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+      <property name="sun.boot.library.path" value="/opt/jdk1.7.0_25/jre/lib/i386" />
+      <property name="java.vm.version" value="23.25-b01" />
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+      <property name="java.vendor.url" value="http://java.oracle.com/" />
+      <property name="path.separator" value=":" />
+      <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+      <property name="file.encoding.pkg" value="sun.io" />
+      <property name="user.country" value="FR" />
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+      <property name="sun.os.patch.level" value="unknown" />
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+      <property name="user.dir" value="/home/marco/dev/poc-play-rest-backend" />
+      <property name="java.runtime.version" value="1.7.0_25-b15" />
+      <property name="sbt.boot.properties" value="/home/marco/dev/tools/play-2/framework/sbt/sbt.boot.properties" />
+      <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+      <property name="java.endorsed.dirs" value="/opt/jdk1.7.0_25/jre/lib/endorsed" />
+      <property name="os.arch" value="i386" />
+      <property name="java.io.tmpdir" value="/tmp" />
+      <property name="line.separator" value=" " />
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+      <property name="os.name" value="Linux" />
+      <property name="sun.jnu.encoding" value="UTF-8" />
+      <property name="java.library.path" value="/opt/idea-IU-129.713/bin::/usr/java/packages/lib/i386:/lib:/usr/lib" />
+      <property name="java.specification.name" value="Java Platform API Specification" />
+      <property name="java.class.version" value="51.0" />
+      <property name="play.home" value="/home/marco/dev/tools/play-2/framework" />
+      <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+      <property name="os.version" value="2.6.32-5-686" />
+      <property name="user.home" value="/home/marco" />
+      <property name="user.timezone" value="Europe/Paris" />
+      <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+      <property name="file.encoding" value="UTF-8" />
+      <property name="java.specification.version" value="1.7" />
+      <property name="java.class.path" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar" />
+      <property name="user.name" value="marco" />
+      <property name="jline.shutdownhook" value="false" />
+      <property name="play.version" value="2.2.1" />
+      <property name="java.vm.specification.version" value="1.7" />
+      <property name="sun.java.command" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar test" />
+      <property name="java.home" value="/opt/jdk1.7.0_25/jre" />
+      <property name="sun.arch.data.model" value="32" />
+      <property name="user.language" value="fr" />
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+      <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+      <property name="java.vm.info" value="mixed mode" />
+      <property name="java.version" value="1.7.0_25" />
+      <property name="java.ext.dirs" value="/opt/jdk1.7.0_25/jre/lib/ext:/usr/java/packages/lib/ext" />
+      <property name="sun.boot.class.path" value="/opt/jdk1.7.0_25/jre/lib/resources.jar:/opt/jdk1.7.0_25/jre/lib/rt.jar:/opt/jdk1.7.0_25/jre/lib/sunrsasign.jar:/opt/jdk1.7.0_25/jre/lib/jsse.jar:/opt/jdk1.7.0_25/jre/lib/jce.jar:/opt/jdk1.7.0_25/jre/lib/charsets.jar:/opt/jdk1.7.0_25/jre/lib/jfr.jar:/opt/jdk1.7.0_25/jre/classes" />
+      <property name="java.vendor" value="Oracle Corporation" />
+      <property name="file.separator" value="/" />
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+      <property name="sun.cpu.endian" value="little" />
+      <property name="sun.desktop" value="gnome" />
+      <property name="sun.cpu.isalist" value="" />
+
+        </properties>
+
+            <testcase classname="models.ProductValidationTest" name="testProductValidation_OK" time="0.0">
+      
+    </testcase>
+    <testcase classname="models.ProductValidationTest" name="testProductValidation_KO_stringsMinLengths" time="0.0">
+      
+    </testcase>
+    <testcase classname="models.ProductValidationTest" name="testProductValidation_KO_requiredFields" time="0.0">
+      
+    </testcase>
+    <testcase classname="models.ProductValidationTest" name="testProductValidation_KO_stringsMaxLengths" time="0.0">
+      
+    </testcase>
+    <testcase classname="models.ProductValidationTest" name="testProductValidation_KO_numericMax" time="0.0">
+      
+    </testcase>
+    <testcase classname="models.ProductValidationTest" name="testProductValidation_KO_numericMin" time="0.0">
+      
+    </testcase>
+
+            <system-out>
+          
+        </system-out>
+
+            <system-err>
+          
+        </system-err>
+
+        </testsuite>
+  <testsuite errors="0" failures="0" hostname="debianmarco" id="8" name="QueryServiceTest" package="org.myweb.services.crud" tests="4" time="0.013">
+            <properties>
+            <property name="jline.esc.timeout" value="0" />
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+      <property name="sun.boot.library.path" value="/opt/jdk1.7.0_25/jre/lib/i386" />
+      <property name="java.vm.version" value="23.25-b01" />
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+      <property name="java.vendor.url" value="http://java.oracle.com/" />
+      <property name="path.separator" value=":" />
+      <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+      <property name="file.encoding.pkg" value="sun.io" />
+      <property name="user.country" value="FR" />
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+      <property name="sun.os.patch.level" value="unknown" />
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+      <property name="user.dir" value="/home/marco/dev/poc-play-rest-backend" />
+      <property name="java.runtime.version" value="1.7.0_25-b15" />
+      <property name="sbt.boot.properties" value="/home/marco/dev/tools/play-2/framework/sbt/sbt.boot.properties" />
+      <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+      <property name="java.endorsed.dirs" value="/opt/jdk1.7.0_25/jre/lib/endorsed" />
+      <property name="os.arch" value="i386" />
+      <property name="java.io.tmpdir" value="/tmp" />
+      <property name="line.separator" value=" " />
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+      <property name="os.name" value="Linux" />
+      <property name="sun.jnu.encoding" value="UTF-8" />
+      <property name="java.library.path" value="/opt/idea-IU-129.713/bin::/usr/java/packages/lib/i386:/lib:/usr/lib" />
+      <property name="java.specification.name" value="Java Platform API Specification" />
+      <property name="java.class.version" value="51.0" />
+      <property name="play.home" value="/home/marco/dev/tools/play-2/framework" />
+      <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+      <property name="os.version" value="2.6.32-5-686" />
+      <property name="user.home" value="/home/marco" />
+      <property name="user.timezone" value="Europe/Paris" />
+      <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+      <property name="file.encoding" value="UTF-8" />
+      <property name="java.specification.version" value="1.7" />
+      <property name="java.class.path" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar" />
+      <property name="user.name" value="marco" />
+      <property name="jline.shutdownhook" value="false" />
+      <property name="play.version" value="2.2.1" />
+      <property name="java.vm.specification.version" value="1.7" />
+      <property name="sun.java.command" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar test" />
+      <property name="java.home" value="/opt/jdk1.7.0_25/jre" />
+      <property name="sun.arch.data.model" value="32" />
+      <property name="user.language" value="fr" />
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+      <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+      <property name="java.vm.info" value="mixed mode" />
+      <property name="java.version" value="1.7.0_25" />
+      <property name="java.ext.dirs" value="/opt/jdk1.7.0_25/jre/lib/ext:/usr/java/packages/lib/ext" />
+      <property name="sun.boot.class.path" value="/opt/jdk1.7.0_25/jre/lib/resources.jar:/opt/jdk1.7.0_25/jre/lib/rt.jar:/opt/jdk1.7.0_25/jre/lib/sunrsasign.jar:/opt/jdk1.7.0_25/jre/lib/jsse.jar:/opt/jdk1.7.0_25/jre/lib/jce.jar:/opt/jdk1.7.0_25/jre/lib/charsets.jar:/opt/jdk1.7.0_25/jre/lib/jfr.jar:/opt/jdk1.7.0_25/jre/classes" />
+      <property name="java.vendor" value="Oracle Corporation" />
+      <property name="file.separator" value="/" />
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+      <property name="sun.cpu.endian" value="little" />
+      <property name="sun.desktop" value="gnome" />
+      <property name="sun.cpu.isalist" value="" />
+
+        </properties>
+
+            <testcase classname="org.myweb.services.crud.QueryServiceTest" name="test_RestServiceResult_query_NO_CONTENT" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.crud.QueryServiceTest" name="test_JavaServiceResult_loadAll_NO_CONTENT" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.crud.QueryServiceTest" name="test_RestServiceResult_query_OK" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.crud.QueryServiceTest" name="test_JavaServiceResult_loadAll_OK" time="0.0">
+      
+    </testcase>
+
+            <system-out>
+          
+        </system-out>
+
+            <system-err>
+          
+        </system-err>
+
+        </testsuite>
+  <testsuite errors="0" failures="0" hostname="debianmarco" id="9" name="SecurityUtilsTest" package="org.myweb.utils" tests="1" time="0.001">
+            <properties>
+            <property name="jline.esc.timeout" value="0" />
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+      <property name="sun.boot.library.path" value="/opt/jdk1.7.0_25/jre/lib/i386" />
+      <property name="java.vm.version" value="23.25-b01" />
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+      <property name="java.vendor.url" value="http://java.oracle.com/" />
+      <property name="path.separator" value=":" />
+      <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+      <property name="file.encoding.pkg" value="sun.io" />
+      <property name="user.country" value="FR" />
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+      <property name="sun.os.patch.level" value="unknown" />
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+      <property name="user.dir" value="/home/marco/dev/poc-play-rest-backend" />
+      <property name="java.runtime.version" value="1.7.0_25-b15" />
+      <property name="sbt.boot.properties" value="/home/marco/dev/tools/play-2/framework/sbt/sbt.boot.properties" />
+      <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+      <property name="java.endorsed.dirs" value="/opt/jdk1.7.0_25/jre/lib/endorsed" />
+      <property name="os.arch" value="i386" />
+      <property name="java.io.tmpdir" value="/tmp" />
+      <property name="line.separator" value=" " />
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+      <property name="os.name" value="Linux" />
+      <property name="sun.jnu.encoding" value="UTF-8" />
+      <property name="java.library.path" value="/opt/idea-IU-129.713/bin::/usr/java/packages/lib/i386:/lib:/usr/lib" />
+      <property name="java.specification.name" value="Java Platform API Specification" />
+      <property name="java.class.version" value="51.0" />
+      <property name="play.home" value="/home/marco/dev/tools/play-2/framework" />
+      <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+      <property name="os.version" value="2.6.32-5-686" />
+      <property name="user.home" value="/home/marco" />
+      <property name="user.timezone" value="Europe/Paris" />
+      <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+      <property name="file.encoding" value="UTF-8" />
+      <property name="java.specification.version" value="1.7" />
+      <property name="java.class.path" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar" />
+      <property name="user.name" value="marco" />
+      <property name="jline.shutdownhook" value="false" />
+      <property name="play.version" value="2.2.1" />
+      <property name="java.vm.specification.version" value="1.7" />
+      <property name="sun.java.command" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar test" />
+      <property name="java.home" value="/opt/jdk1.7.0_25/jre" />
+      <property name="sun.arch.data.model" value="32" />
+      <property name="user.language" value="fr" />
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+      <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+      <property name="java.vm.info" value="mixed mode" />
+      <property name="java.version" value="1.7.0_25" />
+      <property name="java.ext.dirs" value="/opt/jdk1.7.0_25/jre/lib/ext:/usr/java/packages/lib/ext" />
+      <property name="sun.boot.class.path" value="/opt/jdk1.7.0_25/jre/lib/resources.jar:/opt/jdk1.7.0_25/jre/lib/rt.jar:/opt/jdk1.7.0_25/jre/lib/sunrsasign.jar:/opt/jdk1.7.0_25/jre/lib/jsse.jar:/opt/jdk1.7.0_25/jre/lib/jce.jar:/opt/jdk1.7.0_25/jre/lib/charsets.jar:/opt/jdk1.7.0_25/jre/lib/jfr.jar:/opt/jdk1.7.0_25/jre/classes" />
+      <property name="java.vendor" value="Oracle Corporation" />
+      <property name="file.separator" value="/" />
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+      <property name="sun.cpu.endian" value="little" />
+      <property name="sun.desktop" value="gnome" />
+      <property name="sun.cpu.isalist" value="" />
+
+        </properties>
+
+            <testcase classname="org.myweb.utils.SecurityUtilsTest" name="hashPasswordTest" time="0.0">
+      
+    </testcase>
+
+            <system-out>
+          
+        </system-out>
+
+            <system-err>
+          
+        </system-err>
+
+        </testsuite>
+  <testsuite errors="0" failures="0" hostname="debianmarco" id="10" name="UpdateServiceTest" package="org.myweb.services.crud" tests="4" time="0.002">
+            <properties>
+            <property name="jline.esc.timeout" value="0" />
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+      <property name="sun.boot.library.path" value="/opt/jdk1.7.0_25/jre/lib/i386" />
+      <property name="java.vm.version" value="23.25-b01" />
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+      <property name="java.vendor.url" value="http://java.oracle.com/" />
+      <property name="path.separator" value=":" />
+      <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+      <property name="file.encoding.pkg" value="sun.io" />
+      <property name="user.country" value="FR" />
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+      <property name="sun.os.patch.level" value="unknown" />
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+      <property name="user.dir" value="/home/marco/dev/poc-play-rest-backend" />
+      <property name="java.runtime.version" value="1.7.0_25-b15" />
+      <property name="sbt.boot.properties" value="/home/marco/dev/tools/play-2/framework/sbt/sbt.boot.properties" />
+      <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+      <property name="java.endorsed.dirs" value="/opt/jdk1.7.0_25/jre/lib/endorsed" />
+      <property name="os.arch" value="i386" />
+      <property name="java.io.tmpdir" value="/tmp" />
+      <property name="line.separator" value=" " />
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+      <property name="os.name" value="Linux" />
+      <property name="sun.jnu.encoding" value="UTF-8" />
+      <property name="java.library.path" value="/opt/idea-IU-129.713/bin::/usr/java/packages/lib/i386:/lib:/usr/lib" />
+      <property name="java.specification.name" value="Java Platform API Specification" />
+      <property name="java.class.version" value="51.0" />
+      <property name="play.home" value="/home/marco/dev/tools/play-2/framework" />
+      <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+      <property name="os.version" value="2.6.32-5-686" />
+      <property name="user.home" value="/home/marco" />
+      <property name="user.timezone" value="Europe/Paris" />
+      <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+      <property name="file.encoding" value="UTF-8" />
+      <property name="java.specification.version" value="1.7" />
+      <property name="java.class.path" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar" />
+      <property name="user.name" value="marco" />
+      <property name="jline.shutdownhook" value="false" />
+      <property name="play.version" value="2.2.1" />
+      <property name="java.vm.specification.version" value="1.7" />
+      <property name="sun.java.command" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar test" />
+      <property name="java.home" value="/opt/jdk1.7.0_25/jre" />
+      <property name="sun.arch.data.model" value="32" />
+      <property name="user.language" value="fr" />
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+      <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+      <property name="java.vm.info" value="mixed mode" />
+      <property name="java.version" value="1.7.0_25" />
+      <property name="java.ext.dirs" value="/opt/jdk1.7.0_25/jre/lib/ext:/usr/java/packages/lib/ext" />
+      <property name="sun.boot.class.path" value="/opt/jdk1.7.0_25/jre/lib/resources.jar:/opt/jdk1.7.0_25/jre/lib/rt.jar:/opt/jdk1.7.0_25/jre/lib/sunrsasign.jar:/opt/jdk1.7.0_25/jre/lib/jsse.jar:/opt/jdk1.7.0_25/jre/lib/jce.jar:/opt/jdk1.7.0_25/jre/lib/charsets.jar:/opt/jdk1.7.0_25/jre/lib/jfr.jar:/opt/jdk1.7.0_25/jre/classes" />
+      <property name="java.vendor" value="Oracle Corporation" />
+      <property name="file.separator" value="/" />
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+      <property name="sun.cpu.endian" value="little" />
+      <property name="sun.desktop" value="gnome" />
+      <property name="sun.cpu.isalist" value="" />
+
+        </properties>
+
+            <testcase classname="org.myweb.services.crud.UpdateServiceTest" name="test_RestServiceResult_update_BAD_REQUEST_urlIdAndPutResourceIdDiffer" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.crud.UpdateServiceTest" name="test_RestServiceResult_update_BAD_REQUEST_idMissing" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.crud.UpdateServiceTest" name="test_RestServiceResult_update_OK" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.crud.UpdateServiceTest" name="test_JavaServiceResult_merge_OK" time="0.0">
+      
+    </testcase>
+
+            <system-out>
+          
+        </system-out>
+
+            <system-err>
+          
+        </system-err>
+
+        </testsuite>
+  <testsuite errors="0" failures="0" hostname="debianmarco" id="11" name="UserCreateServiceTest" package="org.myweb.services.user" tests="4" time="0.001">
+            <properties>
+            <property name="jline.esc.timeout" value="0" />
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+      <property name="sun.boot.library.path" value="/opt/jdk1.7.0_25/jre/lib/i386" />
+      <property name="java.vm.version" value="23.25-b01" />
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+      <property name="java.vendor.url" value="http://java.oracle.com/" />
+      <property name="path.separator" value=":" />
+      <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+      <property name="file.encoding.pkg" value="sun.io" />
+      <property name="user.country" value="FR" />
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+      <property name="sun.os.patch.level" value="unknown" />
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+      <property name="user.dir" value="/home/marco/dev/poc-play-rest-backend" />
+      <property name="java.runtime.version" value="1.7.0_25-b15" />
+      <property name="sbt.boot.properties" value="/home/marco/dev/tools/play-2/framework/sbt/sbt.boot.properties" />
+      <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+      <property name="java.endorsed.dirs" value="/opt/jdk1.7.0_25/jre/lib/endorsed" />
+      <property name="os.arch" value="i386" />
+      <property name="java.io.tmpdir" value="/tmp" />
+      <property name="line.separator" value=" " />
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+      <property name="os.name" value="Linux" />
+      <property name="sun.jnu.encoding" value="UTF-8" />
+      <property name="java.library.path" value="/opt/idea-IU-129.713/bin::/usr/java/packages/lib/i386:/lib:/usr/lib" />
+      <property name="java.specification.name" value="Java Platform API Specification" />
+      <property name="java.class.version" value="51.0" />
+      <property name="play.home" value="/home/marco/dev/tools/play-2/framework" />
+      <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+      <property name="os.version" value="2.6.32-5-686" />
+      <property name="user.home" value="/home/marco" />
+      <property name="user.timezone" value="Europe/Paris" />
+      <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+      <property name="file.encoding" value="UTF-8" />
+      <property name="java.specification.version" value="1.7" />
+      <property name="java.class.path" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar" />
+      <property name="user.name" value="marco" />
+      <property name="jline.shutdownhook" value="false" />
+      <property name="play.version" value="2.2.1" />
+      <property name="java.vm.specification.version" value="1.7" />
+      <property name="sun.java.command" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar test" />
+      <property name="java.home" value="/opt/jdk1.7.0_25/jre" />
+      <property name="sun.arch.data.model" value="32" />
+      <property name="user.language" value="fr" />
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+      <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+      <property name="java.vm.info" value="mixed mode" />
+      <property name="java.version" value="1.7.0_25" />
+      <property name="java.ext.dirs" value="/opt/jdk1.7.0_25/jre/lib/ext:/usr/java/packages/lib/ext" />
+      <property name="sun.boot.class.path" value="/opt/jdk1.7.0_25/jre/lib/resources.jar:/opt/jdk1.7.0_25/jre/lib/rt.jar:/opt/jdk1.7.0_25/jre/lib/sunrsasign.jar:/opt/jdk1.7.0_25/jre/lib/jsse.jar:/opt/jdk1.7.0_25/jre/lib/jce.jar:/opt/jdk1.7.0_25/jre/lib/charsets.jar:/opt/jdk1.7.0_25/jre/lib/jfr.jar:/opt/jdk1.7.0_25/jre/classes" />
+      <property name="java.vendor" value="Oracle Corporation" />
+      <property name="file.separator" value="/" />
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+      <property name="sun.cpu.endian" value="little" />
+      <property name="sun.desktop" value="gnome" />
+      <property name="sun.cpu.isalist" value="" />
+
+        </properties>
+
+            <testcase classname="org.myweb.services.user.UserCreateServiceTest" name="test_RestServiceResult_createUser_CREATED" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.user.UserCreateServiceTest" name="test_RestServiceResult_createUser_BAD_REQUEST_badPasswords" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.user.UserCreateServiceTest" name="test_RestServiceResult_createUser_BAD_REQUEST_loginAlreadyExist" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.user.UserCreateServiceTest" name="test_RestServiceResult_createUser_BAD_REQUEST_emailAlreadyExist" time="0.0">
+      
+    </testcase>
+
+            <system-out>
+          
+        </system-out>
+
+            <system-err>
+          
+        </system-err>
+
+        </testsuite>
+  <testsuite errors="0" failures="0" hostname="debianmarco" id="12" name="UserLoginServiceTest" package="org.myweb.services.user" tests="9" time="0.001">
+            <properties>
+            <property name="jline.esc.timeout" value="0" />
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+      <property name="sun.boot.library.path" value="/opt/jdk1.7.0_25/jre/lib/i386" />
+      <property name="java.vm.version" value="23.25-b01" />
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+      <property name="java.vendor.url" value="http://java.oracle.com/" />
+      <property name="path.separator" value=":" />
+      <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+      <property name="file.encoding.pkg" value="sun.io" />
+      <property name="user.country" value="FR" />
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+      <property name="sun.os.patch.level" value="unknown" />
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+      <property name="user.dir" value="/home/marco/dev/poc-play-rest-backend" />
+      <property name="java.runtime.version" value="1.7.0_25-b15" />
+      <property name="sbt.boot.properties" value="/home/marco/dev/tools/play-2/framework/sbt/sbt.boot.properties" />
+      <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+      <property name="java.endorsed.dirs" value="/opt/jdk1.7.0_25/jre/lib/endorsed" />
+      <property name="os.arch" value="i386" />
+      <property name="java.io.tmpdir" value="/tmp" />
+      <property name="line.separator" value=" " />
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+      <property name="os.name" value="Linux" />
+      <property name="sun.jnu.encoding" value="UTF-8" />
+      <property name="java.library.path" value="/opt/idea-IU-129.713/bin::/usr/java/packages/lib/i386:/lib:/usr/lib" />
+      <property name="java.specification.name" value="Java Platform API Specification" />
+      <property name="java.class.version" value="51.0" />
+      <property name="play.home" value="/home/marco/dev/tools/play-2/framework" />
+      <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+      <property name="os.version" value="2.6.32-5-686" />
+      <property name="user.home" value="/home/marco" />
+      <property name="user.timezone" value="Europe/Paris" />
+      <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+      <property name="file.encoding" value="UTF-8" />
+      <property name="java.specification.version" value="1.7" />
+      <property name="java.class.path" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar" />
+      <property name="user.name" value="marco" />
+      <property name="jline.shutdownhook" value="false" />
+      <property name="play.version" value="2.2.1" />
+      <property name="java.vm.specification.version" value="1.7" />
+      <property name="sun.java.command" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar test" />
+      <property name="java.home" value="/opt/jdk1.7.0_25/jre" />
+      <property name="sun.arch.data.model" value="32" />
+      <property name="user.language" value="fr" />
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+      <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+      <property name="java.vm.info" value="mixed mode" />
+      <property name="java.version" value="1.7.0_25" />
+      <property name="java.ext.dirs" value="/opt/jdk1.7.0_25/jre/lib/ext:/usr/java/packages/lib/ext" />
+      <property name="sun.boot.class.path" value="/opt/jdk1.7.0_25/jre/lib/resources.jar:/opt/jdk1.7.0_25/jre/lib/rt.jar:/opt/jdk1.7.0_25/jre/lib/sunrsasign.jar:/opt/jdk1.7.0_25/jre/lib/jsse.jar:/opt/jdk1.7.0_25/jre/lib/jce.jar:/opt/jdk1.7.0_25/jre/lib/charsets.jar:/opt/jdk1.7.0_25/jre/lib/jfr.jar:/opt/jdk1.7.0_25/jre/classes" />
+      <property name="java.vendor" value="Oracle Corporation" />
+      <property name="file.separator" value="/" />
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+      <property name="sun.cpu.endian" value="little" />
+      <property name="sun.desktop" value="gnome" />
+      <property name="sun.cpu.isalist" value="" />
+
+        </properties>
+
+            <testcase classname="org.myweb.services.user.UserLoginServiceTest" name="test_RestServiceResult_loginUser_OK_byEmail" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.user.UserLoginServiceTest" name="test_RestServiceResult_loginUser_OK_byLogin" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.user.UserLoginServiceTest" name="test_RestServiceResult_loginUser_UNAUTHORIZED" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.user.UserLoginServiceTest" name="test_RestServiceResult_loginUser_NOT_FOUND_byEmail" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.user.UserLoginServiceTest" name="test_RestServiceResult_loginUser_NOT_FOUND_byLogin" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.user.UserLoginServiceTest" name="test_RestServiceResult_loginUser_BAD_REQUEST_loginAndEmailMissing" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.user.UserLoginServiceTest" name="test_RestServiceResult_loginUser_NOT_FOUND" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.user.UserLoginServiceTest" name="test_RestServiceResult_loginUser_OK" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.user.UserLoginServiceTest" name="test_RestServiceResult_loginUser_BAD_REQUEST_malformedPassword" time="0.0">
+      
+    </testcase>
+
+            <system-out>
+          
+        </system-out>
+
+            <system-err>
+          
+        </system-err>
+
+        </testsuite>
+  <testsuite errors="0" failures="0" hostname="debianmarco" id="13" name="UserServiceITest" package="integration" tests="5" time="0.001">
+            <properties>
+            <property name="jline.esc.timeout" value="0" />
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+      <property name="sun.boot.library.path" value="/opt/jdk1.7.0_25/jre/lib/i386" />
+      <property name="java.vm.version" value="23.25-b01" />
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+      <property name="java.vendor.url" value="http://java.oracle.com/" />
+      <property name="path.separator" value=":" />
+      <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+      <property name="file.encoding.pkg" value="sun.io" />
+      <property name="user.country" value="FR" />
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+      <property name="sun.os.patch.level" value="unknown" />
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+      <property name="user.dir" value="/home/marco/dev/poc-play-rest-backend" />
+      <property name="java.runtime.version" value="1.7.0_25-b15" />
+      <property name="sbt.boot.properties" value="/home/marco/dev/tools/play-2/framework/sbt/sbt.boot.properties" />
+      <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+      <property name="java.endorsed.dirs" value="/opt/jdk1.7.0_25/jre/lib/endorsed" />
+      <property name="os.arch" value="i386" />
+      <property name="java.io.tmpdir" value="/tmp" />
+      <property name="line.separator" value=" " />
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+      <property name="os.name" value="Linux" />
+      <property name="sun.jnu.encoding" value="UTF-8" />
+      <property name="java.library.path" value="/opt/idea-IU-129.713/bin::/usr/java/packages/lib/i386:/lib:/usr/lib" />
+      <property name="java.specification.name" value="Java Platform API Specification" />
+      <property name="java.class.version" value="51.0" />
+      <property name="play.home" value="/home/marco/dev/tools/play-2/framework" />
+      <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+      <property name="os.version" value="2.6.32-5-686" />
+      <property name="user.home" value="/home/marco" />
+      <property name="user.timezone" value="Europe/Paris" />
+      <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+      <property name="file.encoding" value="UTF-8" />
+      <property name="java.specification.version" value="1.7" />
+      <property name="java.class.path" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar" />
+      <property name="user.name" value="marco" />
+      <property name="jline.shutdownhook" value="false" />
+      <property name="play.version" value="2.2.1" />
+      <property name="java.vm.specification.version" value="1.7" />
+      <property name="sun.java.command" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar test" />
+      <property name="java.home" value="/opt/jdk1.7.0_25/jre" />
+      <property name="sun.arch.data.model" value="32" />
+      <property name="user.language" value="fr" />
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+      <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+      <property name="java.vm.info" value="mixed mode" />
+      <property name="java.version" value="1.7.0_25" />
+      <property name="java.ext.dirs" value="/opt/jdk1.7.0_25/jre/lib/ext:/usr/java/packages/lib/ext" />
+      <property name="sun.boot.class.path" value="/opt/jdk1.7.0_25/jre/lib/resources.jar:/opt/jdk1.7.0_25/jre/lib/rt.jar:/opt/jdk1.7.0_25/jre/lib/sunrsasign.jar:/opt/jdk1.7.0_25/jre/lib/jsse.jar:/opt/jdk1.7.0_25/jre/lib/jce.jar:/opt/jdk1.7.0_25/jre/lib/charsets.jar:/opt/jdk1.7.0_25/jre/lib/jfr.jar:/opt/jdk1.7.0_25/jre/classes" />
+      <property name="java.vendor" value="Oracle Corporation" />
+      <property name="file.separator" value="/" />
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+      <property name="sun.cpu.endian" value="little" />
+      <property name="sun.desktop" value="gnome" />
+      <property name="sun.cpu.isalist" value="" />
+
+        </properties>
+
+            <testcase classname="integration.UserServiceITest" name="testCan_DELETE_User" time="0.0">
+      
+    </testcase>
+    <testcase classname="integration.UserServiceITest" name="testCan_UPDATE_User" time="0.0">
+      
+    </testcase>
+    <testcase classname="integration.UserServiceITest" name="testCan_CREATE_User" time="0.0">
+      
+    </testcase>
+    <testcase classname="integration.UserServiceITest" name="testCan_QUERY_Users" time="0.0">
+      
+    </testcase>
+    <testcase classname="integration.UserServiceITest" name="testCan_GET_User" time="0.0">
+      
+    </testcase>
+
+            <system-out>
+          
+        </system-out>
+
+            <system-err>
+          
+        </system-err>
+
+        </testsuite>
+  <testsuite errors="0" failures="0" hostname="debianmarco" id="14" name="UserUpdateServiceTest" package="org.myweb.services.user" tests="6" time="0.003">
+            <properties>
+            <property name="jline.esc.timeout" value="0" />
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+      <property name="sun.boot.library.path" value="/opt/jdk1.7.0_25/jre/lib/i386" />
+      <property name="java.vm.version" value="23.25-b01" />
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+      <property name="java.vendor.url" value="http://java.oracle.com/" />
+      <property name="path.separator" value=":" />
+      <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+      <property name="file.encoding.pkg" value="sun.io" />
+      <property name="user.country" value="FR" />
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+      <property name="sun.os.patch.level" value="unknown" />
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+      <property name="user.dir" value="/home/marco/dev/poc-play-rest-backend" />
+      <property name="java.runtime.version" value="1.7.0_25-b15" />
+      <property name="sbt.boot.properties" value="/home/marco/dev/tools/play-2/framework/sbt/sbt.boot.properties" />
+      <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+      <property name="java.endorsed.dirs" value="/opt/jdk1.7.0_25/jre/lib/endorsed" />
+      <property name="os.arch" value="i386" />
+      <property name="java.io.tmpdir" value="/tmp" />
+      <property name="line.separator" value=" " />
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+      <property name="os.name" value="Linux" />
+      <property name="sun.jnu.encoding" value="UTF-8" />
+      <property name="java.library.path" value="/opt/idea-IU-129.713/bin::/usr/java/packages/lib/i386:/lib:/usr/lib" />
+      <property name="java.specification.name" value="Java Platform API Specification" />
+      <property name="java.class.version" value="51.0" />
+      <property name="play.home" value="/home/marco/dev/tools/play-2/framework" />
+      <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+      <property name="os.version" value="2.6.32-5-686" />
+      <property name="user.home" value="/home/marco" />
+      <property name="user.timezone" value="Europe/Paris" />
+      <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+      <property name="file.encoding" value="UTF-8" />
+      <property name="java.specification.version" value="1.7" />
+      <property name="java.class.path" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar" />
+      <property name="user.name" value="marco" />
+      <property name="jline.shutdownhook" value="false" />
+      <property name="play.version" value="2.2.1" />
+      <property name="java.vm.specification.version" value="1.7" />
+      <property name="sun.java.command" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar test" />
+      <property name="java.home" value="/opt/jdk1.7.0_25/jre" />
+      <property name="sun.arch.data.model" value="32" />
+      <property name="user.language" value="fr" />
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+      <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+      <property name="java.vm.info" value="mixed mode" />
+      <property name="java.version" value="1.7.0_25" />
+      <property name="java.ext.dirs" value="/opt/jdk1.7.0_25/jre/lib/ext:/usr/java/packages/lib/ext" />
+      <property name="sun.boot.class.path" value="/opt/jdk1.7.0_25/jre/lib/resources.jar:/opt/jdk1.7.0_25/jre/lib/rt.jar:/opt/jdk1.7.0_25/jre/lib/sunrsasign.jar:/opt/jdk1.7.0_25/jre/lib/jsse.jar:/opt/jdk1.7.0_25/jre/lib/jce.jar:/opt/jdk1.7.0_25/jre/lib/charsets.jar:/opt/jdk1.7.0_25/jre/lib/jfr.jar:/opt/jdk1.7.0_25/jre/classes" />
+      <property name="java.vendor" value="Oracle Corporation" />
+      <property name="file.separator" value="/" />
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+      <property name="sun.cpu.endian" value="little" />
+      <property name="sun.desktop" value="gnome" />
+      <property name="sun.cpu.isalist" value="" />
+
+        </properties>
+
+            <testcase classname="org.myweb.services.user.UserUpdateServiceTest" name="test_RestServiceResult_updateUser_BAD_REQUEST_badPasswords" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.user.UserUpdateServiceTest" name="test_RestServiceResult_updateUser_BAD_REQUEST_emailAlreadyExist" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.user.UserUpdateServiceTest" name="test_RestServiceResult_updateUser_BAD_REQUEST_idMissing" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.user.UserUpdateServiceTest" name="test_RestServiceResult_updateUser_BAD_REQUEST_urlIdAndPutResourceIdDiffer" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.user.UserUpdateServiceTest" name="test_RestServiceResult_updateUser_BAD_REQUEST_loginAlreadyExist" time="0.0">
+      
+    </testcase>
+    <testcase classname="org.myweb.services.user.UserUpdateServiceTest" name="test_RestServiceResult_updateUser_OK" time="0.0">
+      
+    </testcase>
+
+            <system-out>
+          
+        </system-out>
+
+            <system-err>
+          
+        </system-err>
+
+        </testsuite>
+  <testsuite errors="0" failures="0" hostname="debianmarco" id="15" name="UserValidationTest" package="models" tests="2" time="0.001">
+            <properties>
+            <property name="jline.esc.timeout" value="0" />
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+      <property name="sun.boot.library.path" value="/opt/jdk1.7.0_25/jre/lib/i386" />
+      <property name="java.vm.version" value="23.25-b01" />
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+      <property name="java.vendor.url" value="http://java.oracle.com/" />
+      <property name="path.separator" value=":" />
+      <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+      <property name="file.encoding.pkg" value="sun.io" />
+      <property name="user.country" value="FR" />
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+      <property name="sun.os.patch.level" value="unknown" />
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+      <property name="user.dir" value="/home/marco/dev/poc-play-rest-backend" />
+      <property name="java.runtime.version" value="1.7.0_25-b15" />
+      <property name="sbt.boot.properties" value="/home/marco/dev/tools/play-2/framework/sbt/sbt.boot.properties" />
+      <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+      <property name="java.endorsed.dirs" value="/opt/jdk1.7.0_25/jre/lib/endorsed" />
+      <property name="os.arch" value="i386" />
+      <property name="java.io.tmpdir" value="/tmp" />
+      <property name="line.separator" value=" " />
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+      <property name="os.name" value="Linux" />
+      <property name="sun.jnu.encoding" value="UTF-8" />
+      <property name="java.library.path" value="/opt/idea-IU-129.713/bin::/usr/java/packages/lib/i386:/lib:/usr/lib" />
+      <property name="java.specification.name" value="Java Platform API Specification" />
+      <property name="java.class.version" value="51.0" />
+      <property name="play.home" value="/home/marco/dev/tools/play-2/framework" />
+      <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+      <property name="os.version" value="2.6.32-5-686" />
+      <property name="user.home" value="/home/marco" />
+      <property name="user.timezone" value="Europe/Paris" />
+      <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+      <property name="file.encoding" value="UTF-8" />
+      <property name="java.specification.version" value="1.7" />
+      <property name="java.class.path" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar" />
+      <property name="user.name" value="marco" />
+      <property name="jline.shutdownhook" value="false" />
+      <property name="play.version" value="2.2.1" />
+      <property name="java.vm.specification.version" value="1.7" />
+      <property name="sun.java.command" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar test" />
+      <property name="java.home" value="/opt/jdk1.7.0_25/jre" />
+      <property name="sun.arch.data.model" value="32" />
+      <property name="user.language" value="fr" />
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+      <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+      <property name="java.vm.info" value="mixed mode" />
+      <property name="java.version" value="1.7.0_25" />
+      <property name="java.ext.dirs" value="/opt/jdk1.7.0_25/jre/lib/ext:/usr/java/packages/lib/ext" />
+      <property name="sun.boot.class.path" value="/opt/jdk1.7.0_25/jre/lib/resources.jar:/opt/jdk1.7.0_25/jre/lib/rt.jar:/opt/jdk1.7.0_25/jre/lib/sunrsasign.jar:/opt/jdk1.7.0_25/jre/lib/jsse.jar:/opt/jdk1.7.0_25/jre/lib/jce.jar:/opt/jdk1.7.0_25/jre/lib/charsets.jar:/opt/jdk1.7.0_25/jre/lib/jfr.jar:/opt/jdk1.7.0_25/jre/classes" />
+      <property name="java.vendor" value="Oracle Corporation" />
+      <property name="file.separator" value="/" />
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+      <property name="sun.cpu.endian" value="little" />
+      <property name="sun.desktop" value="gnome" />
+      <property name="sun.cpu.isalist" value="" />
+
+        </properties>
+
+            <testcase classname="models.UserValidationTest" name="test_UserValidation_KO_requiredFields" time="0.0">
+      
+    </testcase>
+    <testcase classname="models.UserValidationTest" name="test_UserValidation_OK" time="0.0">
+      
+    </testcase>
+
+            <system-out>
+          
+        </system-out>
+
+            <system-err>
+          
+        </system-err>
+
+        </testsuite>
+  <testsuite errors="0" failures="0" hostname="debianmarco" id="16" name="VersionServiceITest" package="integration" tests="2" time="0.0">
+            <properties>
+            <property name="jline.esc.timeout" value="0" />
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+      <property name="sun.boot.library.path" value="/opt/jdk1.7.0_25/jre/lib/i386" />
+      <property name="java.vm.version" value="23.25-b01" />
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+      <property name="java.vendor.url" value="http://java.oracle.com/" />
+      <property name="path.separator" value=":" />
+      <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+      <property name="file.encoding.pkg" value="sun.io" />
+      <property name="user.country" value="FR" />
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+      <property name="sun.os.patch.level" value="unknown" />
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+      <property name="user.dir" value="/home/marco/dev/poc-play-rest-backend" />
+      <property name="java.runtime.version" value="1.7.0_25-b15" />
+      <property name="sbt.boot.properties" value="/home/marco/dev/tools/play-2/framework/sbt/sbt.boot.properties" />
+      <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+      <property name="java.endorsed.dirs" value="/opt/jdk1.7.0_25/jre/lib/endorsed" />
+      <property name="os.arch" value="i386" />
+      <property name="java.io.tmpdir" value="/tmp" />
+      <property name="line.separator" value=" " />
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+      <property name="os.name" value="Linux" />
+      <property name="sun.jnu.encoding" value="UTF-8" />
+      <property name="java.library.path" value="/opt/idea-IU-129.713/bin::/usr/java/packages/lib/i386:/lib:/usr/lib" />
+      <property name="java.specification.name" value="Java Platform API Specification" />
+      <property name="java.class.version" value="51.0" />
+      <property name="play.home" value="/home/marco/dev/tools/play-2/framework" />
+      <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+      <property name="os.version" value="2.6.32-5-686" />
+      <property name="user.home" value="/home/marco" />
+      <property name="user.timezone" value="Europe/Paris" />
+      <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+      <property name="file.encoding" value="UTF-8" />
+      <property name="java.specification.version" value="1.7" />
+      <property name="java.class.path" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar" />
+      <property name="user.name" value="marco" />
+      <property name="jline.shutdownhook" value="false" />
+      <property name="play.version" value="2.2.1" />
+      <property name="java.vm.specification.version" value="1.7" />
+      <property name="sun.java.command" value="/home/marco/dev/tools/play-2/framework/sbt/sbt-launch.jar test" />
+      <property name="java.home" value="/opt/jdk1.7.0_25/jre" />
+      <property name="sun.arch.data.model" value="32" />
+      <property name="user.language" value="fr" />
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+      <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+      <property name="java.vm.info" value="mixed mode" />
+      <property name="java.version" value="1.7.0_25" />
+      <property name="java.ext.dirs" value="/opt/jdk1.7.0_25/jre/lib/ext:/usr/java/packages/lib/ext" />
+      <property name="sun.boot.class.path" value="/opt/jdk1.7.0_25/jre/lib/resources.jar:/opt/jdk1.7.0_25/jre/lib/rt.jar:/opt/jdk1.7.0_25/jre/lib/sunrsasign.jar:/opt/jdk1.7.0_25/jre/lib/jsse.jar:/opt/jdk1.7.0_25/jre/lib/jce.jar:/opt/jdk1.7.0_25/jre/lib/charsets.jar:/opt/jdk1.7.0_25/jre/lib/jfr.jar:/opt/jdk1.7.0_25/jre/classes" />
+      <property name="java.vendor" value="Oracle Corporation" />
+      <property name="file.separator" value="/" />
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+      <property name="sun.cpu.endian" value="little" />
+      <property name="sun.desktop" value="gnome" />
+      <property name="sun.cpu.isalist" value="" />
+
+        </properties>
+
+            <testcase classname="integration.VersionServiceITest" name="testCan_GET_Version" time="0.0">
+      
+    </testcase>
+    <testcase classname="integration.VersionServiceITest" name="testCan_GET_VersionFull" time="0.0">
+      
+    </testcase>
+
+            <system-out>
+          
+        </system-out>
+
+            <system-err>
+          
+        </system-err>
+
+        </testsuite>
+</testsuites>

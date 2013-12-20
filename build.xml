@@ -1,0 +1,96 @@
+<project name="poc-play-rest-backend Build Tools" basedir=".">
+    <description>
+        poc-play-rest-backend project tools file
+    </description>
+
+    <property name="db.admin.login" value="sqlAdmin"/>
+    <property name="db.admin.pwd" value="sqlAdmin"/>
+    <property name="db.server.pprb" value="localhost"/>
+    <property name="db.name.pprb" value="myweb"/>
+    <property name="db.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+    <property name="db.jdbc.url" value="jdbc:mysql://${db.server.pprb}"/>
+
+    <property environment="env"/>
+    <property name="env.PPRB_DB_USER" value="myweb_db_user"/>
+    <property name="env.PPRB_DB_PWD" value="password"/>
+    <property name="env.PPRB_DB_URL" value="${db.jdbc.url}/${db.name.pprb}"/>
+
+    <property name="play.dir" value="/home/marco/dev/tools/play-2"/>
+
+    <path id="lib.runSql">
+        <fileset dir="${play.dir}/repository/cache/mysql/mysql-connector-java/jars">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="show-config" description="Show env config in the Ant context">
+        <echoproperties/>
+        <echo>env.HOME: ${env.HOME}</echo>
+        <echo>env.USERNAME: ${env.USERNAME}</echo>
+        <echo>env.PPRB_DB_USER: ${env.PPRB_DB_USER}</echo>
+        <echo>env.PPRB_DB_PWD: ${env.PPRB_DB_PWD}</echo>
+    </target>
+
+    <target name="delete-report">
+        <delete dir="junit"/>
+    </target>
+
+    <target name="play-clean">
+        <exec executable="${play.dir}/play">
+            <arg value="clean"/>
+        </exec>
+    </target>
+
+    <target name="junit-reports" depends="delete-report">
+        <mkdir dir="junit/reports"/>
+        <junitreport todir="junit/reports" >
+            <fileset dir="./target/test-reports">
+                <include name="*.xml"/>
+            </fileset>
+            <report format="frames" todir="junit/reports"/>
+        </junitreport>
+    </target>
+
+    <target name="play-unit-test" depends="play-clean" description="Run java unit tests">
+        <exec executable="${play.dir}/play">
+            <env key="PPRB_DB_USER" value="${env.PPRB_DB_USER}"/>
+            <env key="PPRB_DB_PWD" value="${env.PPRB_DB_PWD}"/>
+            <env key="PPRB_DB_URL" value="${env.PPRB_DB_URL}"/>
+            <arg value="test"/>
+        </exec>
+    </target>
+
+    <target name="junit-reports-tests" depends="play-unit-test,junit-reports">
+
+    </target>
+
+    <target name="play-test" depends="delete-report" description="Run java unit tests and integration
+    test and use junitreport to display result">
+        <exec executable="${play.dir}/play">
+            <env key="PPRB_DB_USER" value="${env.PPRB_DB_USER}"/>
+            <env key="PPRB_DB_PWD" value="${env.PPRB_DB_PWD}"/>
+            <env key="PPRB_DB_URL" value="${env.PPRB_DB_URL}"/>
+            <arg value="test"/>
+        </exec>
+        <mkdir dir="junit/reports"/>
+        <junitreport todir="junit/reports" >
+            <fileset dir="./target/test-reports">
+                <include name="*.xml"/>
+            </fileset>
+            <report format="frames" todir="junit/reports"/>
+        </junitreport>
+    </target>
+
+    <target name="db-reset" description="Reset db and create schema">
+        <sql driver="${db.jdbc.driver}"
+             url="jdbc:mysql://localhost/"
+             userid="${db.admin.login}" password="${db.admin.pwd}"
+             classpathref="lib.runSql" autocommit="true" print="true">
+            DROP DATABASE IF EXISTS ${db.name.pprb};
+            CREATE DATABASE ${db.name.pprb};
+            GRANT ALL ON ${db.name.pprb}.* TO ${env.PPRB_DB_USER}@'localhost' IDENTIFIED BY '${env.PPRB_DB_PWD}';
+            GRANT ALL ON ${db.name.pprb}.* TO ${env.PPRB_DB_USER}@'127.0.0.1' IDENTIFIED BY '${env.PPRB_DB_PWD}';
+            FLUSH PRIVILEGES;
+        </sql>
+    </target>
+</project>

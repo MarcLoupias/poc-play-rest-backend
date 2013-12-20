@@ -1,0 +1,49 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+#
+#   The resources below are public, no prior login needed
+#
+
+GET           /public/version            controllers.VersionCtrl.shortVersion()
+
+POST          /public/users/login        controllers.LoginCtrl.login()
+
+#
+#   The resources below are private, a valid login is mandatory
+#
+#   Login status is managed via Play! session mechanism.
+#   See http://www.playframework.com/documentation/2.2.x/JavaSessionFlash
+#
+
+GET           /version-full              controllers.VersionCtrl.longVersion()
+
+GET           /categories                controllers.CategoryCtrl.query()
+GET           /categories/:id            controllers.CategoryCtrl.get(id: Long)
+POST          /categories                controllers.CategoryCtrl.create()
+PUT           /categories/:id            controllers.CategoryCtrl.update(id: Long)
+DELETE        /categories/:id            controllers.CategoryCtrl.delete(id: Long)
+
+GET           /products                  controllers.ProductCtrl.query()
+GET           /products/:id              controllers.ProductCtrl.get(id: Long)
+POST          /products                  controllers.ProductCtrl.create()
+PUT           /products/:id              controllers.ProductCtrl.update(id: Long)
+DELETE        /products/:id              controllers.ProductCtrl.delete(id: Long)
+
+GET           /users                     controllers.UserCtrl.query()
+GET           /users/:id                 controllers.UserCtrl.get(id: Long)
+POST          /users                     controllers.UserCtrl.create()
+PUT           /users/:id                 controllers.UserCtrl.update(id: Long)
+DELETE        /users/:id                 controllers.UserCtrl.delete(id: Long)
+
+
+
+
+
+
+
+
+
+
+
