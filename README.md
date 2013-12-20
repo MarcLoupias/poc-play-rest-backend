@@ -1,6 +1,6 @@
 
-                                    poc-play-rest-backend
-                                    =====================
+poc-play-rest-backend
+=====================
 
 
 Current [Play!] (http://www.playframework.com/) version is 2.2.1 (nov 2013)
