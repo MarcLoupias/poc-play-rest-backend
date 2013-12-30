@@ -1,1 +1,82 @@
-{"Users GET":{"method":"GET","url":"http://localhost:9000/users/1","body":"{\"login\":\"totoLogin\",\"newPassword\":\"l3g@lPwd\", \"confirmPassword\":\"l3g@lPwd\",\"email\":\"toto@toto.fr\"}","overrideMimeType":false,"headers":[["Content-Type","application/json"]]},"Login Admin POST":{"method":"POST","url":"http://localhost:9000/public/users/login","body":"{\"login\":\"admin\",\"email\":\"\",\"password\":\"@dm1nPwd\"}","overrideMimeType":false,"headers":[["Content-Type","application/json"]]},"Version GET":{"method":"GET","url":"http://localhost:9000/public/version","body":"","overrideMimeType":false,"headers":[]},"Users POST":{"method":"POST","url":"http://localhost:9000/users","body":"{\"login\":\"testUser\",\"newPassword\":\"l3g@lPwd\", \"confirmPassword\":\"l3g@lPwd\",\"email\":\"toto@toto.fr\"}","overrideMimeType":false,"headers":[["Content-Type","application/json"]]},"Login POST":{"method":"POST","url":"http://localhost:9000/public/users/login","body":"{\"login\":\"testUser\",\"email\":\"toto@toto.fr\",\"password\":\"l3g@lPwd\"}","overrideMimeType":false,"headers":[["Content-Type","application/json"]]},"Users PUT":{"method":"PUT","url":"http://localhost:9000/users/2","body":"{\"id\":2,\"login\":\"testUser\",\"newPassword\":\"l3g@lPwdUpdated\", \"confirmPassword\":\"l3g@lPwdUpdated\",\"email\":\"toto@toto.fr\"}","overrideMimeType":false,"headers":[["Content-Type","application/json"]]},"Version-full GET":{"method":"GET","url":"http://localhost:9000/version-full","body":"","overrideMimeType":false,"headers":[]},"Categories GET (query)":{"method":"GET","url":"http://localhost:9000/categories","body":"","overrideMimeType":false,"headers":[["Content-Type","application/json"]]},"Categories GET (get)":{"method":"GET","url":"http://localhost:9000/categories/1","body":"","overrideMimeType":false,"headers":[["Content-Type","application/json"]]},"Categories POST":{"method":"POST","url":"http://localhost:9000/categories","body":"{\"name\":\"category Z\"}","overrideMimeType":false,"headers":[["Content-Type","application/json"]]},"Categories PUT":{"method":"PUT","url":"http://localhost:9000/categories/1","body":"{\"id\":1,\"name\":\"category AAA\"}","overrideMimeType":false,"headers":[["Content-Type","application/json"]]},"Categories DELETE":{"method":"DELETE","url":"http://localhost:9000/categories/3","body":"","overrideMimeType":false,"headers":[]},"Products GET (query)":{"method":"GET","url":"http://localhost:9000/products","body":"","overrideMimeType":false,"headers":[["Content-Type","application/json"]]},"Products GET (get)":{"method":"GET","url":"http://localhost:9000/products/1","body":"","overrideMimeType":false,"headers":[["Content-Type","application/json"]]},"Products POST":{"method":"POST","url":"http://localhost:9000/products","body":"{\"name\":\"Product ZZZ\",\"date\":null,\"numberInteger\":10,\"numberLong\":null}","overrideMimeType":false,"headers":[["Content-Type","application/json"]]},"Products PUT":{"method":"PUT","url":"http://localhost:9000/products/4","body":"{\"id\":4,\"name\":\"Product ZZZ\",\"date\":null,\"numberInteger\":10,\"numberLong\":null,\"category\":{\"id\":1}}","overrideMimeType":false,"headers":[["Content-Type","application/json"]]}}
+{
+    "Users GET":{
+        "method":"GET","url":"http://localhost:9000/users/1",
+        "body":"{\"login\":\"totoLogin\",\"newPassword\":\"l3g@lPwd\", \"confirmPassword\":\"l3g@lPwd\",\"email\":\"toto@toto.fr\"}",
+        "overrideMimeType":false,"headers":[["Content-Type","application/json"]]
+    },
+    "Login Admin POST":{
+        "method":"POST","url":"http://localhost:9000/users/login",
+        "body":"{\"login\":\"admin\",\"email\":\"\",\"password\":\"@dm1nPwd\"}",
+        "overrideMimeType":false,"headers":[["Content-Type","application/json"]]
+    },
+    "Version GET":{
+        "method":"GET","url":"http://localhost:9000/version",
+        "body":"",
+        "overrideMimeType":false,"headers":[]
+    },
+    "Users POST":{
+        "method":"POST","url":"http://localhost:9000/users",
+        "body":"{\"login\":\"testUser\",\"newPassword\":\"l3g@lPwd\", \"confirmPassword\":\"l3g@lPwd\",\"email\":\"toto@toto.fr\"}",
+        "overrideMimeType":false,"headers":[["Content-Type","application/json"]]
+    },
+    "Login POST":{
+        "method":"POST","url":"http://localhost:9000/users/login",
+        "body":"{\"login\":\"testUser\",\"email\":\"toto@toto.fr\",\"password\":\"l3g@lPwd\"}",
+        "overrideMimeType":false,"headers":[["Content-Type","application/json"]]
+    },
+    "Users PUT":{
+        "method":"PUT","url":"http://localhost:9000/users/2",
+        "body":"{\"id\":2,\"login\":\"testUser\",\"newPassword\":\"l3g@lPwdUpdated\", \"confirmPassword\":\"l3g@lPwdUpdated\",\"email\":\"toto@toto.fr\"}",
+        "overrideMimeType":false,"headers":[["Content-Type","application/json"]]
+    },
+    "Version-full GET":{
+        "method":"GET","url":"http://localhost:9000/version-full",
+        "body":"",
+        "overrideMimeType":false,"headers":[]
+    },
+    "Categories GET (query)":{
+        "method":"GET","url":"http://localhost:9000/categories",
+        "body":"",
+        "overrideMimeType":false,"headers":[["Content-Type","application/json"]]
+    },
+    "Categories GET (get)":{
+        "method":"GET","url":"http://localhost:9000/categories/1",
+        "body":"",
+        "overrideMimeType":false,"headers":[["Content-Type","application/json"]]
+    },
+    "Categories POST":{
+        "method":"POST","url":"http://localhost:9000/categories",
+        "body":"{\"name\":\"category Z\"}",
+        "overrideMimeType":false,"headers":[["Content-Type","application/json"]]
+    },
+    "Categories PUT":{
+        "method":"PUT","url":"http://localhost:9000/categories/1",
+        "body":"{\"id\":1,\"name\":\"category AAA\"}",
+        "overrideMimeType":false,"headers":[["Content-Type","application/json"]]
+    },
+    "Categories DELETE":{
+        "method":"DELETE","url":"http://localhost:9000/categories/3",
+        "body":"",
+        "overrideMimeType":false,"headers":[]
+    },
+    "Products GET (query)":{
+        "method":"GET","url":"http://localhost:9000/products",
+        "body":"",
+        "overrideMimeType":false,"headers":[["Content-Type","application/json"]]
+    },
+    "Products GET (get)":{
+        "method":"GET","url":"http://localhost:9000/products/1",
+        "body":"",
+        "overrideMimeType":false,"headers":[["Content-Type","application/json"]]
+    },
+    "Products POST":{
+        "method":"POST","url":"http://localhost:9000/products",
+        "body":"{\"name\":\"Product ZZZ\",\"date\":null,\"numberInteger\":10,\"numberLong\":null}",
+        "overrideMimeType":false,"headers":[["Content-Type","application/json"]]
+    },
+    "Products PUT":{
+        "method":"PUT","url":"http://localhost:9000/products/4",
+        "body":"{\"id\":4,\"name\":\"Product ZZZ\",\"date\":null,\"numberInteger\":10,\"numberLong\":null,\"category\":{\"id\":1}}",
+        "overrideMimeType":false,"headers":[["Content-Type","application/json"]]
+    }
+}

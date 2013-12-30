@@ -26,12 +26,12 @@ Features
 * [Play l18n] (http://www.playframework.com/documentation/2.2.x/JavaI18N)
 * [Play dependencies management] (http://www.playframework.com/documentation/2.2.x/SBTDependencies)
 * A home-made login system using [NIST recommendations] (http://csrc.nist.gov/publications/nistpubs/800-132/nist-sp800-132.pdf)
+* [Play action composition example for controllers credentials] (http://www.playframework.com/documentation/2.2.1/JavaActionsComposition)
 
 Installation
 ------------
 * You need a MySQL working installation. (Just create a new user for that app, check config, then run the app or the db-reset ant task.)
 * You need to install Play! version 2.2.1+. (That config will not work with an inferior version due to framework last changes.)
-* Then
 
 Running the application and play with it
 ----------------------------------------
@@ -51,6 +51,8 @@ Check conf/configure.sh to set up shell before launching Play! console.
 IDE setup
 ---------
 This project is set for IntelliJ by [mpeltonen sbt plugin] (https://github.com/mpeltonen/sbt-idea)
+Open a play console then type `gen-idea`.
+A valid IntelliJ project will be set up, at this point you can open project in IntelliJ.
 
 Running tests
 -------------
@@ -59,19 +61,20 @@ Integration tests uses [RestAssured] (http://code.google.com/p/rest-assured/).
 
 * Tests can be run with the regular way through play console by typing "play test".
 * Tests can be run manually with IntelliJ.
-* Tests can be run manually with IntelliJ via the junit-reports-tests ant task
+* Tests can be run manually with IntelliJ via the `run-tests-fullstack` ant task
 to generate a html report in junit/reports/index.html
 
 Ant tasks
 ---------
 Tasks config are done on the top of build.xml file.
+You will need to update properties value for db access and play directory.
 See description of each tasks.
 
 Version number management
 -------------------------
 We use [sbt-buildinfo plugin] (https://github.com/sbt/sbt-buildinfo)
 Version number is set in build.sbt in the Play! regular way.
-(reload play console to see changes)
+Open a play console then type `reload` to see changes.
 
 Areas of improvements
 ---------------------

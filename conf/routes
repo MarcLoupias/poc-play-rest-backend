@@ -6,12 +6,15 @@
 #   The resources below are public, no prior login needed
 #
 
-GET           /public/version            controllers.VersionCtrl.shortVersion()
+GET           /version            controllers.VersionCtrl.shortVersion()
 
-POST          /public/users/login        controllers.LoginCtrl.login()
+POST          /users/login        controllers.LoginCtrl.login()
 
 #
 #   The resources below are private, a valid login is mandatory
+#
+#   Credentials are managed with the Play! Action composition system
+#   See http://www.playframework.com/documentation/2.2.1/JavaActionsComposition
 #
 #   Login status is managed via Play! session mechanism.
 #   See http://www.playframework.com/documentation/2.2.x/JavaSessionFlash

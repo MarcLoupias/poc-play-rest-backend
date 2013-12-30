@@ -25,7 +25,7 @@ public class LoginServiceITest extends IntegrationTestConfig {
                         .expect()
                         .statusCode(Http.Status.OK)
                         .when()
-                        .post(BASE_URL + "/public/users/login")
+                        .post(BASE_URL + "/users/login")
                         .andReturn().body().asString();
 
                 // logout is managed by Play!, simply close the browser.

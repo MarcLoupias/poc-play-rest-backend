@@ -6,11 +6,9 @@ import org.myweb.db.TestHelper;
 import org.myweb.services.RestServiceResult;
 import org.myweb.services.user.UserCreateService;
 import org.myweb.utils.ExceptionUtils;
-import org.myweb.utils.SessionUtils;
 import play.*;
 import play.db.jpa.JPA;
 import play.i18n.Messages;
-import play.libs.F;
 import play.libs.Json;
 import play.mvc.*;
 import play.mvc.Http.*;
@@ -38,8 +36,8 @@ public class Global extends GlobalSettings {
                     admin = TestHelper.userFactory(null, "admin", "@dm1nPwd", "@dm1nPwd", "admin@domain.tld");
                     JsonNode jsAdmin = Json.toJson(admin);
                     RestServiceResult res = UserCreateService.getInstance(Dao.getInstance()).createUser(jsAdmin);
-                    if(res.getHttpStatus() != Http.Status.OK) {
-                        Logger.error("[Application Start] Impossible to create admin account");
+                    if(res.getHttpStatus() != Http.Status.CREATED) {
+                        Logger.error("[Application Start] Impossible to create admin account : " + res.getErrorMsg());
                     }
                 }
             }
@@ -90,30 +88,17 @@ public class Global extends GlobalSettings {
 
     // before each request
     public Action onRequest(Request request, Method actionMethod) {
-        System.out.println("before each request..." + request.toString());
 
-        if(Play.isTest()){
-            return super.onRequest(request, actionMethod);
+        StringBuilder sb = new StringBuilder();
+        sb.append("[http request] ");
+        sb.append(request.toString());
+        if(request.body() != null) {
+            sb.append(" [http request body] ");
+            sb.append(request.body().toString());
         }
 
-        return new Action.Simple() {
-            public Promise<SimpleResult> call(Context ctx) throws Throwable {
+        Logger.info(sb.toString());
 
-                String path = ctx.request().path();
-                if (!path.startsWith("/public")) {
-
-                    if(SessionUtils.getSessionUserId() == null) {
-                        return F.Promise.pure(
-                                (SimpleResult) unauthorized(Messages.get("global.unauthorized"))
-                        );
-                    } else {
-                        return delegate.call(ctx) ;
-                    }
-
-                } else {
-                    return delegate.call(ctx) ;
-                }
-            }
-        };
+        return super.onRequest(request, actionMethod);
     }
 }

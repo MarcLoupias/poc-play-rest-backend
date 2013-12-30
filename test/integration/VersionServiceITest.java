@@ -25,7 +25,7 @@ public class VersionServiceITest extends IntegrationTestConfig {
                         .expect()
                         .statusCode(Http.Status.OK)
                         .when()
-                        .get(BASE_URL + "/public/version")
+                        .get(BASE_URL + "/version")
                         .andReturn().body().asString();
 
                 Assert.assertNotNull(body);
@@ -36,7 +36,7 @@ public class VersionServiceITest extends IntegrationTestConfig {
                 VersionService.ShortVersion version = Json.fromJson(jsVersion, VersionService.ShortVersion.class);
                 Assert.assertNotNull(version);
                 Assert.assertEquals(version.appName, "poc-play-rest-backend");
-                Assert.assertEquals(version.appVersion, "1.0-SNAPSHOT");
+                Assert.assertEquals(version.appVersion, "1.1-SNAPSHOT");
             }
         });
     }
@@ -63,16 +63,16 @@ public class VersionServiceITest extends IntegrationTestConfig {
                 VersionService.LongVersion version = Json.fromJson(jsVersion, VersionService.LongVersion.class);
                 Assert.assertNotNull(version);
                 Assert.assertEquals("poc-play-rest-backend", version.appName);
-                Assert.assertEquals("1.0-SNAPSHOT", version.appVersion);
+                Assert.assertEquals("1.1-SNAPSHOT", version.appVersion);
                 //Assert.assertEquals("2.2.1", version.playVersion); don't work in play test mode ...
-                Assert.assertEquals("1.7.0_25", version.javaVersion);
+                /*Assert.assertEquals("1.7.0_25", version.javaVersion);
                 Assert.assertEquals("Java HotSpot(TM) Server VM", version.jvmName);
-                Assert.assertEquals("23.25-b01", version.jvmVersion);
-                Assert.assertEquals("Europe/Paris", version.osTimezone);
+                Assert.assertEquals("23.25-b01", version.jvmVersion);*/
+                /*Assert.assertEquals("Europe/Paris", version.osTimezone);
                 Assert.assertEquals("FR", version.osCountry);
                 Assert.assertEquals("i386", version.osArch);
                 Assert.assertEquals("Linux", version.osName);
-                Assert.assertEquals("2.6.32-5-686", version.osVersion);
+                Assert.assertEquals("2.6.32-5-686", version.osVersion);*/
             }
         });
     }
