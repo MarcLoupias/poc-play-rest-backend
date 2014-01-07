@@ -3,7 +3,6 @@ project/project
 project/target
 target
 tmp
-junit
 .history
 dist
 /.idea
