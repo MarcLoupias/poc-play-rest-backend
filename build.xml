@@ -15,7 +15,7 @@
     <property name="env.PPRB_DB_PWD" value="password"/>
     <property name="env.PPRB_DB_URL" value="${db.jdbc.url}/${db.name.pprb}"/>
 
-    <property name="play.dir" value="/home/martine/dev/tools/play-2"/>
+    <property name="play.dir" value="/home/marco/dev/tools/play-2"/>
 
     <path id="lib.runSql">
         <fileset dir="${play.dir}/repository/cache/mysql/mysql-connector-java/jars">

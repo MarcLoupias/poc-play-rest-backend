@@ -9,6 +9,7 @@ poc-play-rest-backend changelog
 * rest-client favorite requests file indented
 * Some cleaning in build.xml
 * Each incoming request is now logged in the application.log
+* Removing junit report files
 
 1.0-SNAPSHOT
 ------------
