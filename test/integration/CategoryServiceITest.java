@@ -141,7 +141,7 @@ public class CategoryServiceITest extends IntegrationTestConfig {
 
                 category.setName("testCategForPut_Put");
 
-                body = RestAssured.given()
+                RestAssured.given()
                         .contentType("application/json")
                         .body(category)
                         .expect()
@@ -187,9 +187,7 @@ public class CategoryServiceITest extends IntegrationTestConfig {
                 Category category = Json.fromJson(jsCategory, Category.class);
                 Assert.assertNotNull(category);
 
-
-
-                body = RestAssured.given()
+                RestAssured.given()
                         .contentType("application/json")
                         .body(category)
                         .expect()

@@ -32,13 +32,13 @@ CREATE TABLE  `Product` (
   CONSTRAINT `FK_f018012d02dc4ccab9396eb4dac` FOREIGN KEY (`category_id`) REFERENCES `Category` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO Category (id, name) VALUES (1, 'category A'), (2, 'category B');
+CREATE TABLE  `County` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO Product (id, date, name, numberInteger, numberLong, category_id)
-  VALUES
-  (1, NOW(), 'Product AAA', 10, NULL, 1),
-  (2, NOW(), 'Product BBB', 20, 100000, 1),
-  (3, NOW(), 'Product CCC', 30, NULL, 2);
 
 # --- !Downs
 
@@ -47,6 +47,7 @@ SET FOREIGN_KEY_CHECKS=0;
 drop table User;
 drop table Product;
 drop table Category;
+drop table County;
 
 SET FOREIGN_KEY_CHECKS=1;
 

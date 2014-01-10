@@ -83,5 +83,5 @@ Areas of improvements
 * I don't know how to rollback the database after each integration test without deleting each record used manually.
 * Transactions are functional but i have to work on [concurrency] (https://blogs.oracle.com/enterprisetechtips/entry/locking_and_concurrency_in_java).
 * My next step is to build an [AngularJs] (http://angularjs.org/) + [Bootstrap] (http://getbootstrap.com/) front-end to plug on this back-end.
-* I need also to work on continuous integration and deployment, probably on [Heroku] (https://devcenter.heroku.com/articles/play-support) and changing MySQL to Postgres.
+* I need also to work on continuous integration and deployment, probably on [Heroku] (https://devcenter.heroku.com/articles/play-support).
 

@@ -55,7 +55,7 @@ public class UserServiceITest extends IntegrationTestConfig {
                 Assert.assertNotNull(user);
                 Assert.assertEquals(postedUser.getLogin(), user.getLogin());
 
-                body = RestAssured.given()
+                RestAssured.given()
                         .contentType("application/json")
                         .body(postedUser)
                         .expect()
@@ -113,7 +113,7 @@ public class UserServiceITest extends IntegrationTestConfig {
                     }
                 }
 
-                body = RestAssured.given()
+                RestAssured.given()
                         .contentType("application/json")
                         .body(postedUser)
                         .expect()
@@ -150,7 +150,7 @@ public class UserServiceITest extends IntegrationTestConfig {
                 Assert.assertNotNull(user);
                 Assert.assertEquals(user.getLogin(), "userLoginForPostIT");
 
-                body = RestAssured.given()
+                RestAssured.given()
                         .contentType("application/json")
                         .body(user)
                         .expect()
@@ -193,7 +193,7 @@ public class UserServiceITest extends IntegrationTestConfig {
                 user.setLogin("userLoginForPutITupdated");
                 user.setEmail("totoupdated@forputit.fr");
 
-                body = RestAssured.given()
+                RestAssured.given()
                         .contentType("application/json")
                         .body(user)
                         .expect()
@@ -202,7 +202,7 @@ public class UserServiceITest extends IntegrationTestConfig {
                         .put(BASE_URL + "/users/" + user.getId())
                         .andReturn().body().asString();
 
-                body = RestAssured.given()
+                RestAssured.given()
                         .contentType("application/json")
                         .body(user)
                         .expect()
@@ -238,7 +238,7 @@ public class UserServiceITest extends IntegrationTestConfig {
 
                 User postedUser = Json.fromJson(jsUser, User.class);
 
-                body = RestAssured.given()
+                RestAssured.given()
                         .contentType("application/json")
                         .body(postedUser)
                         .expect()

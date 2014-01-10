@@ -1,7 +1,8 @@
 package controllers;
 
 import credentials.CredentialsCheckerAction;
-import models.Category;
+import models.Cinema;
+import models.County;
 import org.myweb.db.Dao;
 import org.myweb.services.crud.*;
 import play.db.jpa.Transactional;
@@ -9,14 +10,14 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.With;
 
-public class CategoryCtrl extends Controller {
+public class CinemaCtrl extends Controller {
 
     @Transactional(readOnly = true)
     @With(CredentialsCheckerAction.class)
     public static Result get(Long id){
 
         return GetService.getInstance(Dao.getInstance())
-                .get( Category.class, id )
+                .get( Cinema.class, id )
                 .buildPlayCtrlResult();
 
     }
@@ -26,7 +27,7 @@ public class CategoryCtrl extends Controller {
     public static Result query(){
 
         return QueryService.getInstance(Dao.getInstance())
-                .query(Category.class)
+                .query(Cinema.class)
                 .buildPlayCtrlResult();
 
     }
@@ -36,7 +37,7 @@ public class CategoryCtrl extends Controller {
     public static Result update(Long id){
 
         return UpdateService.getInstance(Dao.getInstance())
-                .update( Category.class, request().body().asJson(), id )
+                .update( Cinema.class, request().body().asJson(), id )
                 .buildPlayCtrlResult();
 
     }
@@ -46,7 +47,7 @@ public class CategoryCtrl extends Controller {
     public static Result create(){
 
         return CreateService.getInstance(Dao.getInstance())
-                .create( Category.class, request().body().asJson() )
+                .create( Cinema.class, request().body().asJson() )
                 .buildPlayCtrlResult();
 
 
@@ -57,7 +58,7 @@ public class CategoryCtrl extends Controller {
     public static Result delete(Long id){
 
         return DeleteService.getInstance(Dao.getInstance())
-                .delete( Category.class, id )
+                .delete( Cinema.class, id )
                 .buildPlayCtrlResult();
 
     }

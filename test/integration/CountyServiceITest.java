@@ -2,23 +2,20 @@ package integration;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.jayway.restassured.RestAssured;
-import models.Category;
-import models.Product;
+import models.County;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myweb.db.TestHelper;
 import play.libs.Json;
 import play.mvc.Http;
 
-import java.util.Date;
-
 import static play.test.Helpers.running;
 import static play.test.Helpers.testServer;
 
-public class ProductServiceITest extends IntegrationTestConfig {
+public class CountyServiceITest extends IntegrationTestConfig {
 
     @Test
-    public void testCan_GET_Product() {
+    public void testCan_GET_County() {
         running(testServer(PORT), new Runnable() {
             @Override
             public void run() {
@@ -28,23 +25,23 @@ public class ProductServiceITest extends IntegrationTestConfig {
                         .expect()
                         .statusCode(Http.Status.OK)
                         .when()
-                        .get(BASE_URL + "/products/1")
+                        .get(BASE_URL + "/counties/1")
                         .andReturn().body().asString();
 
                 Assert.assertNotNull(body);
 
-                JsonNode jsProduct = Json.parse(body);
-                Assert.assertNotNull(jsProduct);
+                JsonNode jsCounty = Json.parse(body);
+                Assert.assertNotNull(jsCounty);
 
-                Product product = Json.fromJson(jsProduct, Product.class);
-                Assert.assertNotNull(product);
-                Assert.assertEquals(product.getName(), "Product AAA");
+                County county = Json.fromJson(jsCounty, County.class);
+                Assert.assertNotNull(county);
+                Assert.assertEquals(county.getName(), "Ain");
             }
         });
     }
 
     @Test
-    public void testCan_QUERY_Products() {
+    public void testCan_QUERY_Counties() {
         running(testServer(PORT), new Runnable() {
             @Override
             public void run() {
@@ -54,23 +51,23 @@ public class ProductServiceITest extends IntegrationTestConfig {
                         .expect()
                         .statusCode(Http.Status.OK)
                         .when()
-                        .get(BASE_URL + "/products")
+                        .get(BASE_URL + "/counties")
                         .andReturn().body().asString();
 
                 Assert.assertNotNull(body);
 
-                JsonNode jsProductList = Json.parse(body);
-                Assert.assertNotNull(jsProductList);
-                Assert.assertTrue(jsProductList.isArray());
-                Assert.assertTrue(jsProductList.size() >= 2);
+                JsonNode jsCountyList = Json.parse(body);
+                Assert.assertNotNull(jsCountyList);
+                Assert.assertTrue(jsCountyList.isArray());
+                Assert.assertTrue(jsCountyList.size() >= 99);
 
-                for(JsonNode jsProduct : jsProductList) {
-                    Product p = Json.fromJson(jsProduct, Product.class);
-                    if(p.getId() == 1l) {
-                        Assert.assertEquals("Product AAA", p.getName());
+                for(JsonNode jsCounty : jsCountyList) {
+                    County c = Json.fromJson(jsCounty, County.class);
+                    if(c.getId() == 1l) {
+                        Assert.assertEquals("Ain", c.getName());
                     }
-                    if(p.getId() == 2l) {
-                        Assert.assertEquals("Product BBB", p.getName());
+                    if(c.getId() == 2l) {
+                        Assert.assertEquals("Aisne", c.getName());
                     }
                 }
             }
@@ -78,133 +75,125 @@ public class ProductServiceITest extends IntegrationTestConfig {
     }
 
     @Test
-    public void testCan_POST_Product() {
+    public void testCan_POST_County() {
         running(testServer(PORT), new Runnable() {
             @Override
             public void run() {
 
-                Category c = TestHelper
-                        .categoryFactory(1l, "category A");
-                Product newProduct = TestHelper
-                        .productFactory(null, "Product ZZZZZ", new Date(), 10, null, c);
+                County newCounty = TestHelper.countyFactory(null, "newCountyCode", "newCountyName");
 
                 String body = RestAssured.given()
                         .contentType("application/json")
-                        .body(newProduct).then()
+                        .body(newCounty)
                         .expect()
                         .statusCode(Http.Status.CREATED)
                         .when()
-                        .post(BASE_URL + "/products")
+                        .post(BASE_URL + "/counties")
                         .andReturn().body().asString();
 
                 Assert.assertNotNull(body);
 
-                JsonNode jsProduct = Json.parse(body);
-                Assert.assertNotNull(jsProduct);
+                JsonNode jsCounty = Json.parse(body);
+                Assert.assertNotNull(jsCounty);
 
-                Product product = Json.fromJson(jsProduct, Product.class);
-                Assert.assertNotNull(product);
-                Assert.assertEquals(product.getName(), newProduct.getName());
-                Assert.assertNotNull(product.getId());
-                Assert.assertTrue(product.getId() > 0);
+                County county = Json.fromJson(jsCounty, County.class);
+                Assert.assertNotNull(county);
+                Assert.assertEquals(county.getName(), newCounty.getName());
+                Assert.assertNotNull(county.getId());
+                Assert.assertTrue(county.getId() > 0);
 
                 RestAssured.given()
                         .contentType("application/json")
-                        .body(product)
+                        .body(county)
                         .expect()
                         .statusCode(Http.Status.NO_CONTENT)
                         .when()
-                        .delete(BASE_URL + "/products/" + product.getId())
+                        .delete(BASE_URL + "/counties/" + county.getId())
                         .andReturn().body().asString();
             }
         });
     }
 
     @Test
-    public void testCan_PUT_Product() {
+    public void testCan_PUT_County() {
         running(testServer(PORT), new Runnable() {
             @Override
             public void run() {
 
-                Category c = TestHelper
-                        .categoryFactory(1l, "category A");
-                Product newProduct = TestHelper
-                        .productFactory(null, "testProdForPut_Post", new Date(), 10, null, c);
+                County newCounty = TestHelper.countyFactory(null, "testCountyCodeForPut_Post", "testCountyNameForPut_Post");
 
                 String body = RestAssured.given()
                         .contentType("application/json")
-                        .body(newProduct)
+                        .body(newCounty)
                         .expect()
                         .statusCode(Http.Status.CREATED)
                         .when()
-                        .post(BASE_URL + "/products")
+                        .post(BASE_URL + "/counties")
                         .andReturn().body().asString();
 
                 Assert.assertNotNull(body);
 
-                JsonNode jsProduct = Json.parse(body);
-                Assert.assertNotNull(jsProduct);
+                JsonNode jsCounty = Json.parse(body);
+                Assert.assertNotNull(jsCounty);
 
-                Product product = Json.fromJson(jsProduct, Product.class);
-                Assert.assertNotNull(product);
+                County county = Json.fromJson(jsCounty, County.class);
+                Assert.assertNotNull(county);
 
-                product.setName("testProdForPut_Put");
+                county.setName("testCountyNameForPut_Put");
 
                 RestAssured.given()
                         .contentType("application/json")
-                        .body(product)
+                        .body(county)
                         .expect()
                         .statusCode(Http.Status.OK)
                         .when()
-                        .put(BASE_URL + "/products/" + product.getId())
+                        .put(BASE_URL + "/counties/" + county.getId())
                         .andReturn().body().asString();
 
                 RestAssured.given()
                         .contentType("application/json")
-                        .body(product)
+                        .body(county)
                         .expect()
                         .statusCode(Http.Status.NO_CONTENT)
                         .when()
-                        .delete(BASE_URL + "/products/" + product.getId())
-                        .andReturn().body().asString();            }
+                        .delete(BASE_URL + "/counties/" + county.getId())
+                        .andReturn().body().asString();
+            }
         });
     }
 
     @Test
-    public void testCan_DELETE_Product() {
+    public void testCan_DELETE_County() {
         running(testServer(PORT), new Runnable() {
             @Override
             public void run() {
 
-                Category c = TestHelper
-                        .categoryFactory(1l, "category A");
-                Product newProduct = TestHelper
-                        .productFactory(null, "testProductForDelete", null, 10, null, c);
+                County newCounty = TestHelper.countyFactory(null, "testCategCodeForDelete", "testCategNameForDelete");
 
                 String body = RestAssured.given()
                         .contentType("application/json")
-                        .body(newProduct)
+                        .body(newCounty)
                         .expect()
                         .statusCode(Http.Status.CREATED)
                         .when()
-                        .post(BASE_URL + "/products")
+                        .post(BASE_URL + "/counties")
                         .andReturn().body().asString();
 
                 Assert.assertNotNull(body);
 
-                JsonNode jsProduct = Json.parse(body);
-                Assert.assertNotNull(jsProduct);
+                JsonNode jsCounty = Json.parse(body);
+                Assert.assertNotNull(jsCounty);
 
-                Product product = Json.fromJson(jsProduct, Product.class);
-                Assert.assertNotNull(product);
+                County county = Json.fromJson(jsCounty, County.class);
+                Assert.assertNotNull(county);
 
                 RestAssured.given()
                         .contentType("application/json")
-                        .body(product)
+                        .body(county)
                         .expect()
                         .statusCode(Http.Status.NO_CONTENT)
                         .when()
-                        .delete(BASE_URL + "/products/" + product.getId())
+                        .delete(BASE_URL + "/counties/" + county.getId())
                         .andReturn().body().asString();
             }
         });

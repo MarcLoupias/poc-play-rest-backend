@@ -1,9 +1,6 @@
 package org.myweb.db;
 
-import models.Category;
-import models.Product;
-import models.User;
-import models.UserPasswordSettings;
+import models.*;
 import org.jetbrains.annotations.NotNull;
 import org.myweb.services.user.UserLoginAttempt;
 
@@ -95,6 +92,41 @@ public class TestHelper {
     public static List<Product> productListFactory(Product... products) {
         List<Product> res = new ArrayList<>();
         Collections.addAll(res, products);
+        return res;
+    }
+
+    @NotNull
+    public static County countyFactory(Long id, String code, String name) {
+        County county = new County();
+        county.setId(id);
+        county.setCode(code);
+        county.setName(name);
+        return county;
+    }
+
+    @NotNull
+    public static List<County> countyListFactory(County... counties) {
+        List<County> res = new ArrayList<>();
+        Collections.addAll(res, counties);
+        return res;
+    }
+
+    @NotNull
+    public static Cinema cinemaFactory(Long id, String name, Integer screen, Integer seat, County county) {
+        Cinema cinema = new Cinema();
+        cinema.setId(id);
+        cinema.setName(name);
+        cinema.setScreen(screen);
+        cinema.setSeat(seat);
+        cinema.setCounty(county);
+
+        return cinema;
+    }
+
+    @NotNull
+    public static List<Cinema> cinemaListFactory(Cinema... cinemas) {
+        List<Cinema> res = new ArrayList<>();
+        Collections.addAll(res, cinemas);
         return res;
     }
 }

@@ -2,23 +2,21 @@ package integration;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.jayway.restassured.RestAssured;
-import models.Category;
-import models.Product;
+import models.Cinema;
+import models.County;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myweb.db.TestHelper;
 import play.libs.Json;
 import play.mvc.Http;
 
-import java.util.Date;
-
 import static play.test.Helpers.running;
 import static play.test.Helpers.testServer;
 
-public class ProductServiceITest extends IntegrationTestConfig {
+public class CinemaServiceITest extends IntegrationTestConfig {
 
     @Test
-    public void testCan_GET_Product() {
+    public void testCan_GET_Cinema() {
         running(testServer(PORT), new Runnable() {
             @Override
             public void run() {
@@ -28,23 +26,23 @@ public class ProductServiceITest extends IntegrationTestConfig {
                         .expect()
                         .statusCode(Http.Status.OK)
                         .when()
-                        .get(BASE_URL + "/products/1")
+                        .get(BASE_URL + "/cinemas/1")
                         .andReturn().body().asString();
 
                 Assert.assertNotNull(body);
 
-                JsonNode jsProduct = Json.parse(body);
-                Assert.assertNotNull(jsProduct);
+                JsonNode jsCounty = Json.parse(body);
+                Assert.assertNotNull(jsCounty);
 
-                Product product = Json.fromJson(jsProduct, Product.class);
-                Assert.assertNotNull(product);
-                Assert.assertEquals(product.getName(), "Product AAA");
+                Cinema cinema = Json.fromJson(jsCounty, Cinema.class);
+                Assert.assertNotNull(cinema);
+                Assert.assertEquals(cinema.getName(), "GEORGE V 1");
             }
         });
     }
 
     @Test
-    public void testCan_QUERY_Products() {
+    public void testCan_QUERY_Cinemas() {
         running(testServer(PORT), new Runnable() {
             @Override
             public void run() {
@@ -54,23 +52,23 @@ public class ProductServiceITest extends IntegrationTestConfig {
                         .expect()
                         .statusCode(Http.Status.OK)
                         .when()
-                        .get(BASE_URL + "/products")
+                        .get(BASE_URL + "/cinemas")
                         .andReturn().body().asString();
 
                 Assert.assertNotNull(body);
 
-                JsonNode jsProductList = Json.parse(body);
-                Assert.assertNotNull(jsProductList);
-                Assert.assertTrue(jsProductList.isArray());
-                Assert.assertTrue(jsProductList.size() >= 2);
+                JsonNode jsCinemaList = Json.parse(body);
+                Assert.assertNotNull(jsCinemaList);
+                Assert.assertTrue(jsCinemaList.isArray());
+                Assert.assertTrue(jsCinemaList.size() >= 2035);
 
-                for(JsonNode jsProduct : jsProductList) {
-                    Product p = Json.fromJson(jsProduct, Product.class);
-                    if(p.getId() == 1l) {
-                        Assert.assertEquals("Product AAA", p.getName());
+                for(JsonNode jsCinema : jsCinemaList) {
+                    Cinema c = Json.fromJson(jsCinema, Cinema.class);
+                    if(c.getId() == 1l) {
+                        Assert.assertEquals("GEORGE V 1", c.getName());
                     }
-                    if(p.getId() == 2l) {
-                        Assert.assertEquals("Product BBB", p.getName());
+                    if(c.getId() == 2l) {
+                        Assert.assertEquals("UGC NORMANDIE 1", c.getName());
                     }
                 }
             }
@@ -78,133 +76,128 @@ public class ProductServiceITest extends IntegrationTestConfig {
     }
 
     @Test
-    public void testCan_POST_Product() {
+    public void testCan_POST_Cinema() {
         running(testServer(PORT), new Runnable() {
             @Override
             public void run() {
 
-                Category c = TestHelper
-                        .categoryFactory(1l, "category A");
-                Product newProduct = TestHelper
-                        .productFactory(null, "Product ZZZZZ", new Date(), 10, null, c);
+                County countyAin = TestHelper.countyFactory(1l, "1", "Ain");
+                Cinema newCinema = TestHelper.cinemaFactory(null, "testCinemaName_Post", 1, 100, countyAin);
 
                 String body = RestAssured.given()
                         .contentType("application/json")
-                        .body(newProduct).then()
+                        .body(newCinema)
                         .expect()
                         .statusCode(Http.Status.CREATED)
                         .when()
-                        .post(BASE_URL + "/products")
+                        .post(BASE_URL + "/cinemas")
                         .andReturn().body().asString();
 
                 Assert.assertNotNull(body);
 
-                JsonNode jsProduct = Json.parse(body);
-                Assert.assertNotNull(jsProduct);
+                JsonNode jsCinema = Json.parse(body);
+                Assert.assertNotNull(jsCinema);
 
-                Product product = Json.fromJson(jsProduct, Product.class);
-                Assert.assertNotNull(product);
-                Assert.assertEquals(product.getName(), newProduct.getName());
-                Assert.assertNotNull(product.getId());
-                Assert.assertTrue(product.getId() > 0);
+                Cinema cinema = Json.fromJson(jsCinema, Cinema.class);
+                Assert.assertNotNull(cinema);
+                Assert.assertEquals(cinema.getName(), cinema.getName());
+                Assert.assertNotNull(cinema.getId());
+                Assert.assertTrue(cinema.getId() > 0);
 
                 RestAssured.given()
                         .contentType("application/json")
-                        .body(product)
+                        .body(cinema)
                         .expect()
                         .statusCode(Http.Status.NO_CONTENT)
                         .when()
-                        .delete(BASE_URL + "/products/" + product.getId())
+                        .delete(BASE_URL + "/cinemas/" + cinema.getId())
                         .andReturn().body().asString();
             }
         });
     }
 
     @Test
-    public void testCan_PUT_Product() {
+    public void testCan_PUT_Cinema() {
         running(testServer(PORT), new Runnable() {
             @Override
             public void run() {
 
-                Category c = TestHelper
-                        .categoryFactory(1l, "category A");
-                Product newProduct = TestHelper
-                        .productFactory(null, "testProdForPut_Post", new Date(), 10, null, c);
+                County countyAin = TestHelper.countyFactory(1l, "1", "Ain");
+                Cinema newCinema = TestHelper.cinemaFactory(null, "testCinemaNameForPut_Post", 1, 100, countyAin);
 
                 String body = RestAssured.given()
                         .contentType("application/json")
-                        .body(newProduct)
+                        .body(newCinema)
                         .expect()
                         .statusCode(Http.Status.CREATED)
                         .when()
-                        .post(BASE_URL + "/products")
+                        .post(BASE_URL + "/cinemas")
                         .andReturn().body().asString();
 
                 Assert.assertNotNull(body);
 
-                JsonNode jsProduct = Json.parse(body);
-                Assert.assertNotNull(jsProduct);
+                JsonNode jsCinema = Json.parse(body);
+                Assert.assertNotNull(jsCinema);
 
-                Product product = Json.fromJson(jsProduct, Product.class);
-                Assert.assertNotNull(product);
+                Cinema cinema = Json.fromJson(jsCinema, Cinema.class);
+                Assert.assertNotNull(cinema);
 
-                product.setName("testProdForPut_Put");
+                cinema.setName("testCinemaNameForPut_Put");
 
                 RestAssured.given()
                         .contentType("application/json")
-                        .body(product)
+                        .body(cinema)
                         .expect()
                         .statusCode(Http.Status.OK)
                         .when()
-                        .put(BASE_URL + "/products/" + product.getId())
+                        .put(BASE_URL + "/cinemas/" + cinema.getId())
                         .andReturn().body().asString();
 
                 RestAssured.given()
                         .contentType("application/json")
-                        .body(product)
+                        .body(cinema)
                         .expect()
                         .statusCode(Http.Status.NO_CONTENT)
                         .when()
-                        .delete(BASE_URL + "/products/" + product.getId())
-                        .andReturn().body().asString();            }
+                        .delete(BASE_URL + "/cinemas/" + cinema.getId())
+                        .andReturn().body().asString();
+            }
         });
     }
 
     @Test
-    public void testCan_DELETE_Product() {
+    public void testCan_DELETE_Cinema() {
         running(testServer(PORT), new Runnable() {
             @Override
             public void run() {
 
-                Category c = TestHelper
-                        .categoryFactory(1l, "category A");
-                Product newProduct = TestHelper
-                        .productFactory(null, "testProductForDelete", null, 10, null, c);
+                County countyAin = TestHelper.countyFactory(1l, "1", "Ain");
+                Cinema newCinema = TestHelper.cinemaFactory(null, "testCinemaNameForDelete", 1, 100, countyAin);
 
                 String body = RestAssured.given()
                         .contentType("application/json")
-                        .body(newProduct)
+                        .body(newCinema)
                         .expect()
                         .statusCode(Http.Status.CREATED)
                         .when()
-                        .post(BASE_URL + "/products")
+                        .post(BASE_URL + "/cinemas")
                         .andReturn().body().asString();
 
                 Assert.assertNotNull(body);
 
-                JsonNode jsProduct = Json.parse(body);
-                Assert.assertNotNull(jsProduct);
+                JsonNode jsCinema = Json.parse(body);
+                Assert.assertNotNull(jsCinema);
 
-                Product product = Json.fromJson(jsProduct, Product.class);
-                Assert.assertNotNull(product);
+                Cinema cinema = Json.fromJson(jsCinema, Cinema.class);
+                Assert.assertNotNull(cinema);
 
                 RestAssured.given()
                         .contentType("application/json")
-                        .body(product)
+                        .body(cinema)
                         .expect()
                         .statusCode(Http.Status.NO_CONTENT)
                         .when()
-                        .delete(BASE_URL + "/products/" + product.getId())
+                        .delete(BASE_URL + "/cinemas/" + cinema.getId())
                         .andReturn().body().asString();
             }
         });
