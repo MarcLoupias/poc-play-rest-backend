@@ -14,6 +14,7 @@
     <property name="env.PPRB_DB_USER" value="myweb_db_user"/>
     <property name="env.PPRB_DB_PWD" value="password"/>
     <property name="env.PPRB_DB_URL" value="${db.jdbc.url}/${db.name.pprb}"/>
+    <property name="env.PPRB_TECH_EMAIL" value="techmail@fake.tld"/>
 
     <property name="play.dir" value="/home/marco/dev/tools/play-2"/>
 
@@ -42,6 +43,7 @@
         <echo>env.USERNAME: ${env.USERNAME}</echo>
         <echo>env.PPRB_DB_USER: ${env.PPRB_DB_USER}</echo>
         <echo>env.PPRB_DB_PWD: ${env.PPRB_DB_PWD}</echo>
+        <echo>env.PPRB_TECH_EMAIL: ${env.PPRB_TECH_EMAIL}</echo>
     </target>
 
     <target name="delete-report">
@@ -69,6 +71,7 @@
             <env key="PPRB_DB_USER" value="${env.PPRB_DB_USER}"/>
             <env key="PPRB_DB_PWD" value="${env.PPRB_DB_PWD}"/>
             <env key="PPRB_DB_URL" value="${env.PPRB_DB_URL}"/>
+            <env key="PPRB_TECH_EMAIL" value="${env.PPRB_TECH_EMAIL}"/>
             <arg value="test"/>
         </exec>
     </target>

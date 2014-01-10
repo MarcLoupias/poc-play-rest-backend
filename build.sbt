@@ -10,7 +10,8 @@ libraryDependencies ++= Seq(
   "org.hibernate" % "hibernate-entitymanager" % "4.2.1.Final",
   "org.mockito" % "mockito-all" % "1.9.5" % "test",
   "com.jayway.restassured" % "rest-assured" % "1.8.1" % "test" withSources(),
-  "com.intellij" % "annotations" % "5.1"
+  "com.intellij" % "annotations" % "5.1",
+  "javax.mail" % "mail" % "1.4.7"
   )
 
 play.Project.playJavaSettings

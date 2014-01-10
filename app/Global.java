@@ -6,6 +6,7 @@ import org.myweb.db.TestHelper;
 import org.myweb.services.RestServiceResult;
 import org.myweb.services.user.UserCreateService;
 import org.myweb.utils.ExceptionUtils;
+import org.myweb.utils.MailUtils;
 import play.*;
 import play.db.jpa.JPA;
 import play.i18n.Messages;
@@ -42,6 +43,12 @@ public class Global extends GlobalSettings {
                 }
             }
         });
+
+        String recipient = Play.application().configuration().getString("tech.mail");
+        String subject = "[poc-play-rest-backend] Application started";
+        StringBuilder textContent = new StringBuilder();
+        textContent.append("The application started.");
+        MailUtils.sendTechTextEmail(recipient, subject, textContent.toString());
     }
 
     public void onStop(Application app) {
@@ -58,6 +65,11 @@ public class Global extends GlobalSettings {
         if(t.getCause() != null && t.getCause() instanceof RollbackException){
             sb.append(Messages.get("global.onerror.rollback-exception"));
             Logger.error(sb.toString());
+
+            String recipient = Play.application().configuration().getString("tech.mail");
+            String subject = "[poc-play-rest-backend] An error occurred causing a rollback :( ...";
+            MailUtils.sendTechTextEmail(recipient, subject, sb.toString());
+
             return Promise.<SimpleResult>pure(
                     internalServerError(Messages.get("global.onerror.rollback-exception"))
             );
@@ -65,6 +77,10 @@ public class Global extends GlobalSettings {
 
         sb.append(ExceptionUtils.throwableToString(t));
         Logger.error(sb.toString());
+
+        String recipient = Play.application().configuration().getString("tech.mail");
+        String subject = "[poc-play-rest-backend] An error occurred :( ...";
+        MailUtils.sendTechTextEmail(recipient, subject, sb.toString());
 
         return Promise.<SimpleResult>pure(
                 internalServerError(Messages.get("global.onerror"))

@@ -14,3 +14,5 @@ dist
 /.project
 /RUNNING_PID
 /.settings
+scripts/heroku-deploy.sh
+rest-client/poc-play-rest-backend-requests-prod.json
