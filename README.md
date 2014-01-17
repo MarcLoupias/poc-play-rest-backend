@@ -36,7 +36,7 @@ What is done and you can read or pick ?
 
 Installation
 ------------
-* You need a MySQL working installation. (Just create a new user for that app, check config, then run the app or the db-reset ant task.)
+* You need a MySQL working installation. (Just create a new user for that app, check config, then run the app or the `db-reset` ant task.)
 * You need to install Play! version 2.2.1+. (That config will not work with an inferior version due to framework last changes.)
 
 Running the application locally and play with it
@@ -51,8 +51,8 @@ In RESTClient menu, "Favorite requests" -> "Import favorite requests".
 
 Configurations files
 --------------------
-Check database configuration in conf/application.conf
-Check conf/configure.sh to set up shell before launching Play! console.
+* Check database configuration in `conf/application.conf`.
+* Check `conf/configure.sh` to set up shell before launching Play! console.
 
 IDE setup
 ---------
@@ -69,7 +69,7 @@ Integration tests uses [RestAssured] (http://code.google.com/p/rest-assured/).
 * Tests can be run with the regular way through play console by typing `play test`.
 * Tests can be run manually with IntelliJ.
 * Tests can be run manually with IntelliJ via the `run-tests-fullstack` ant task
-to generate a html report in junit/reports/index.html
+to generate a html report in `junit/reports/index.html`.
 
 Ant tasks
 ---------
@@ -79,7 +79,7 @@ See description of each tasks.
 
 Version number management
 -------------------------
-We use [sbt-buildinfo plugin] (https://github.com/sbt/sbt-buildinfo)
+We use [sbt-buildinfo plugin] (https://github.com/sbt/sbt-buildinfo).
 Version number is set in `build.sbt` in the Play! regular way.
 Open a play console then type `reload` to see changes.
 
@@ -87,13 +87,13 @@ Heroku Deployment
 -----------------
 * [heroku.com] (https://www.heroku.com/)
 * We assume that you have installed the [Heroku Toolbelt] (https://toolbelt.heroku.com/).
-* We assume you have read the [related documentation] (https://devcenter.heroku.com/articles/play-support#play-2-2) on Heroku website.
+* We assume that you have read the [related documentation] (https://devcenter.heroku.com/articles/play-support#play-2-2) on Heroku website.
 * We assume that you know [how to run a Play application in production mode] (http://www.playframework.com/documentation/2.2.x/Production).
-* We use [ClearDB] (https://addons.heroku.com/cleardb#ignite) and [SendGrid] (https://addons.heroku.com/sendgrid#starter) add-ons.
+* I use [ClearDB] (https://addons.heroku.com/cleardb#ignite) and [SendGrid] (https://addons.heroku.com/sendgrid#starter) add-ons.
 
 Related project files :
 * `scripts/heroku-deploy-sample.sh` (to set up the env)
-* `Procfile` (to configure the process running the app)
+* `Procfile` (to configure the process (the dyno in heroku world) running the app)
 * `system.properties` (to run the app under 1.7 JRE)
 
 Some useful tips :
@@ -101,12 +101,13 @@ Some useful tips :
 * Don't forget to examine the [Heroku dashboard] (https://dashboard.heroku.com/apps), each add-on have his own dashboard.
 * [How to] (http://stackoverflow.com/questions/9822313/remote-connect-to-cleardb-heroku-database) connect to your MySQL db on Heroku with your SQL tools (like Workbench)
 
-Some useful heroku commands :
+Some useful heroku shell commands (need to be in your source root directory) :
 * `$ heroku create` to create a new app. Name is auto-generated and can be changed in the dashboard settings panel.
-* `$ heroku ps` to list all your apps.
+* `$ heroku ps` to list the running dynos.
+* `$ heroku config` to display your app config.
 * `$ git push heroku master` push your current git code to heroku. Heroku app are built from source code.
 * `$ heroku ps:scale web=1` to run the app with only one dyno (free)
-* `$ heroku logs > logs/heroku.log` from the project root dir to get logs from heroku in your play logs dir
+* `$ heroku logs > logs/heroku.log` to get logs from heroku in your play logs dir locally.
 
 Areas of improvements
 ---------------------
