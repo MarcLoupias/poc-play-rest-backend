@@ -2,8 +2,8 @@ package integration;
 
 import com.jayway.restassured.RestAssured;
 import org.junit.Test;
-import org.myweb.db.TestHelper;
-import org.myweb.services.user.UserLoginAttempt;
+import org.myweb.utils.test.TestHelper;
+import org.myweb.services.user.login.UserLoginAttempt;
 import play.mvc.Http;
 
 import static play.test.Helpers.running;

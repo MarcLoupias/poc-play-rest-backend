@@ -1,13 +1,13 @@
 package controllers;
 
+import com.google.inject.Inject;
 import credentials.CredentialsCheckerAction;
-import models.User;
-import org.myweb.db.Dao;
-import org.myweb.services.crud.DeleteService;
-import org.myweb.services.crud.GetService;
-import org.myweb.services.crud.QueryService;
-import org.myweb.services.user.UserCreateService;
-import org.myweb.services.user.UserUpdateService;
+import models.user.User;
+import org.myweb.services.crud.delete.DeleteServiceRest;
+import org.myweb.services.crud.get.GetServiceRest;
+import org.myweb.services.crud.query.QueryServiceRest;
+import org.myweb.services.user.create.UserCreateServiceRest;
+import org.myweb.services.user.update.UserUpdateServiceRest;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -15,54 +15,45 @@ import play.mvc.With;
 
 public class UserCtrl extends Controller {
 
+    @Inject
+    private GetServiceRest getServiceRest;
+    @Inject
+    private QueryServiceRest queryServiceRest;
+    @Inject
+    private UserUpdateServiceRest userUpdateServiceRest;
+    @Inject
+    private UserCreateServiceRest userCreateServiceRest;
+    @Inject
+    private DeleteServiceRest deleteServiceRest;
+
     @Transactional(readOnly = true)
     @With(CredentialsCheckerAction.class)
-    public static Result get(Long id){
-
-        return GetService.getInstance(Dao.getInstance())
-                .get( User.class, id )
-                .buildPlayCtrlResult();
-
+    public Result get(Long id){
+        return getServiceRest.get(User.class, id).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = true)
     @With(CredentialsCheckerAction.class)
-    public static Result query(){
-
-        return QueryService.getInstance(Dao.getInstance())
-                .query(User.class)
-                .buildPlayCtrlResult();
-
+    public Result query(){
+        return queryServiceRest.query(User.class).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
     @With(CredentialsCheckerAction.class)
-    public static Result create(){
-
-        return UserCreateService.getInstance(Dao.getInstance())
-                .createUser(request().body().asJson())
-                .buildPlayCtrlResult();
-
+    public Result create(){
+        return userCreateServiceRest.createUser(request().body().asJson()).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
     @With(CredentialsCheckerAction.class)
-    public static Result update(Long id){
-
-        return UserUpdateService.getInstance(Dao.getInstance())
-                .updateUser(request().body().asJson(), id)
-                .buildPlayCtrlResult();
-
+    public Result update(Long id){
+        return userUpdateServiceRest.updateUser(request().body().asJson(), id).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
     @With(CredentialsCheckerAction.class)
-    public static Result delete(Long id){
-
-        return DeleteService.getInstance(Dao.getInstance())
-                .delete( User.class, id )
-                .buildPlayCtrlResult();
-
+    public Result delete(Long id){
+        return deleteServiceRest.delete(User.class, id).buildPlayCtrlResult();
     }
 
 }

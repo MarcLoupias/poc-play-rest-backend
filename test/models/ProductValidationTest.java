@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.myweb.db.TestHelper;
+import org.myweb.utils.test.TestHelper;
 import play.data.Form;
 import play.data.validation.ValidationError;
 import play.libs.Json;

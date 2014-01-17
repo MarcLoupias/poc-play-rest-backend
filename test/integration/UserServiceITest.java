@@ -2,10 +2,10 @@ package integration;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.jayway.restassured.RestAssured;
-import models.User;
+import models.user.User;
 import org.junit.Assert;
 import org.junit.Test;
-import org.myweb.db.TestHelper;
+import org.myweb.utils.test.TestHelper;
 import play.Logger;
 import play.libs.Json;
 import play.mvc.Http;

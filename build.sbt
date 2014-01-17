@@ -11,7 +11,8 @@ libraryDependencies ++= Seq(
   "org.mockito" % "mockito-all" % "1.9.5" % "test",
   "com.jayway.restassured" % "rest-assured" % "1.8.1" % "test" withSources(),
   "com.intellij" % "annotations" % "5.1",
-  "javax.mail" % "mail" % "1.4.7"
+  "javax.mail" % "mail" % "1.4.7",
+  "com.google.inject" % "guice" % "4.0-beta"
   )
 
 play.Project.playJavaSettings

@@ -1,6 +1,9 @@
 package credentials;
 
-import org.myweb.utils.SessionUtils;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import org.myweb.utils.UtilsModule;
+import org.myweb.utils.session.SessionUtilsService;
 import play.Play;
 import play.i18n.Messages;
 import play.libs.F;
@@ -15,7 +18,10 @@ public class CredentialsCheckerAction extends Action<CredentialsChecker> {
             return delegate.call(ctx) ;
         }
 
-        if(SessionUtils.getSessionUserId() == null) {
+        Injector injector = Guice.createInjector(new UtilsModule());
+        SessionUtilsService sessionUtilsService = injector.getInstance(SessionUtilsService.class);
+
+        if(sessionUtilsService.getSessionUserId() == null) {
             return F.Promise.pure(
                     (SimpleResult) unauthorized(Messages.get("global.unauthorized"))
             );

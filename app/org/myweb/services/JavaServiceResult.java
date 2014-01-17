@@ -3,7 +3,7 @@ package org.myweb.services;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.myweb.db.DaoObject;
-import org.myweb.utils.ExceptionUtils;
+import org.myweb.utils.exception.ExceptionUtilsServiceImpl;
 import play.i18n.Messages;
 
 import java.util.List;
@@ -78,7 +78,7 @@ public class JavaServiceResult extends AbstractServiceResult {
     public static JavaServiceResult buildGenericServiceResultError(@NotNull Throwable t) {
         JavaServiceResult res = new JavaServiceResult(
                 INTERNAL_SERVER_ERROR,
-                ExceptionUtils.throwableToString(t),
+                ExceptionUtilsServiceImpl._throwableToString(t),
                 Messages.get("java.service.result.generic.error.msg")
         );
         res.logError();

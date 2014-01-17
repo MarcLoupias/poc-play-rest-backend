@@ -1,16 +1,18 @@
 
-import com.fasterxml.jackson.databind.JsonNode;
-import models.User;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import models.ModelFactoryHelper;
+import models.user.User;
 import org.myweb.db.Dao;
-import org.myweb.db.TestHelper;
-import org.myweb.services.RestServiceResult;
-import org.myweb.services.user.UserCreateService;
-import org.myweb.utils.ExceptionUtils;
-import org.myweb.utils.MailUtils;
+import org.myweb.db.DaoJpa;
+import org.myweb.services.JavaServiceResult;
+import org.myweb.services.user.create.UserCreateServiceJava;
+import models.user.UserSecurityModule;
+import org.myweb.utils.exception.ExceptionUtilsService;
+import org.myweb.utils.mail.MailUtilsService;
 import play.*;
 import play.db.jpa.JPA;
 import play.i18n.Messages;
-import play.libs.Json;
 import play.mvc.*;
 import play.mvc.Http.*;
 import play.libs.F.*;
@@ -24,31 +26,61 @@ import static play.mvc.Results.*;
 
 public class Global extends GlobalSettings {
 
-    public void onStart(Application app) {
-        Logger.info("Application has started");
+    private static Injector injector;
+    private MailUtilsService mailerService;
+    private Dao dao;
+    private UserCreateServiceJava userCreateService;
+    private ExceptionUtilsService exceptionUtilsService;
+    private ModelFactoryHelper modelFactoryHelper;
 
+    private void onStartInitGuice() {
+
+        injector = Guice.createInjector(new PocPlayRestBackendModule(), new UserSecurityModule());
+
+        modelFactoryHelper = injector.getInstance(ModelFactoryHelper.class);
+
+        mailerService = injector.getInstance(MailUtilsService.class);
+        exceptionUtilsService = injector.getInstance(ExceptionUtilsService.class);
+        dao = injector.getInstance(DaoJpa.class);
+        userCreateService = injector.getInstance(UserCreateServiceJava.class);
+    }
+
+    private void onStartInitAdminUser() {
         JPA.withTransaction(new play.libs.F.Callback0() {
             @Override
             public void invoke() throws Throwable {
                 Map<String, Object> param = new HashMap<>();
                 param.put("login", "admin");
-                User admin = (User) Dao.getInstance().namedQuerySingleResult("User.findByLogin", User.class, param);
+
+                User admin = (User) dao.namedQuerySingleResult("User.findByLogin", User.class, param);
+
                 if(admin == null) {
-                    admin = TestHelper.userFactory(null, "admin", "@dm1nPwd", "@dm1nPwd", "admin@domain.tld");
-                    JsonNode jsAdmin = Json.toJson(admin);
-                    RestServiceResult res = UserCreateService.getInstance(Dao.getInstance()).createUser(jsAdmin);
+                    admin = modelFactoryHelper.userFactory(null, "admin", "@dm1nPwd", "@dm1nPwd", "admin@domain.tld");
+
+                    JavaServiceResult res = userCreateService.createUser(admin);
+
                     if(res.getHttpStatus() != Http.Status.CREATED) {
                         Logger.error("[Application Start] Impossible to create admin account : " + res.getErrorMsg());
                     }
                 }
             }
         });
+    }
 
+    private void onStartMailTech() {
         String recipient = Play.application().configuration().getString("tech.mail");
         String subject = "[poc-play-rest-backend] Application started";
         StringBuilder textContent = new StringBuilder();
         textContent.append("The application started.");
-        MailUtils.sendTechTextEmail(recipient, subject, textContent.toString());
+        mailerService.sendTechTextEmail(recipient, subject, textContent.toString());
+    }
+
+    public void onStart(Application app) {
+        Logger.info("Application has started");
+
+        onStartInitGuice();
+        onStartInitAdminUser();
+        onStartMailTech();
     }
 
     public void onStop(Application app) {
@@ -68,19 +100,19 @@ public class Global extends GlobalSettings {
 
             String recipient = Play.application().configuration().getString("tech.mail");
             String subject = "[poc-play-rest-backend] An error occurred causing a rollback :( ...";
-            MailUtils.sendTechTextEmail(recipient, subject, sb.toString());
+            mailerService.sendTechTextEmail(recipient, subject, sb.toString());
 
             return Promise.<SimpleResult>pure(
                     internalServerError(Messages.get("global.onerror.rollback-exception"))
             );
         }
 
-        sb.append(ExceptionUtils.throwableToString(t));
+        sb.append(exceptionUtilsService.throwableToString(t));
         Logger.error(sb.toString());
 
         String recipient = Play.application().configuration().getString("tech.mail");
         String subject = "[poc-play-rest-backend] An error occurred :( ...";
-        MailUtils.sendTechTextEmail(recipient, subject, sb.toString());
+        mailerService.sendTechTextEmail(recipient, subject, sb.toString());
 
         return Promise.<SimpleResult>pure(
                 internalServerError(Messages.get("global.onerror"))
@@ -116,5 +148,10 @@ public class Global extends GlobalSettings {
         Logger.info(sb.toString());
 
         return super.onRequest(request, actionMethod);
+    }
+
+    @Override
+    public <T> T getControllerInstance(Class<T> clazz) throws Exception {
+        return injector.getInstance(clazz);
     }
 }

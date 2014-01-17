@@ -3,7 +3,7 @@ package org.myweb.services;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.myweb.utils.ExceptionUtils;
+import org.myweb.utils.exception.ExceptionUtilsServiceImpl;
 import play.i18n.Messages;
 import play.mvc.Result;
 
@@ -33,6 +33,10 @@ public class RestServiceResult extends AbstractServiceResult {
         super(httpStatus, errorMsg, userMsg);
     }
 
+    private RestServiceResult(@NotNull JavaServiceResult jsr) {
+        super(jsr.httpStatus, jsr.errorMsg, jsr.userMsg);
+    }
+
     private RestServiceResult(int httpStatus, @Nullable JsonNode jsContent) {
         super(httpStatus);
         this.jsContent = jsContent;
@@ -52,6 +56,12 @@ public class RestServiceResult extends AbstractServiceResult {
         return res;
     }
 
+    public static RestServiceResult buildServiceResult(@NotNull JavaServiceResult jsr) {
+        RestServiceResult res = new RestServiceResult(jsr);
+        res.logError();
+        return res;
+    }
+
     public static RestServiceResult buildServiceResult(int httpStatus, @Nullable JsonNode jsContent) {
         RestServiceResult res = new RestServiceResult(httpStatus, jsContent);
         res.logError();
@@ -61,7 +71,7 @@ public class RestServiceResult extends AbstractServiceResult {
     public static RestServiceResult buildGenericServiceResultError(@NotNull Throwable t) {
         RestServiceResult res = new RestServiceResult(
                 INTERNAL_SERVER_ERROR,
-                ExceptionUtils.throwableToString(t),
+                ExceptionUtilsServiceImpl._throwableToString(t),
                 Messages.get("rest.service.result.generic.error.msg")
         );
         res.logError();

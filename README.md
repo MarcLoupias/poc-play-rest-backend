@@ -37,7 +37,7 @@ Running the application and play with it
 ----------------------------------------
 1. Enter in your project root directory in the console.
 2. Run the app with `play run` command.
-3. Go to http://localhost:9000/public/version with your favourite browser.
+3. Go to http://localhost:9000/version with your favourite browser.
 
 To manually run the app without a front-end, i use the [RESTClient plugin] (https://addons.mozilla.org/fr/firefox/addon/restclient/) for Firefox.
 If you want install it, you can import some Rest requests from `rest-client/poc-play-rest-backend-requests.json` file.

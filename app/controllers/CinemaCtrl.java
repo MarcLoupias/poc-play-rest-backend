@@ -1,10 +1,13 @@
 package controllers;
 
+import com.google.inject.Inject;
 import credentials.CredentialsCheckerAction;
 import models.Cinema;
-import models.County;
-import org.myweb.db.Dao;
-import org.myweb.services.crud.*;
+import org.myweb.services.crud.create.CreateServiceRest;
+import org.myweb.services.crud.delete.DeleteServiceRest;
+import org.myweb.services.crud.get.GetServiceRest;
+import org.myweb.services.crud.query.QueryServiceRest;
+import org.myweb.services.crud.update.UpdateServiceRest;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -12,54 +15,44 @@ import play.mvc.With;
 
 public class CinemaCtrl extends Controller {
 
+    @Inject
+    private GetServiceRest getServiceRest;
+    @Inject
+    private QueryServiceRest queryServiceRest;
+    @Inject
+    private UpdateServiceRest updateServiceRest;
+    @Inject
+    private CreateServiceRest createServiceRest;
+    @Inject
+    private DeleteServiceRest deleteServiceRest;
+
     @Transactional(readOnly = true)
     @With(CredentialsCheckerAction.class)
-    public static Result get(Long id){
-
-        return GetService.getInstance(Dao.getInstance())
-                .get( Cinema.class, id )
-                .buildPlayCtrlResult();
-
+    public Result get(Long id){
+        return getServiceRest.get( Cinema.class, id ).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = true)
     @With(CredentialsCheckerAction.class)
-    public static Result query(){
-
-        return QueryService.getInstance(Dao.getInstance())
-                .query(Cinema.class)
-                .buildPlayCtrlResult();
-
+    public Result query(){
+        return queryServiceRest.query(Cinema.class).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
     @With(CredentialsCheckerAction.class)
-    public static Result update(Long id){
-
-        return UpdateService.getInstance(Dao.getInstance())
-                .update( Cinema.class, request().body().asJson(), id )
-                .buildPlayCtrlResult();
-
+    public Result update(Long id){
+        return updateServiceRest.update( Cinema.class, request().body().asJson(), id ).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
     @With(CredentialsCheckerAction.class)
-    public static Result create(){
-
-        return CreateService.getInstance(Dao.getInstance())
-                .create( Cinema.class, request().body().asJson() )
-                .buildPlayCtrlResult();
-
-
+    public Result create(){
+        return createServiceRest.create( Cinema.class, request().body().asJson() ).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
     @With(CredentialsCheckerAction.class)
-    public static Result delete(Long id){
-
-        return DeleteService.getInstance(Dao.getInstance())
-                .delete( Cinema.class, id )
-                .buildPlayCtrlResult();
-
+    public Result delete(Long id){
+        return deleteServiceRest.delete( Cinema.class, id ).buildPlayCtrlResult();
     }
 }

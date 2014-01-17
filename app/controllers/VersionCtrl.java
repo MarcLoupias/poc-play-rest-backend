@@ -9,17 +9,11 @@ import play.mvc.With;
 public class VersionCtrl extends Controller {
 
     public static Result shortVersion() {
-
-        return VersionService.getInstance().getShortVersion()
-                .buildPlayCtrlResult();
-
+        return VersionService.getInstance().getShortVersion().buildPlayCtrlResult();
     }
 
     @With(CredentialsCheckerAction.class)
     public static Result longVersion() {
-
-        return VersionService.getInstance().getLongVersion()
-                .buildPlayCtrlResult();
-
+        return VersionService.getInstance().getLongVersion().buildPlayCtrlResult();
     }
 }

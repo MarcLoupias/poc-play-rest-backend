@@ -6,7 +6,7 @@ import models.Category;
 import models.Product;
 import org.junit.Assert;
 import org.junit.Test;
-import org.myweb.db.TestHelper;
+import org.myweb.utils.test.TestHelper;
 import play.libs.Json;
 import play.mvc.Http;
 

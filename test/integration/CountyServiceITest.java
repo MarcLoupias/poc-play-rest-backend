@@ -5,7 +5,7 @@ import com.jayway.restassured.RestAssured;
 import models.County;
 import org.junit.Assert;
 import org.junit.Test;
-import org.myweb.db.TestHelper;
+import org.myweb.utils.test.TestHelper;
 import play.libs.Json;
 import play.mvc.Http;
 
