@@ -1,6 +1,6 @@
 name := "poc-play-rest-backend"
 
-version := "1.2-SNAPSHOT"
+version := "1.3-SNAPSHOT"
 
 libraryDependencies ++= Seq(
   javaCore,

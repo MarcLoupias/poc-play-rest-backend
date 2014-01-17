@@ -36,7 +36,7 @@ public class VersionServiceITest extends IntegrationTestConfig {
                 VersionService.ShortVersion version = Json.fromJson(jsVersion, VersionService.ShortVersion.class);
                 Assert.assertNotNull(version);
                 Assert.assertEquals(version.appName, "poc-play-rest-backend");
-                Assert.assertEquals(version.appVersion, "1.2-SNAPSHOT");
+                Assert.assertEquals(version.appVersion, "1.3-SNAPSHOT");
             }
         });
     }
@@ -63,7 +63,7 @@ public class VersionServiceITest extends IntegrationTestConfig {
                 VersionService.LongVersion version = Json.fromJson(jsVersion, VersionService.LongVersion.class);
                 Assert.assertNotNull(version);
                 Assert.assertEquals("poc-play-rest-backend", version.appName);
-                Assert.assertEquals("1.2-SNAPSHOT", version.appVersion);
+                Assert.assertEquals("1.3-SNAPSHOT", version.appVersion);
                 //Assert.assertEquals("2.2.1", version.playVersion); don't work in play test mode ...
                 /*Assert.assertEquals("1.7.0_25", version.javaVersion);
                 Assert.assertEquals("Java HotSpot(TM) Server VM", version.jvmName);

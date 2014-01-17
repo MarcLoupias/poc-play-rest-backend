@@ -2,6 +2,12 @@
 poc-play-rest-backend changelog
 ===============================
 
+1.3-SNAPSHOT
+------------
+* Added [Google Guice DI lib] (http://code.google.com/p/google-guice/).
+* The whole application have been refactored accordingly.
+* Heroku deployment.
+
 1.2-SNAPSHOT
 ------------
 Added 2 models class, County and Cinema. County is the French counties list. Cinema is the French cinemas list.
