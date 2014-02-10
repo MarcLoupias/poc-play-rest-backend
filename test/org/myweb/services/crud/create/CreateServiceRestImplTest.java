@@ -2,7 +2,7 @@ package org.myweb.services.crud.create;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
-import models.Category;
+import models.County;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,9 +26,9 @@ public class CreateServiceRestImplTest {
 
     @Test
     public void test_RestServiceResult_create_CREATED() {
-        Category newCategory = TestHelper.categoryFactory(null, "newCategory");
-        JsonNode jsNewCategory = Json.toJson(newCategory);
-        RestServiceResult res = restService.create(Category.class, jsNewCategory);
+        County newCounty = TestHelper.countyFactory(null, "46", "Lot");
+        JsonNode jsNewCounty = Json.toJson(newCounty);
+        RestServiceResult res = restService.create(County.class, jsNewCounty);
 
         Assert.assertNotNull(res);
         Assert.assertEquals(Http.Status.CREATED, res.getHttpStatus());

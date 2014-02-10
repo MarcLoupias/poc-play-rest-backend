@@ -1,10 +1,14 @@
 package controllers;
 
+import controllers.actions.httpHeaders.CORSimplAction;
 import com.google.inject.Inject;
-import credentials.CredentialsCheckerAction;
+import controllers.actions.credentials.CredentialsCheckerAction;
+import controllers.actions.httpHeaders.CacheControlAction;
 import models.Cinema;
+import org.myweb.services.JavaServiceResult;
 import org.myweb.services.crud.create.CreateServiceRest;
 import org.myweb.services.crud.delete.DeleteServiceRest;
+import org.myweb.services.crud.get.GetServiceJava;
 import org.myweb.services.crud.get.GetServiceRest;
 import org.myweb.services.crud.query.QueryServiceRest;
 import org.myweb.services.crud.update.UpdateServiceRest;
@@ -13,8 +17,11 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.With;
 
+@With({CacheControlAction.class, CORSimplAction.class, CredentialsCheckerAction.class})
 public class CinemaCtrl extends Controller {
 
+    @Inject
+    private GetServiceJava getServiceJava;
     @Inject
     private GetServiceRest getServiceRest;
     @Inject
@@ -27,31 +34,35 @@ public class CinemaCtrl extends Controller {
     private DeleteServiceRest deleteServiceRest;
 
     @Transactional(readOnly = true)
-    @With(CredentialsCheckerAction.class)
     public Result get(Long id){
         return getServiceRest.get( Cinema.class, id ).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = true)
-    @With(CredentialsCheckerAction.class)
-    public Result query(){
-        return queryServiceRest.query(Cinema.class).buildPlayCtrlResult();
+    public Result query(Integer page, Integer perPage, String filters){
+
+        JavaServiceResult jsr = getServiceJava.count(Cinema.class, filters);
+        if(jsr.getHttpStatus() != OK) {
+            return internalServerError();
+        }
+
+        int count = jsr.getCount();
+        response().setHeader("X-Total-Count", String.valueOf(count));
+
+        return queryServiceRest.query( Cinema.class, page, perPage, filters ).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
-    @With(CredentialsCheckerAction.class)
     public Result update(Long id){
         return updateServiceRest.update( Cinema.class, request().body().asJson(), id ).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
-    @With(CredentialsCheckerAction.class)
     public Result create(){
         return createServiceRest.create( Cinema.class, request().body().asJson() ).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
-    @With(CredentialsCheckerAction.class)
     public Result delete(Long id){
         return deleteServiceRest.delete( Cinema.class, id ).buildPlayCtrlResult();
     }

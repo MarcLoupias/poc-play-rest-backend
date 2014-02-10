@@ -8,6 +8,7 @@ import org.myweb.services.RestServiceResult;
 import play.i18n.Messages;
 import play.libs.Json;
 
+import static play.mvc.Http.Status.INTERNAL_SERVER_ERROR;
 import static play.mvc.Http.Status.NOT_FOUND;
 import static play.mvc.Http.Status.OK;
 
@@ -34,5 +35,17 @@ public class GetServiceRestImpl implements GetServiceRest {
         }
 
         return RestServiceResult.buildServiceResult(OK, Json.toJson(jsr.getSingleContent()));
+    }
+
+    @NotNull
+    @Override
+    public RestServiceResult count(@NotNull Class<? extends DaoObject> clazz) {
+        JavaServiceResult jsr = getServiceJava.count(clazz);
+
+        if(jsr.getHttpStatus() == INTERNAL_SERVER_ERROR) {
+            RestServiceResult.buildServiceResult(INTERNAL_SERVER_ERROR);
+        }
+
+        return RestServiceResult.buildServiceResult(OK, Json.toJson(jsr.getCount()));
     }
 }

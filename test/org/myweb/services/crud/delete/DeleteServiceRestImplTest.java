@@ -1,6 +1,6 @@
 package org.myweb.services.crud.delete;
 
-import models.Category;
+import models.County;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,16 +18,16 @@ import static org.mockito.Mockito.when;
 public class DeleteServiceRestImplTest {
     private Dao mockedDao = mock(Dao.class);
     private GetServiceJava getServiceJava = mock(GetServiceJava.class);
-    private Category categA;
+    private County countyA;
     private DeleteServiceRestImpl restService;
 
     @Before
     public void setUp() throws Exception {
 
-        categA = TestHelper.categoryFactory(1l, "categA");
+        countyA = TestHelper.countyFactory(1l, "46", "Lot");
 
-        when(getServiceJava.get(Category.class, 1l)).thenReturn(
-                JavaServiceResult.buildServiceResult(OK, categA)
+        when(getServiceJava.get(County.class, 1l)).thenReturn(
+                JavaServiceResult.buildServiceResult(OK, countyA)
         );
 
         DeleteServiceJavaImpl javaService = new DeleteServiceJavaImpl(mockedDao);
@@ -36,7 +36,7 @@ public class DeleteServiceRestImplTest {
 
     @Test
     public void test_RestServiceResult_delete_NO_CONTENT() {
-        RestServiceResult res = restService.delete(Category.class, categA.getId());
+        RestServiceResult res = restService.delete(County.class, countyA.getId());
 
         Assert.assertNotNull(res);
         Assert.assertEquals(Http.Status.NO_CONTENT, res.getHttpStatus());
@@ -44,12 +44,12 @@ public class DeleteServiceRestImplTest {
 
     @Test
     public void test_RestServiceResult_delete_BAD_REQUEST_idMissing() {
-        RestServiceResult res = restService.delete(Category.class, null);
+        RestServiceResult res = restService.delete(County.class, null);
 
         Assert.assertNotNull(res);
         Assert.assertEquals(Http.Status.BAD_REQUEST, res.getHttpStatus());
 
-        res = restService.delete(Category.class, 0l);
+        res = restService.delete(County.class, 0l);
 
         Assert.assertNotNull(res);
         Assert.assertEquals(Http.Status.BAD_REQUEST, res.getHttpStatus());

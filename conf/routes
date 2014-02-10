@@ -11,6 +11,12 @@ GET           /version               controllers.VersionCtrl.shortVersion()
 POST          /users/login           @controllers.LoginCtrl.login()
 
 #
+#   CORS support
+#
+
+OPTIONS       /*path                 controllers.CorsCtrl.checkPreFlight(path)
+
+#
 #   The resources below are private, a valid login is mandatory
 #
 #   Credentials are managed with the Play! Action composition system
@@ -22,31 +28,22 @@ POST          /users/login           @controllers.LoginCtrl.login()
 
 GET           /version-full          controllers.VersionCtrl.longVersion()
 
-GET           /categories            @controllers.CategoryCtrl.query()
-GET           /categories/:id        @controllers.CategoryCtrl.get(id: Long)
-POST          /categories            @controllers.CategoryCtrl.create()
-PUT           /categories/:id        @controllers.CategoryCtrl.update(id: Long)
-DELETE        /categories/:id        @controllers.CategoryCtrl.delete(id: Long)
-
-GET           /products              @controllers.ProductCtrl.query()
-GET           /products/:id          @controllers.ProductCtrl.get(id: Long)
-POST          /products              @controllers.ProductCtrl.create()
-PUT           /products/:id          @controllers.ProductCtrl.update(id: Long)
-DELETE        /products/:id          @controllers.ProductCtrl.delete(id: Long)
-
 GET           /users                 @controllers.UserCtrl.query()
 GET           /users/:id             @controllers.UserCtrl.get(id: Long)
 POST          /users                 @controllers.UserCtrl.create()
 PUT           /users/:id             @controllers.UserCtrl.update(id: Long)
 DELETE        /users/:id             @controllers.UserCtrl.delete(id: Long)
 
-GET           /counties              @controllers.CountyCtrl.query()
+POST          /users/logout          @controllers.LogoutCtrl.logout()
+
+GET           /counties              @controllers.CountyCtrl.query(page:Integer ?=1, perPage:Integer ?=10, filters:String ?= "")
 GET           /counties/:id          @controllers.CountyCtrl.get(id: Long)
 POST          /counties              @controllers.CountyCtrl.create()
 PUT           /counties/:id          @controllers.CountyCtrl.update(id: Long)
 DELETE        /counties/:id          @controllers.CountyCtrl.delete(id: Long)
 
-GET           /cinemas               @controllers.CinemaCtrl.query()
+GET           /cinemas               @controllers.CinemaCtrl.query(page:Integer ?=1, perPage:Integer ?=10, filters:String ?= "")
+GET           /cinemas/byCountyName  @controllers.CinemaByCountyCtrl.query(page:Integer ?=1, perPage:Integer ?=10, countyName:String)
 GET           /cinemas/:id           @controllers.CinemaCtrl.get(id: Long)
 POST          /cinemas               @controllers.CinemaCtrl.create()
 PUT           /cinemas/:id           @controllers.CinemaCtrl.update(id: Long)

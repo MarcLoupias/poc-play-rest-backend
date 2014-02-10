@@ -10,7 +10,6 @@ import org.myweb.services.JavaServiceResult;
 import org.myweb.services.user.check.UserCheckEmailServiceJava;
 import org.myweb.services.user.check.UserCheckLoginServiceJava;
 import org.myweb.utils.test.TestHelper;
-import org.myweb.utils.exception.ExceptionUtilsServiceImpl;
 import org.myweb.utils.security.PasswordGenerationService;
 import play.mvc.Http;
 
@@ -44,7 +43,7 @@ public class UserCreateServiceJavaImplTest {
                 .thenReturn(userPasswordSettings);
 
         service = new UserCreateServiceJavaImpl(
-                mockedDao, checkLogin, checkEmail, new ExceptionUtilsServiceImpl(), passwordGenerationService
+                mockedDao, checkLogin, checkEmail, passwordGenerationService
         );
     }
 

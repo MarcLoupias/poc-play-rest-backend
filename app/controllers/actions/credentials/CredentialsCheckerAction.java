@@ -1,4 +1,4 @@
-package credentials;
+package controllers.actions.credentials;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;

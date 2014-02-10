@@ -60,7 +60,7 @@ public class CinemaServiceITest extends IntegrationTestConfig {
                 JsonNode jsCinemaList = Json.parse(body);
                 Assert.assertNotNull(jsCinemaList);
                 Assert.assertTrue(jsCinemaList.isArray());
-                Assert.assertTrue(jsCinemaList.size() >= 2035);
+                Assert.assertTrue("size should be 10 and not " + jsCinemaList.size(), jsCinemaList.size() == 10);
 
                 for(JsonNode jsCinema : jsCinemaList) {
                     Cinema c = Json.fromJson(jsCinema, Cinema.class);
@@ -71,6 +71,30 @@ public class CinemaServiceITest extends IntegrationTestConfig {
                         Assert.assertEquals("UGC NORMANDIE 1", c.getName());
                     }
                 }
+            }
+        });
+    }
+
+    @Test
+    public void testCan_QUERY_Cinemas_withFilter() {
+        running(testServer(PORT), new Runnable() {
+            @Override
+            public void run() {
+
+                String body = RestAssured.given()
+                        .contentType("application/json")
+                        .expect()
+                        .statusCode(Http.Status.OK)
+                        .when()
+                        .get(BASE_URL + "/cinemas?filters=name[like]GAUMO")
+                        .andReturn().body().asString();
+
+                Assert.assertNotNull(body);
+
+                JsonNode jsCinemaList = Json.parse(body);
+                Assert.assertNotNull(jsCinemaList);
+                Assert.assertTrue(jsCinemaList.isArray());
+                Assert.assertTrue("size should be 10 and not " + jsCinemaList.size(), jsCinemaList.size() == 10);
             }
         });
     }

@@ -7,9 +7,22 @@ import play.data.validation.Constraints;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @SuppressWarnings("UnusedDeclaration")
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Cinema.findByLikeName", query = "SELECT c FROM Cinema c WHERE c.name LIKE :name"),
+        @NamedQuery(
+                name = "Cinema.findByCountyName",
+                query = "SELECT c FROM Cinema c JOIN c.county co WHERE co.name LIKE :name"
+        ),
+        @NamedQuery(
+                name = "Cinema.countFindByCountyName",
+                query = "SELECT COUNT(c) FROM Cinema c JOIN c.county co WHERE co.name LIKE :name"
+        )
+})
 public class Cinema extends DaoObject {
 
     @NotNull

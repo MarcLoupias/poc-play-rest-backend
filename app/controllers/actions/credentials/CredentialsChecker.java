@@ -1,4 +1,4 @@
-package credentials;
+package controllers.actions.credentials;
 
 import play.mvc.With;
 

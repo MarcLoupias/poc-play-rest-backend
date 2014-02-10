@@ -32,4 +32,9 @@ public class SessionUtilsServiceImpl implements SessionUtilsService {
         session(SessionUtilsServiceImpl.SESSION_USER_ID_KEY, String.valueOf(id));
     }
 
+    @Override
+    public void deleteSessionUserId() {
+        session().clear();
+    }
+
 }

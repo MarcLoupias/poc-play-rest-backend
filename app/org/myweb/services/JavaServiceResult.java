@@ -1,9 +1,9 @@
 package org.myweb.services;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.myweb.db.DaoObject;
-import org.myweb.utils.exception.ExceptionUtilsServiceImpl;
 import play.i18n.Messages;
 
 import java.util.List;
@@ -13,10 +13,15 @@ import static play.mvc.Http.Status.*;
 @SuppressWarnings("UnusedDeclaration")
 public class JavaServiceResult extends AbstractServiceResult {
 
+    private int count;
     @Nullable
     private DaoObject singleContent = null;
     @Nullable
     private List<? extends DaoObject> listContent = null;
+
+    public int getCount() {
+        return count;
+    }
 
     @Nullable
     public DaoObject getSingleContent() {
@@ -37,6 +42,11 @@ public class JavaServiceResult extends AbstractServiceResult {
 
     private JavaServiceResult(int httpStatus, @Nullable String errorMsg, @Nullable String userMsg) {
         super(httpStatus, errorMsg, userMsg);
+    }
+
+    private JavaServiceResult(int httpStatus, int count) {
+        super(httpStatus);
+        this.count = count;
     }
 
     private JavaServiceResult(int httpStatus, @Nullable DaoObject singleContent) {
@@ -63,6 +73,12 @@ public class JavaServiceResult extends AbstractServiceResult {
         return res;
     }
 
+    public static JavaServiceResult buildServiceResult(int httpStatus, int count) {
+        JavaServiceResult res = new JavaServiceResult(httpStatus, count);
+        res.logError();
+        return res;
+    }
+
     public static JavaServiceResult buildServiceResult(int httpStatus, @Nullable DaoObject singleContent) {
         JavaServiceResult res = new JavaServiceResult(httpStatus, singleContent);
         res.logError();
@@ -78,7 +94,7 @@ public class JavaServiceResult extends AbstractServiceResult {
     public static JavaServiceResult buildGenericServiceResultError(@NotNull Throwable t) {
         JavaServiceResult res = new JavaServiceResult(
                 INTERNAL_SERVER_ERROR,
-                ExceptionUtilsServiceImpl._throwableToString(t),
+                ExceptionUtils.getStackTrace(t),
                 Messages.get("java.service.result.generic.error.msg")
         );
         res.logError();

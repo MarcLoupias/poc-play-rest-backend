@@ -7,4 +7,7 @@ import org.myweb.services.RestServiceResult;
 public interface GetServiceRest {
     @NotNull
     public RestServiceResult get(@NotNull Class<? extends DaoObject> clazz, @NotNull Long id);
+
+    @NotNull
+    public RestServiceResult count(@NotNull Class<? extends DaoObject> clazz);
 }

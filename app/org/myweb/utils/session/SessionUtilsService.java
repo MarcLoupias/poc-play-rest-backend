@@ -7,4 +7,6 @@ public interface SessionUtilsService {
     public Long getSessionUserId();
 
     public void setSessionUserId(Long id);
+
+    public void deleteSessionUserId();
 }

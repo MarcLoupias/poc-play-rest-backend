@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
 import models.ModelFactoryHelper;
 import models.user.User;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.myweb.db.Dao;
@@ -12,7 +13,6 @@ import org.myweb.services.RestServiceResult;
 import org.myweb.services.crud.get.GetServiceRest;
 import org.myweb.services.user.check.UserCheckEmailServiceJava;
 import org.myweb.services.user.check.UserCheckLoginServiceJava;
-import org.myweb.utils.exception.ExceptionUtilsService;
 import org.myweb.utils.security.PasswordGenerationService;
 import play.data.Form;
 import play.i18n.Messages;
@@ -28,7 +28,6 @@ public class UserUpdateServiceRestImpl implements UserUpdateServiceRest {
     private final ModelFactoryHelper modelFactoryHelper;
     private final UserCheckLoginServiceJava checkLogin;
     private final UserCheckEmailServiceJava checkEmail;
-    private final ExceptionUtilsService exceptionUtilsService;
     private final PasswordGenerationService passwordGenerationService;
     private final GetServiceRest getServiceRest;
 
@@ -36,14 +35,12 @@ public class UserUpdateServiceRestImpl implements UserUpdateServiceRest {
     public UserUpdateServiceRestImpl(
             Dao dao, ModelFactoryHelper modelFactoryHelper,
             UserCheckLoginServiceJava checkLogin, UserCheckEmailServiceJava checkEmail,
-            ExceptionUtilsService exceptionUtilsService, PasswordGenerationService passwordGenerationService,
-            GetServiceRest getServiceRest
+            PasswordGenerationService passwordGenerationService, GetServiceRest getServiceRest
     ) {
         this.dao = dao;
         this.modelFactoryHelper = modelFactoryHelper;
         this.checkLogin = checkLogin;
         this.checkEmail = checkEmail;
-        this.exceptionUtilsService = exceptionUtilsService;
         this.getServiceRest = getServiceRest;
         this.passwordGenerationService = passwordGenerationService;
     }
@@ -122,7 +119,7 @@ public class UserUpdateServiceRestImpl implements UserUpdateServiceRest {
             } catch (InvalidKeySpecException e) {
                 return RestServiceResult.buildServiceResult(
                         INTERNAL_SERVER_ERROR,
-                        exceptionUtilsService.throwableToString(e),
+                        ExceptionUtils.getStackTrace(e),
                         Messages.get("user.update.error.internal.server.error")
                 );
             }

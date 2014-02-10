@@ -4,11 +4,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
 import models.user.User;
 import models.user.UserPasswordSettings;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.jetbrains.annotations.NotNull;
 import org.myweb.db.Dao;
 import org.myweb.services.RestServiceResult;
 import org.myweb.utils.session.SessionUtilsService;
-import org.myweb.utils.exception.ExceptionUtilsService;
 import org.myweb.utils.security.SecurityUtilsService;
 import play.data.Form;
 import play.i18n.Messages;
@@ -22,17 +22,14 @@ import static play.mvc.Http.Status.*;
 public class UserLoginServiceRestImpl implements UserLoginServiceRest {
 
     private final Dao dao;
-    private final ExceptionUtilsService exceptionUtilsService;
     private final SecurityUtilsService securityUtilsService;
     private final SessionUtilsService sessionUtilsService;
 
     @Inject
     public UserLoginServiceRestImpl(
-            Dao dao, ExceptionUtilsService exceptionUtilsService, SecurityUtilsService securityUtilsService,
-            SessionUtilsService sessionUtilsService
+            Dao dao, SecurityUtilsService securityUtilsService, SessionUtilsService sessionUtilsService
     ) {
         this.dao = dao;
-        this.exceptionUtilsService = exceptionUtilsService;
         this.securityUtilsService = securityUtilsService;
         this.sessionUtilsService = sessionUtilsService;
     }
@@ -100,7 +97,7 @@ public class UserLoginServiceRestImpl implements UserLoginServiceRest {
             } catch (InvalidKeySpecException e) {
                 return RestServiceResult.buildServiceResult(
                         INTERNAL_SERVER_ERROR,
-                        exceptionUtilsService.throwableToString(e),
+                        ExceptionUtils.getStackTrace(e),
                         Messages.get("login.attempt.error.internal.server.error")
                 );
             } catch (NoSuchAlgorithmException e) {

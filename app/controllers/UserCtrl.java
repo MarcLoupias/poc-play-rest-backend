@@ -1,7 +1,9 @@
 package controllers;
 
+import controllers.actions.httpHeaders.CORSimplAction;
 import com.google.inject.Inject;
-import credentials.CredentialsCheckerAction;
+import controllers.actions.credentials.CredentialsCheckerAction;
+import controllers.actions.httpHeaders.CacheControlAction;
 import models.user.User;
 import org.myweb.services.crud.delete.DeleteServiceRest;
 import org.myweb.services.crud.get.GetServiceRest;
@@ -13,6 +15,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.With;
 
+@With({CacheControlAction.class, CORSimplAction.class, CredentialsCheckerAction.class})
 public class UserCtrl extends Controller {
 
     @Inject
@@ -27,31 +30,26 @@ public class UserCtrl extends Controller {
     private DeleteServiceRest deleteServiceRest;
 
     @Transactional(readOnly = true)
-    @With(CredentialsCheckerAction.class)
     public Result get(Long id){
         return getServiceRest.get(User.class, id).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = true)
-    @With(CredentialsCheckerAction.class)
     public Result query(){
         return queryServiceRest.query(User.class).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
-    @With(CredentialsCheckerAction.class)
     public Result create(){
         return userCreateServiceRest.createUser(request().body().asJson()).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
-    @With(CredentialsCheckerAction.class)
     public Result update(Long id){
         return userUpdateServiceRest.updateUser(request().body().asJson(), id).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
-    @With(CredentialsCheckerAction.class)
     public Result delete(Long id){
         return deleteServiceRest.delete(User.class, id).buildPlayCtrlResult();
     }

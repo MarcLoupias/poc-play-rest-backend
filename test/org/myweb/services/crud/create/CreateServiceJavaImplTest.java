@@ -1,6 +1,6 @@
 package org.myweb.services.crud.create;
 
-import models.Category;
+import models.County;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,8 +23,8 @@ public class CreateServiceJavaImplTest {
 
     @Test
     public void test_JavaServiceResult_saveNew_CREATED() {
-        Category newCategory = TestHelper.categoryFactory(null, "newCategory");
-        JavaServiceResult res = javaService.saveNew(newCategory);
+        County newCounty = TestHelper.countyFactory(null, "46", "Lot");
+        JavaServiceResult res = javaService.saveNew(newCounty);
 
         Assert.assertNotNull(res);
         Assert.assertEquals(Http.Status.CREATED, res.getHttpStatus());

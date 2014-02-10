@@ -1,9 +1,8 @@
 package org.myweb.utils.mail;
 
-import com.google.inject.Inject;
 import com.sun.mail.smtp.SMTPTransport;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.jetbrains.annotations.NotNull;
-import org.myweb.utils.exception.ExceptionUtilsService;
 import play.Logger;
 import play.Play;
 
@@ -13,9 +12,6 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class MailUtilsServiceJavamailImpl implements MailUtilsService {
-
-    @Inject
-    private ExceptionUtilsService exceptionUtilsService;
 
     public void sendTechTextEmail(@NotNull String recipient, @NotNull String subject, @NotNull String textContent) {
         sendTextEmail("noreply@poc-play-rest-backed.org", recipient, subject, textContent);
@@ -63,7 +59,7 @@ public class MailUtilsServiceJavamailImpl implements MailUtilsService {
             transport.close();
 
         } catch (Exception e) {
-            Logger.error(exceptionUtilsService.throwableToString(e));
+            Logger.error(ExceptionUtils.getStackTrace(e));
         }
     }
 

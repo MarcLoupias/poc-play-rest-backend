@@ -15,7 +15,6 @@ import org.myweb.services.user.check.UserCheckLoginServiceJava;
 import org.myweb.utils.test.TestHelper;
 import org.myweb.services.RestServiceResult;
 import org.myweb.services.crud.get.GetServiceRest;
-import org.myweb.utils.exception.ExceptionUtilsServiceImpl;
 import org.myweb.utils.security.PasswordGenerationService;
 import play.libs.Json;
 import play.mvc.Http;
@@ -58,8 +57,7 @@ public class UserUpdateServiceRestImplTest {
                 .thenReturn(RestServiceResult.buildServiceResult(Http.Status.OK));
 
         service = new UserUpdateServiceRestImpl(
-                mockedDao, modelFactoryHelper, checkLogin, checkEmail, new ExceptionUtilsServiceImpl(),
-                passwordGenerationService, getServiceRest
+                mockedDao, modelFactoryHelper, checkLogin, checkEmail, passwordGenerationService, getServiceRest
         );
     }
 

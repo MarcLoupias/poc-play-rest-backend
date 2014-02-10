@@ -1,14 +1,6 @@
 
 # --- !Ups
 
-INSERT INTO Category (id, name) VALUES (1, 'category A'), (2, 'category B');
-
-INSERT INTO Product (id, date, name, numberInteger, numberLong, category_id)
-  VALUES
-  (1, NOW(), 'Product AAA', 10, NULL, 1),
-  (2, NOW(), 'Product BBB', 20, 100000, 1),
-  (3, NOW(), 'Product CCC', 30, NULL, 2);
-
 INSERT INTO County (code, name) VALUES ('1', 'Ain');
 INSERT INTO County (code, name) VALUES ('2', 'Aisne');
 INSERT INTO County (code, name) VALUES ('3', 'Allier');

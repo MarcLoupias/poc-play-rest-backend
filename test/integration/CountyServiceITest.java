@@ -59,7 +59,7 @@ public class CountyServiceITest extends IntegrationTestConfig {
                 JsonNode jsCountyList = Json.parse(body);
                 Assert.assertNotNull(jsCountyList);
                 Assert.assertTrue(jsCountyList.isArray());
-                Assert.assertTrue(jsCountyList.size() >= 99);
+                Assert.assertTrue("size should be 10 and not " + jsCountyList.size(), jsCountyList.size() == 10);
 
                 for(JsonNode jsCounty : jsCountyList) {
                     County c = Json.fromJson(jsCounty, County.class);
@@ -68,6 +68,40 @@ public class CountyServiceITest extends IntegrationTestConfig {
                     }
                     if(c.getId() == 2l) {
                         Assert.assertEquals("Aisne", c.getName());
+                    }
+                }
+            }
+        });
+    }
+
+    @Test
+    public void testCan_QUERY_Counties_withFilter() {
+        running(testServer(PORT), new Runnable() {
+            @Override
+            public void run() {
+
+                String body = RestAssured.given()
+                        .contentType("application/json")
+                        .expect()
+                        .statusCode(Http.Status.OK)
+                        .when()
+                        .get(BASE_URL + "/counties?filters=name[like]lot")
+                        .andReturn().body().asString();
+
+                Assert.assertNotNull(body);
+
+                JsonNode jsCountyList = Json.parse(body);
+                Assert.assertNotNull(jsCountyList);
+                Assert.assertTrue(jsCountyList.isArray());
+                Assert.assertTrue("size should be 2 and not " + jsCountyList.size(), jsCountyList.size() == 2);
+
+                for(JsonNode jsCounty : jsCountyList) {
+                    County c = Json.fromJson(jsCounty, County.class);
+                    if(c.getId() == 47l) {
+                        Assert.assertEquals("Lot", c.getName());
+                    }
+                    if(c.getId() == 48l) {
+                        Assert.assertEquals("Lot-et-Garonne", c.getName());
                     }
                 }
             }

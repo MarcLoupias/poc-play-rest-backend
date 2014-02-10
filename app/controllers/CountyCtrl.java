@@ -1,20 +1,28 @@
 package controllers;
 
+import controllers.actions.httpHeaders.CORSimplAction;
 import com.google.inject.Inject;
-import credentials.CredentialsCheckerAction;
+import controllers.actions.credentials.CredentialsCheckerAction;
+import controllers.actions.httpHeaders.CacheControlAction;
 import models.County;
+import org.myweb.services.JavaServiceResult;
 import org.myweb.services.crud.create.CreateServiceRest;
 import org.myweb.services.crud.delete.DeleteServiceRest;
+import org.myweb.services.crud.get.GetServiceJava;
 import org.myweb.services.crud.get.GetServiceRest;
 import org.myweb.services.crud.query.QueryServiceRest;
 import org.myweb.services.crud.update.UpdateServiceRest;
+import org.myweb.utils.rest.FilterParserService;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.With;
 
+@With({CacheControlAction.class, CORSimplAction.class, CredentialsCheckerAction.class})
 public class CountyCtrl extends Controller {
 
+    @Inject
+    private GetServiceJava getServiceJava;
     @Inject
     private GetServiceRest getServiceRest;
     @Inject
@@ -25,33 +33,39 @@ public class CountyCtrl extends Controller {
     private CreateServiceRest createServiceRest;
     @Inject
     private DeleteServiceRest deleteServiceRest;
+    @Inject
+    private FilterParserService filterParserService;
 
     @Transactional(readOnly = true)
-    @With(CredentialsCheckerAction.class)
     public Result get(Long id){
         return getServiceRest.get( County.class, id ).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = true)
-    @With(CredentialsCheckerAction.class)
-    public Result query(){
-        return queryServiceRest.query(County.class).buildPlayCtrlResult();
+    public Result query(Integer page, Integer perPage, String filters) {
+
+        JavaServiceResult jsr = getServiceJava.count(County.class, filters);
+        if(jsr.getHttpStatus() != OK) {
+            return internalServerError();
+        }
+
+        int count = jsr.getCount();
+        response().setHeader("X-Total-Count", String.valueOf(count));
+
+        return queryServiceRest.query( County.class, page, perPage, filters ).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
-    @With(CredentialsCheckerAction.class)
     public Result update(Long id){
         return updateServiceRest.update( County.class, request().body().asJson(), id ).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
-    @With(CredentialsCheckerAction.class)
     public Result create(){
         return createServiceRest.create( County.class, request().body().asJson() ).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
-    @With(CredentialsCheckerAction.class)
     public Result delete(Long id){
         return deleteServiceRest.delete( County.class, id ).buildPlayCtrlResult();
     }

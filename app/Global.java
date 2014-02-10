@@ -3,12 +3,12 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import models.ModelFactoryHelper;
 import models.user.User;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.myweb.db.Dao;
 import org.myweb.db.DaoJpa;
 import org.myweb.services.JavaServiceResult;
 import org.myweb.services.user.create.UserCreateServiceJava;
 import models.user.UserSecurityModule;
-import org.myweb.utils.exception.ExceptionUtilsService;
 import org.myweb.utils.mail.MailUtilsService;
 import play.*;
 import play.db.jpa.JPA;
@@ -30,7 +30,6 @@ public class Global extends GlobalSettings {
     private MailUtilsService mailerService;
     private Dao dao;
     private UserCreateServiceJava userCreateService;
-    private ExceptionUtilsService exceptionUtilsService;
     private ModelFactoryHelper modelFactoryHelper;
 
     private void onStartInitGuice() {
@@ -40,7 +39,6 @@ public class Global extends GlobalSettings {
         modelFactoryHelper = injector.getInstance(ModelFactoryHelper.class);
 
         mailerService = injector.getInstance(MailUtilsService.class);
-        exceptionUtilsService = injector.getInstance(ExceptionUtilsService.class);
         dao = injector.getInstance(DaoJpa.class);
         userCreateService = injector.getInstance(UserCreateServiceJava.class);
     }
@@ -76,11 +74,23 @@ public class Global extends GlobalSettings {
     }
 
     public void onStart(Application app) {
-        Logger.info("Application has started");
+        Logger.info("[onStart] App is starting");
 
+        // TODO rajouter une méthode de test de chargement des var env nécessaire à l'application.
+
+        Logger.info("[onStart] Guice init");
         onStartInitGuice();
+        Logger.info("[onStart] Guice init is done");
+
+        Logger.info("[onStart] Init admin user");
         onStartInitAdminUser();
+        Logger.info("[onStart] Init admin user is done");
+
+        Logger.info("[onStart] Sending starting email to tech support");
         onStartMailTech();
+        Logger.info("[onStart] Sending starting email to tech support is done");
+
+        Logger.info("[onStart] App has started");
     }
 
     public void onStop(Application app) {
@@ -107,7 +117,7 @@ public class Global extends GlobalSettings {
             );
         }
 
-        sb.append(exceptionUtilsService.throwableToString(t));
+        sb.append(ExceptionUtils.getStackTrace(t));
         Logger.error(sb.toString());
 
         String recipient = Play.application().configuration().getString("tech.mail");

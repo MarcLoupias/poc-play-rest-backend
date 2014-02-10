@@ -1,8 +1,8 @@
 package org.myweb.utils.security;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.junit.Assert;
 import org.junit.Test;
-import org.myweb.utils.exception.ExceptionUtilsServiceImpl;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -10,7 +10,7 @@ import java.security.spec.InvalidKeySpecException;
 public class SecurityUtilsServiceImplTest {
 
     @Test
-    public void hashPasswordTest() {
+    public void hashPassword() {
 
         SecurityUtilsServiceImpl service = new SecurityUtilsServiceImpl();
 
@@ -22,7 +22,7 @@ public class SecurityUtilsServiceImplTest {
         try {
             hash = service.hash(pwd.toCharArray(), salt, 10000, 256, SecurityUtilsServiceImpl.PBKDF2WithHmacSHA1);
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-            Assert.fail(ExceptionUtilsServiceImpl._throwableToString(e));
+            Assert.fail(ExceptionUtils.getStackTrace(e));
         }
 
         try {
@@ -32,7 +32,7 @@ public class SecurityUtilsServiceImplTest {
                     )
             );
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-            Assert.fail(ExceptionUtilsServiceImpl._throwableToString(e));
+            Assert.fail(ExceptionUtils.getStackTrace(e));
         }
 
     }

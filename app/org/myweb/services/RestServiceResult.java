@@ -1,9 +1,9 @@
 package org.myweb.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.myweb.utils.exception.ExceptionUtilsServiceImpl;
 import play.i18n.Messages;
 import play.mvc.Result;
 
@@ -71,7 +71,7 @@ public class RestServiceResult extends AbstractServiceResult {
     public static RestServiceResult buildGenericServiceResultError(@NotNull Throwable t) {
         RestServiceResult res = new RestServiceResult(
                 INTERNAL_SERVER_ERROR,
-                ExceptionUtilsServiceImpl._throwableToString(t),
+                ExceptionUtils.getStackTrace(t),
                 Messages.get("rest.service.result.generic.error.msg")
         );
         res.logError();

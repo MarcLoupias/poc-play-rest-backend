@@ -9,7 +9,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.myweb.db.Dao;
-import org.myweb.utils.exception.ExceptionUtilsServiceImpl;
 import org.myweb.utils.security.SecurityUtilsService;
 import org.myweb.utils.session.SessionUtilsService;
 import org.myweb.utils.test.TestHelper;
@@ -73,7 +72,7 @@ public class UserLoginServiceRestImplTest {
         ).thenReturn(true);
 
         service = new UserLoginServiceRestImpl(
-                mockedDao, new ExceptionUtilsServiceImpl(), securityUtilsService, sessionUtilsService
+                mockedDao, securityUtilsService, sessionUtilsService
         );
     }
 

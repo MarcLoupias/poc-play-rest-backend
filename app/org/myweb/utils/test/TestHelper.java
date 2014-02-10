@@ -8,7 +8,6 @@ import org.myweb.services.user.login.UserLoginAttempt;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 @SuppressWarnings("UnusedDeclaration")
@@ -61,40 +60,6 @@ public class TestHelper {
         user.setEmail(email);
         user.setUserPasswordSettings(ups);
         return user;
-    }
-
-    @NotNull
-    public static Category categoryFactory(Long id, String name) {
-        Category category = new Category();
-        category.setId(id);
-        category.setName(name);
-        return category;
-    }
-
-    @NotNull
-    public static List<Category> categoryListFactory(Category... categories) {
-        List<Category> res = new ArrayList<>();
-        Collections.addAll(res, categories);
-        return res;
-    }
-
-    @NotNull
-    public static Product productFactory(Long id, String name, Date date, Integer integer, Long _long, Category category){
-        Product product = new Product();
-        product.setId(id);
-        product.setName(name);
-        product.setDate(date);
-        product.setNumberInteger(integer);
-        product.setNumberLong(_long);
-        product.setCategory(category);
-        return product;
-    }
-
-    @NotNull
-    public static List<Product> productListFactory(Product... products) {
-        List<Product> res = new ArrayList<>();
-        Collections.addAll(res, products);
-        return res;
     }
 
     @NotNull
