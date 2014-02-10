@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.myweb.db.DaoJpa;
 import org.myweb.services.JavaServiceResult;
+import org.myweb.services.ServiceException;
 import org.myweb.utils.test.TestHelper;
 import play.mvc.Http;
 
@@ -53,7 +54,12 @@ public class UserCheckEmailServiceJavaImplTest {
 
     @Test
     public void test_JavaServiceResult_check_OK() {
-        JavaServiceResult res = restService.check("toto@toto.fr");
+        JavaServiceResult res = null;
+        try {
+            res = restService.check("toto@toto.fr");
+        } catch (ServiceException e) {
+            Assert.fail();
+        }
 
         Assert.assertNotNull(res);
         Assert.assertEquals(Http.Status.OK, res.getHttpStatus());
@@ -61,15 +67,27 @@ public class UserCheckEmailServiceJavaImplTest {
 
     @Test
     public void test_JavaServiceResult_check_BAD_REQUEST() {
-        JavaServiceResult res = restService.check("emailexist@toto.fr");
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.BAD_REQUEST, res.getHttpStatus());
+        boolean exception = false;
+        try {
+            restService.check("emailexist@toto.fr");
+        } catch (ServiceException e) {
+            exception = true;
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.BAD_REQUEST, e.getHttpStatus());
+        }
+
+        Assert.assertTrue("exception should be true", exception);
     }
 
     @Test
     public void test_JavaServiceResult_checkExcludingUserId_OK() {
-        JavaServiceResult res = restService.checkExcludingUserId("unused@email.fr", 1l);
+        JavaServiceResult res = null;
+        try {
+            res = restService.checkExcludingUserId("unused@email.fr", 1l);
+        } catch (ServiceException e) {
+            Assert.fail();
+        }
 
         Assert.assertNotNull(res);
         Assert.assertEquals(Http.Status.OK, res.getHttpStatus());
@@ -77,9 +95,16 @@ public class UserCheckEmailServiceJavaImplTest {
 
     @Test
     public void test_JavaServiceResult_checkExcludingUserId_BAD_REQUEST() {
-        JavaServiceResult res = restService.checkExcludingUserId("emailexist@toto.fr", 1l);
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.BAD_REQUEST, res.getHttpStatus());
+        boolean exception = false;
+        try {
+            restService.checkExcludingUserId("emailexist@toto.fr", 1l);
+        } catch (ServiceException e) {
+            exception = true;
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.BAD_REQUEST, e.getHttpStatus());
+        }
+
+        Assert.assertTrue("exception should be true", exception);
     }
 }

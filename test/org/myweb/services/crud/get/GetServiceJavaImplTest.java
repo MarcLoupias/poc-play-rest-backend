@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.myweb.db.DaoJpa;
 import org.myweb.services.JavaServiceResult;
+import org.myweb.services.ServiceException;
 import org.myweb.utils.rest.FilterParserService;
 import org.myweb.utils.rest.FilterParserServiceImpl;
 import org.myweb.utils.test.TestHelper;
@@ -29,20 +30,35 @@ public class GetServiceJavaImplTest {
                 countyA
         );
 
+        when(mockedDao.count(County.class, null)).thenReturn(
+                1
+        );
+
         javaService = new GetServiceJavaImpl(mockedDao, filterParserService);
     }
 
     @Test
-    public void test_JavaServiceResult_load_NOT_FOUND() {
-        JavaServiceResult res = javaService.get(County.class, 666l);
+    public void test_JavaServiceResult_get_NOT_FOUND() {
+        boolean exception = false;
+        try {
+            javaService.get(County.class, 666l);
+        } catch (ServiceException e) {
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.NOT_FOUND, e.getHttpStatus());
+            exception = true;
+        }
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.NOT_FOUND, res.getHttpStatus());
+        Assert.assertTrue("exception should be true", exception);
     }
 
     @Test
-    public void test_JavaServiceResult_load_OK() {
-        JavaServiceResult res = javaService.get(County.class, countyA.getId());
+    public void test_JavaServiceResult_get_OK() {
+        JavaServiceResult res = null;
+        try {
+            res = javaService.get(County.class, countyA.getId());
+        } catch (ServiceException e) {
+            Assert.fail();
+        }
 
         Assert.assertNotNull(res);
         Assert.assertEquals(Http.Status.OK, res.getHttpStatus());
@@ -51,5 +67,33 @@ public class GetServiceJavaImplTest {
 
         Assert.assertNotNull(c);
         Assert.assertEquals(c.getName(), countyA.getName());
+    }
+
+    @Test
+    public void test_JavaServiceResult_count_BAD_REQUEST() {
+        boolean exception = false;
+        try {
+            javaService.count(County.class, "name[like]]toto");
+        } catch (ServiceException e) {
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.BAD_REQUEST, e.getHttpStatus());
+            exception = true;
+        }
+
+        Assert.assertTrue("exception should be true", exception);
+    }
+
+    @Test
+    public void test_JavaServiceResult_count_OK() {
+        JavaServiceResult res = null;
+        try {
+            res = javaService.count(County.class);
+        } catch (ServiceException e) {
+            Assert.fail();
+        }
+
+        Assert.assertNotNull(res);
+        Assert.assertEquals(Http.Status.OK, res.getHttpStatus());
+        Assert.assertEquals("count should equals to 1", 1, res.getCount());
     }
 }

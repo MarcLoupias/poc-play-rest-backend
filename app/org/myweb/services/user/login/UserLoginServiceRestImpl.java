@@ -8,6 +8,7 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.jetbrains.annotations.NotNull;
 import org.myweb.db.Dao;
 import org.myweb.services.RestServiceResult;
+import org.myweb.services.ServiceException;
 import org.myweb.utils.session.SessionUtilsService;
 import org.myweb.utils.security.SecurityUtilsService;
 import play.data.Form;
@@ -36,13 +37,15 @@ public class UserLoginServiceRestImpl implements UserLoginServiceRest {
 
     @NotNull
     @Override
-    public RestServiceResult loginUser(@NotNull JsonNode jsContent) {
+    public RestServiceResult loginUser(@NotNull JsonNode jsContent) throws ServiceException {
         Form<UserLoginAttempt> userLoginAttemptForm = Form.form(UserLoginAttempt.class);
         userLoginAttemptForm = userLoginAttemptForm.bind(jsContent);
 
         if(userLoginAttemptForm.hasErrors()) {
 
-            return RestServiceResult.buildServiceResult(BAD_REQUEST, userLoginAttemptForm.errorsAsJson());
+            throw new ServiceException(
+                    UserLoginServiceRestImpl.class.getName(), BAD_REQUEST, userLoginAttemptForm.errorsAsJson().asText(),
+                    "user msg", userLoginAttemptForm.errorsAsJson());
 
         } else {
             UserLoginAttempt userLoginAttempt = userLoginAttemptForm.bind(jsContent).get();
@@ -64,16 +67,17 @@ public class UserLoginServiceRestImpl implements UserLoginServiceRest {
 
             } else {
 
-                return RestServiceResult.buildServiceResult(
-                        BAD_REQUEST,
+                throw new ServiceException(
+                        UserLoginServiceRestImpl.class.getName(), BAD_REQUEST,
                         "Login request, login & email missing",
                         Messages.get("login.attempt.validation.error.loginAndEmail")
                 );
             }
 
             if(user == null) {
-                return RestServiceResult.buildServiceResult(
-                        NOT_FOUND,
+
+                throw new ServiceException(
+                        UserLoginServiceRestImpl.class.getName(), NOT_FOUND,
                         "user id (login=" + userLoginAttempt.getLogin() +
                                 " - email=" + userLoginAttempt.getEmail() + ") not found",
                         Messages.get("login.attempt.user.not.found")
@@ -95,14 +99,17 @@ public class UserLoginServiceRestImpl implements UserLoginServiceRest {
                 );
 
             } catch (InvalidKeySpecException e) {
-                return RestServiceResult.buildServiceResult(
-                        INTERNAL_SERVER_ERROR,
+
+                throw new ServiceException(
+                        UserLoginServiceRestImpl.class.getName(), INTERNAL_SERVER_ERROR,
                         ExceptionUtils.getStackTrace(e),
                         Messages.get("login.attempt.error.internal.server.error")
                 );
+
             } catch (NoSuchAlgorithmException e) {
-                return RestServiceResult.buildServiceResult(
-                        INTERNAL_SERVER_ERROR,
+
+                throw new ServiceException(
+                        UserLoginServiceRestImpl.class.getName(), INTERNAL_SERVER_ERROR,
                         "Given hash algorithm does not exist or not supported ! (" +
                                 pwdSettings.getPwdPBKDF2algo() + ")",
                         Messages.get("login.attempt.error.internal.server.error")
@@ -110,8 +117,9 @@ public class UserLoginServiceRestImpl implements UserLoginServiceRest {
             }
 
             if(!loginResult) {
-                return RestServiceResult.buildServiceResult(
-                        UNAUTHORIZED,
+
+                throw new ServiceException(
+                        UserLoginServiceRestImpl.class.getName(), UNAUTHORIZED,
                         "Failed login attempt for user " + user.getLogin() + ", bad password.",
                         Messages.get("login.attempt.error.bad.pwd")
                 );

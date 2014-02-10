@@ -5,6 +5,7 @@ import models.user.User;
 import org.jetbrains.annotations.NotNull;
 import org.myweb.db.Dao;
 import org.myweb.services.JavaServiceResult;
+import org.myweb.services.ServiceException;
 import play.i18n.Messages;
 
 import java.util.HashMap;
@@ -24,13 +25,16 @@ public class UserCheckEmailServiceJavaImpl implements UserCheckEmailServiceJava 
 
     @NotNull
     @Override
-    public JavaServiceResult check(@NotNull String email) {
+    public JavaServiceResult check(@NotNull String email) throws ServiceException {
+
         Map<String, Object> param = new HashMap<>();
         param.put("email", email);
+
         User res = (User) dao.namedQuerySingleResult("User.findByEmail", User.class, param);
         if(res != null) {
-            return JavaServiceResult.buildServiceResult(
-                    BAD_REQUEST,
+
+            throw new ServiceException(
+                    UserCheckEmailServiceJavaImpl.class.getName(), BAD_REQUEST,
                     "email " + email + " already exist",
                     Messages.get("user.check.email.error.email.exist", email)
             );
@@ -41,14 +45,18 @@ public class UserCheckEmailServiceJavaImpl implements UserCheckEmailServiceJava 
 
     @NotNull
     @Override
-    public JavaServiceResult checkExcludingUserId(@NotNull String email, @NotNull Long excludedUserId) {
+    public JavaServiceResult checkExcludingUserId(@NotNull String email, @NotNull Long excludedUserId)
+            throws ServiceException {
+
         Map<String, Object> param = new HashMap<>();
         param.put("email", email);
         param.put("excludedId", excludedUserId);
+
         User res = (User) dao.namedQuerySingleResult("User.findByEmailExcludingId", User.class, param);
         if(res != null) {
-            return JavaServiceResult.buildServiceResult(
-                    BAD_REQUEST,
+
+            throw new ServiceException(
+                    UserCheckEmailServiceJavaImpl.class.getName(), BAD_REQUEST,
                     "email " + email + " already exist",
                     Messages.get("user.check.email.error.email.exist", email)
             );

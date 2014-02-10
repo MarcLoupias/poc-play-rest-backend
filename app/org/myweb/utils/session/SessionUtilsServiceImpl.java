@@ -20,7 +20,9 @@ public class SessionUtilsServiceImpl implements SessionUtilsService {
         try {
             res = Long.valueOf(val);
         } catch(NumberFormatException e) {
-            Logger.warn("[SessionUtilsServiceImpl] String to Long cast failed in getSessionUserId() method for value " + val);
+            Logger.warn(
+                    "[SessionUtilsServiceImpl] String to Long cast failed in getSessionUserId() method for value " + val
+            );
             return null;
         }
 

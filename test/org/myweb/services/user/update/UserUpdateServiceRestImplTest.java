@@ -10,8 +10,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.myweb.db.Dao;
 import org.myweb.services.JavaServiceResult;
+import org.myweb.services.ServiceException;
 import org.myweb.services.user.check.UserCheckEmailServiceJava;
+import org.myweb.services.user.check.UserCheckEmailServiceJavaImpl;
 import org.myweb.services.user.check.UserCheckLoginServiceJava;
+import org.myweb.services.user.check.UserCheckLoginServiceJavaImpl;
 import org.myweb.utils.test.TestHelper;
 import org.myweb.services.RestServiceResult;
 import org.myweb.services.crud.get.GetServiceRest;
@@ -39,12 +42,22 @@ public class UserUpdateServiceRestImplTest {
         user1 = TestHelper.userFactory(1l, "loginExist", "l3g@lPwd", "l3g@lPwd", "emailexist@toto.fr");
 
         when(checkLogin.checkExcludingUserId(user1.getLogin(), user1.getId()))
-                .thenReturn(JavaServiceResult.buildServiceResult(Http.Status.BAD_REQUEST));
+                .thenThrow(
+                        new ServiceException(
+                                UserCheckLoginServiceJavaImpl.class.getName(), Http.Status.BAD_REQUEST,
+                                "error msg", "user msg"
+                        )
+                );
         when(checkLogin.checkExcludingUserId("unusedLogin", user1.getId()))
                 .thenReturn(JavaServiceResult.buildServiceResult(Http.Status.OK));
 
         when(checkEmail.checkExcludingUserId(user1.getEmail(), user1.getId()))
-                .thenReturn(JavaServiceResult.buildServiceResult(Http.Status.BAD_REQUEST));
+                .thenThrow(
+                        new ServiceException(
+                                UserCheckEmailServiceJavaImpl.class.getName(), Http.Status.BAD_REQUEST,
+                                "error msg", "user msg"
+                        )
+                );
         when(checkEmail.checkExcludingUserId("unused@email.fr", user1.getId()))
                 .thenReturn(JavaServiceResult.buildServiceResult(Http.Status.OK));
 
@@ -66,10 +79,17 @@ public class UserUpdateServiceRestImplTest {
 
         user1.setEmail("unused@email.fr");
         JsonNode jsUser = Json.toJson(user1);
-        RestServiceResult res = service.updateUser(jsUser, user1.getId());
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.BAD_REQUEST, res.getHttpStatus());
+        boolean exception = false;
+        try {
+            service.updateUser(jsUser, user1.getId());
+        } catch (ServiceException e) {
+            exception = true;
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.BAD_REQUEST, e.getHttpStatus());
+        }
+
+        Assert.assertTrue("exception should be true", exception);
     }
 
     @Test
@@ -77,10 +97,17 @@ public class UserUpdateServiceRestImplTest {
 
         user1.setLogin("unusedLogin");
         JsonNode jsUser = Json.toJson(user1);
-        RestServiceResult res = service.updateUser(jsUser, user1.getId());
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.BAD_REQUEST, res.getHttpStatus());
+        boolean exception = false;
+        try {
+            service.updateUser(jsUser, user1.getId());
+        } catch (ServiceException e) {
+            exception = true;
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.BAD_REQUEST, e.getHttpStatus());
+        }
+
+        Assert.assertTrue("exception should be true", exception);
     }
 
     @Test
@@ -89,7 +116,12 @@ public class UserUpdateServiceRestImplTest {
         user1.setLogin("unusedLogin");
         user1.setEmail("unused@email.fr");
         JsonNode jsUser = Json.toJson(user1);
-        RestServiceResult res = service.updateUser(jsUser, user1.getId());
+        RestServiceResult res = null;
+        try {
+            res = service.updateUser(jsUser, user1.getId());
+        } catch (ServiceException e) {
+            Assert.fail();
+        }
 
         Assert.assertNotNull(res);
         Assert.assertEquals(Http.Status.OK, res.getHttpStatus());
@@ -100,34 +132,60 @@ public class UserUpdateServiceRestImplTest {
 
         user1.setConfirmPassword("l3g@lPwdNotMatching");
         JsonNode jsUser = Json.toJson(user1);
-        RestServiceResult res = service.updateUser(jsUser, user1.getId());
+        boolean exception = false;
+        try {
+            service.updateUser(jsUser, user1.getId());
+        } catch (ServiceException e) {
+            exception = true;
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.BAD_REQUEST, e.getHttpStatus());
+        }
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.BAD_REQUEST, res.getHttpStatus());
+        Assert.assertTrue("exception should be true", exception);
     }
 
     @Test
     public void test_RestServiceResult_updateUser_BAD_REQUEST_idMissing() {
 
         JsonNode jsUser = Json.toJson(user1);
-        RestServiceResult res = service.updateUser(jsUser, null);
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.BAD_REQUEST, res.getHttpStatus());
+        boolean exception = false;
+        try {
+            service.updateUser(jsUser, null);
+        } catch (ServiceException e) {
+            exception = true;
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.BAD_REQUEST, e.getHttpStatus());
+        }
 
-        res = service.updateUser(jsUser, 0l);
+        Assert.assertTrue("exception should be true", exception);
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.BAD_REQUEST, res.getHttpStatus());
+        exception = false;
+        try {
+            service.updateUser(jsUser, 0l);
+        } catch (ServiceException e) {
+            exception = true;
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.BAD_REQUEST, e.getHttpStatus());
+        }
+
+        Assert.assertTrue("exception should be true", exception);
     }
 
     @Test
     public void test_RestServiceResult_updateUser_BAD_REQUEST_urlIdAndPutResourceIdDiffer() {
 
         JsonNode jsUser = Json.toJson(user1);
-        RestServiceResult res = service.updateUser(jsUser, 333l);
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.BAD_REQUEST, res.getHttpStatus());
+        boolean exception = false;
+        try {
+            service.updateUser(jsUser, 333l);
+        } catch (ServiceException e) {
+            exception = true;
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.BAD_REQUEST, e.getHttpStatus());
+        }
+
+        Assert.assertTrue("exception should be true", exception);
     }
 }

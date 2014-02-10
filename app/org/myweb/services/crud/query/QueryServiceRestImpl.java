@@ -7,8 +7,10 @@ import org.jetbrains.annotations.NotNull;
 import org.myweb.db.DaoObject;
 import org.myweb.services.JavaServiceResult;
 import org.myweb.services.RestServiceResult;
+import org.myweb.services.ServiceException;
 import org.myweb.utils.rest.FilterParserService;
 import org.myweb.utils.rest.FilterParserServiceException;
+import play.i18n.Messages;
 import play.libs.Json;
 
 import java.util.List;
@@ -45,21 +47,24 @@ public class QueryServiceRestImpl implements QueryServiceRest {
     @Override
     public RestServiceResult query(
             @NotNull Class<? extends DaoObject> clazz, int page, int itemPerPage, @NotNull String filters
-    ) {
+    ) throws ServiceException {
+
         List<ImmutableTriple<String,String,String>> filterList;
 
         try {
             filterList = filterParserService.parse(filters);
         } catch (FilterParserServiceException e) {
-            return RestServiceResult.buildServiceResult(BAD_REQUEST, ExceptionUtils.getStackTrace(e), "Filters malformed");
+
+            throw new ServiceException(
+                    QueryServiceRestImpl.class.getName(), BAD_REQUEST, ExceptionUtils.getStackTrace(e),
+                    Messages.get("java.service.result.generic.error.msg")
+            );
         }
 
         JavaServiceResult jsr = queryServiceJava.load(clazz, page, itemPerPage, filterList);
 
         if(jsr.getHttpStatus() == NO_CONTENT) {
             return RestServiceResult.buildServiceResult(NO_CONTENT);
-        } else if (jsr.getHttpStatus() == BAD_REQUEST) {
-            return RestServiceResult.buildServiceResult(BAD_REQUEST, jsr.getErrorMsg(), jsr.getUserMsg());
         }
 
         return RestServiceResult.buildServiceResult(OK, Json.toJson(jsr.getListContent()));

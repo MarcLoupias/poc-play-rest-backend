@@ -5,6 +5,7 @@ import models.user.User;
 import org.jetbrains.annotations.NotNull;
 import org.myweb.db.Dao;
 import org.myweb.services.JavaServiceResult;
+import org.myweb.services.ServiceException;
 import play.i18n.Messages;
 
 import java.util.HashMap;
@@ -24,13 +25,16 @@ public class UserCheckLoginServiceJavaImpl implements UserCheckLoginServiceJava 
 
     @NotNull
     @Override
-    public JavaServiceResult check(@NotNull String login) {
+    public JavaServiceResult check(@NotNull String login) throws ServiceException {
+
         Map<String, Object> param = new HashMap<>();
         param.put("login", login);
+
         User res = (User) dao.namedQuerySingleResult("User.findByLogin", User.class, param);
         if(res != null) {
-            return JavaServiceResult.buildServiceResult(
-                    BAD_REQUEST,
+
+            throw new ServiceException(
+                    UserCheckEmailServiceJavaImpl.class.getName(), BAD_REQUEST,
                     "login " + login + " already exist",
                     Messages.get("user.check.login.error.login.exist", login)
             );
@@ -41,14 +45,15 @@ public class UserCheckLoginServiceJavaImpl implements UserCheckLoginServiceJava 
 
     @NotNull
     @Override
-    public JavaServiceResult checkExcludingUserId(@NotNull String login, @NotNull Long excludedUserId) {
+    public JavaServiceResult checkExcludingUserId(@NotNull String login, @NotNull Long excludedUserId) throws ServiceException {
         Map<String, Object> param = new HashMap<>();
         param.put("login", login);
         param.put("excludedId", excludedUserId);
+
         User res = (User) dao.namedQuerySingleResult("User.findByLoginExcludingId", User.class, param);
         if(res != null) {
-            return JavaServiceResult.buildServiceResult(
-                    BAD_REQUEST,
+            throw new ServiceException(
+                    UserCheckEmailServiceJavaImpl.class.getName(), BAD_REQUEST,
                     "login " + login + " already exist",
                     Messages.get("user.check.login.error.login.exist", login)
             );

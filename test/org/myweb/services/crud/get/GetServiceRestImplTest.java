@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.myweb.db.DaoJpa;
+import org.myweb.services.ServiceException;
 import org.myweb.utils.rest.FilterParserService;
 import org.myweb.utils.rest.FilterParserServiceImpl;
 import org.myweb.utils.test.TestHelper;
@@ -37,15 +38,28 @@ public class GetServiceRestImplTest {
 
     @Test
     public void test_RestServiceResult_load_NOT_FOUND() {
-        RestServiceResult res = restService.get(County.class, 666l);
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.NOT_FOUND, res.getHttpStatus());
+        boolean exception = false;
+
+        try {
+            restService.get(County.class, 666l);
+        } catch (ServiceException e) {
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.NOT_FOUND, e.getHttpStatus());
+            exception = true;
+        }
+
+        Assert.assertTrue("exception should be true", exception);
     }
 
     @Test
     public void test_RestServiceResult_load_OK() {
-        RestServiceResult res = restService.get(County.class, countyA.getId());
+        RestServiceResult res = null;
+        try {
+            res = restService.get(County.class, countyA.getId());
+        } catch (ServiceException e) {
+            Assert.fail();
+        }
 
         Assert.assertNotNull(res);
         Assert.assertEquals(Http.Status.OK, res.getHttpStatus());

@@ -9,6 +9,7 @@ import org.myweb.db.Dao;
 import org.myweb.db.DaoException;
 import org.myweb.db.DaoObject;
 import org.myweb.services.JavaServiceResult;
+import org.myweb.services.ServiceException;
 import org.myweb.utils.rest.FilterParserService;
 import org.myweb.utils.rest.FilterParserServiceException;
 import play.i18n.Messages;
@@ -29,14 +30,20 @@ public class GetServiceJavaImpl implements GetServiceJava {
 
     @NotNull
     @Override
-    public JavaServiceResult get(@NotNull Class<? extends DaoObject> clazz, @NotNull Long id) {
+    public JavaServiceResult get(@NotNull Class<? extends DaoObject> clazz, @NotNull Long id) throws ServiceException {
 
         DaoObject entity;
 
         entity = dao.load(clazz, id);
 
         if(entity == null) {
-            return JavaServiceResult.buildServiceResult(NOT_FOUND);
+
+            throw new ServiceException(
+                    GetServiceJavaImpl.class.getName(), NOT_FOUND,
+                    "get request on " + clazz.getName() + " class with for id " + id + " resulted on not found",
+                    Messages.get("crud.get.error.entity.not.found")
+            );
+
         } else {
             return JavaServiceResult.buildServiceResult(OK, entity);
         }
@@ -44,24 +51,24 @@ public class GetServiceJavaImpl implements GetServiceJava {
 
     @NotNull
     @Override
-    public JavaServiceResult count(@NotNull Class<? extends DaoObject> clazz) {
+    public JavaServiceResult count(@NotNull Class<? extends DaoObject> clazz) throws ServiceException {
         return count(clazz, (List<ImmutableTriple<String,String,String>>)null);
     }
 
     @NotNull
     @Override
-    public JavaServiceResult count(
-            @NotNull Class<? extends DaoObject> clazz, @NotNull String filters
-    ) {
+    public JavaServiceResult count(@NotNull Class<? extends DaoObject> clazz, @NotNull String filters)
+            throws ServiceException {
+
         List< ImmutableTriple<String, String, String> > filterList = null;
 
         if(!filters.isEmpty()) {
             try {
                 filterList = filterParserService.parse(filters);
             } catch (FilterParserServiceException e) {
-                return JavaServiceResult.buildServiceResult(
-                        BAD_REQUEST,
-                        ExceptionUtils.getStackTrace(e),
+
+                throw new ServiceException(
+                        GetServiceJavaImpl.class.getName(), BAD_REQUEST, ExceptionUtils.getStackTrace(e),
                         Messages.get("java.service.result.generic.error.msg")
                 );
             }
@@ -74,15 +81,16 @@ public class GetServiceJavaImpl implements GetServiceJava {
     @Override
     public JavaServiceResult count(
             @NotNull Class<? extends DaoObject> clazz, @Nullable List<ImmutableTriple<String,String,String>> filterList
-    ) {
+    ) throws ServiceException {
+
         int count;
 
         try {
             count = dao.count(clazz, filterList);
         } catch (DaoException e) {
-            return JavaServiceResult.buildServiceResult(
-                    INTERNAL_SERVER_ERROR,
-                    ExceptionUtils.getStackTrace(e),
+
+            throw new ServiceException(
+                    GetServiceJavaImpl.class.getName(), BAD_REQUEST, ExceptionUtils.getStackTrace(e),
                     Messages.get("java.service.result.generic.error.msg")
             );
         }

@@ -7,6 +7,7 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.myweb.db.Dao;
 import org.myweb.db.DaoJpa;
 import org.myweb.services.JavaServiceResult;
+import org.myweb.services.ServiceException;
 import org.myweb.services.user.create.UserCreateServiceJava;
 import models.user.UserSecurityModule;
 import org.myweb.utils.mail.MailUtilsService;
@@ -112,6 +113,15 @@ public class Global extends GlobalSettings {
             String subject = "[poc-play-rest-backend] An error occurred causing a rollback :( ...";
             mailerService.sendTechTextEmail(recipient, subject, sb.toString());
 
+            return Promise.<SimpleResult>pure(
+                    internalServerError(Messages.get("global.onerror.rollback-exception"))
+            );
+        }
+
+        if(t instanceof ServiceException) {
+            // TODO logger ici
+            Logger.error(t.getMessage());
+            // TODO gérer le type de retour en fonction du httpStatus de ServiceException
             return Promise.<SimpleResult>pure(
                     internalServerError(Messages.get("global.onerror.rollback-exception"))
             );

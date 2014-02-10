@@ -7,6 +7,7 @@ import models.user.User;
 import org.jetbrains.annotations.NotNull;
 import org.myweb.services.JavaServiceResult;
 import org.myweb.services.RestServiceResult;
+import org.myweb.services.ServiceException;
 import play.data.Form;
 import play.libs.Json;
 
@@ -26,14 +27,16 @@ public class UserCreateServiceRestImpl implements UserCreateServiceRest {
 
     @NotNull
     @Override
-    public RestServiceResult createUser(@NotNull JsonNode jsContent) {
+    public RestServiceResult createUser(@NotNull JsonNode jsContent) throws ServiceException {
 
         Form<User> userForm = Form.form(User.class);
         userForm = userForm.bind(jsContent);
 
         if(userForm.hasErrors()) {
 
-            return RestServiceResult.buildServiceResult(BAD_REQUEST, userForm.errorsAsJson());
+            throw new ServiceException(
+                    UserCreateServiceRestImpl.class.getName(), BAD_REQUEST, userForm.errorsAsJson().asText(),
+                    "user msg", userForm.errorsAsJson());
 
         } else {
             User formUser = userForm.bind(jsContent).get();
@@ -44,10 +47,6 @@ public class UserCreateServiceRestImpl implements UserCreateServiceRest {
             );
 
             JavaServiceResult res = userCreateServiceJava.createUser(newUser);
-
-            if(res.getHttpStatus() != CREATED) {
-                return RestServiceResult.buildServiceResult(res);
-            }
 
             newUser = (User) res.getSingleContent();
             assert newUser != null;

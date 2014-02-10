@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.myweb.db.Dao;
+import org.myweb.services.ServiceException;
 import org.myweb.utils.test.TestHelper;
 import org.myweb.services.JavaServiceResult;
 import org.myweb.services.RestServiceResult;
@@ -36,7 +37,12 @@ public class DeleteServiceRestImplTest {
 
     @Test
     public void test_RestServiceResult_delete_NO_CONTENT() {
-        RestServiceResult res = restService.delete(County.class, countyA.getId());
+        RestServiceResult res = null;
+        try {
+            res = restService.delete(County.class, countyA.getId());
+        } catch (ServiceException e) {
+            Assert.fail();
+        }
 
         Assert.assertNotNull(res);
         Assert.assertEquals(Http.Status.NO_CONTENT, res.getHttpStatus());
@@ -44,14 +50,19 @@ public class DeleteServiceRestImplTest {
 
     @Test
     public void test_RestServiceResult_delete_BAD_REQUEST_idMissing() {
-        RestServiceResult res = restService.delete(County.class, null);
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.BAD_REQUEST, res.getHttpStatus());
+        try {
+            restService.delete(County.class, null);
+        } catch (ServiceException e) {
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.BAD_REQUEST, e.getHttpStatus());
+        }
 
-        res = restService.delete(County.class, 0l);
-
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.BAD_REQUEST, res.getHttpStatus());
+        try {
+            restService.delete(County.class, 0l);
+        } catch (ServiceException e) {
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.BAD_REQUEST, e.getHttpStatus());
+        }
     }
 }

@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.myweb.services.JavaServiceResult;
 import org.myweb.services.RestServiceResult;
+import org.myweb.services.ServiceException;
 import org.myweb.utils.test.TestHelper;
 import play.libs.Json;
 import play.mvc.Http;
@@ -37,7 +38,12 @@ public class UserCreateServiceRestImplTest {
     public void test_JavaServiceResult_createUser_CREATED() {
 
         JsonNode jsNewUser = Json.toJson(newUser);
-        RestServiceResult res = service.createUser(jsNewUser);
+        RestServiceResult res = null;
+        try {
+            res = service.createUser(jsNewUser);
+        } catch (ServiceException e) {
+            Assert.fail();
+        }
 
         Assert.assertNotNull(res);
         Assert.assertEquals(Http.Status.CREATED, res.getHttpStatus());

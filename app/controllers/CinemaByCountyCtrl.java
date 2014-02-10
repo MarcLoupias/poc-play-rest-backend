@@ -6,14 +6,9 @@ import controllers.actions.httpHeaders.CORSimplAction;
 import controllers.actions.httpHeaders.CacheControlAction;
 import models.Cinema;
 import org.myweb.services.JavaServiceResult;
+import org.myweb.services.ServiceException;
 import org.myweb.services.cinema.QueryCinemaByCountyServiceJava;
 import org.myweb.services.cinema.QueryCinemaByCountyServiceRest;
-import org.myweb.services.crud.create.CreateServiceRest;
-import org.myweb.services.crud.delete.DeleteServiceRest;
-import org.myweb.services.crud.get.GetServiceJava;
-import org.myweb.services.crud.get.GetServiceRest;
-import org.myweb.services.crud.query.QueryServiceRest;
-import org.myweb.services.crud.update.UpdateServiceRest;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -28,7 +23,7 @@ public class CinemaByCountyCtrl extends Controller {
     private QueryCinemaByCountyServiceRest queryCinemaByCountyServiceRest;
 
     @Transactional(readOnly = true)
-    public Result query(Integer page, Integer perPage, String countyName){
+    public Result query(Integer page, Integer perPage, String countyName) throws ServiceException {
 
         JavaServiceResult jsr = queryCinemaByCountyServiceJava.count(Cinema.class, countyName);
         if(jsr.getHttpStatus() != OK) {

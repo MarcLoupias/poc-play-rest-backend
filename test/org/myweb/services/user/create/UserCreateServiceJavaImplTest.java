@@ -7,8 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.myweb.db.Dao;
 import org.myweb.services.JavaServiceResult;
+import org.myweb.services.ServiceException;
 import org.myweb.services.user.check.UserCheckEmailServiceJava;
+import org.myweb.services.user.check.UserCheckEmailServiceJavaImpl;
 import org.myweb.services.user.check.UserCheckLoginServiceJava;
+import org.myweb.services.user.check.UserCheckLoginServiceJavaImpl;
 import org.myweb.utils.test.TestHelper;
 import org.myweb.utils.security.PasswordGenerationService;
 import play.mvc.Http;
@@ -28,12 +31,22 @@ public class UserCreateServiceJavaImplTest {
     @Before
     public void setUp() throws Exception {
         when(checkLogin.check("loginExist"))
-                .thenReturn(JavaServiceResult.buildServiceResult(Http.Status.BAD_REQUEST));
+                .thenThrow(
+                        new ServiceException(
+                                UserCheckLoginServiceJavaImpl.class.getName(), Http.Status.BAD_REQUEST,
+                                "error msg", "user msg"
+                        )
+                );
         when(checkLogin.check("totoLogin"))
                 .thenReturn(JavaServiceResult.buildServiceResult(Http.Status.OK));
 
         when(checkEmail.check("emailexist@toto.fr"))
-                .thenReturn(JavaServiceResult.buildServiceResult(Http.Status.BAD_REQUEST));
+                .thenThrow(
+                        new ServiceException(
+                                UserCheckEmailServiceJavaImpl.class.getName(), Http.Status.BAD_REQUEST,
+                                "error msg","user msg"
+                        )
+                );
         when(checkEmail.check("toto@toto.fr"))
                 .thenReturn(JavaServiceResult.buildServiceResult(Http.Status.OK));
 
@@ -52,10 +65,17 @@ public class UserCreateServiceJavaImplTest {
 
         User newUser = TestHelper.userFactory(null, "loginExist", "l3g@lPwd", "l3g@lPwd", "toto@toto.fr");
 
-        JavaServiceResult res = service.createUser(newUser);
+        boolean exception = false;
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.BAD_REQUEST, res.getHttpStatus());
+        try {
+            service.createUser(newUser);
+        } catch (ServiceException e) {
+            exception = true;
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.BAD_REQUEST, e.getHttpStatus());
+        }
+
+        Assert.assertTrue("exception should be true", exception);
     }
 
     @Test
@@ -63,10 +83,16 @@ public class UserCreateServiceJavaImplTest {
 
         User newUser = TestHelper.userFactory(null, "totoLogin", "l3g@lPwd", "l3g@lPwd", "emailexist@toto.fr");
 
-        JavaServiceResult res = service.createUser(newUser);
+        boolean exception = false;
+        try {
+            service.createUser(newUser);
+        } catch (ServiceException e) {
+            exception = true;
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.BAD_REQUEST, e.getHttpStatus());
+        }
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.BAD_REQUEST, res.getHttpStatus());
+        Assert.assertTrue("exception should be true", exception);
     }
 
     @Test
@@ -74,7 +100,12 @@ public class UserCreateServiceJavaImplTest {
 
         User newUser = TestHelper.userFactory(null, "totoLogin", "l3g@lPwd", "l3g@lPwd", "toto@toto.fr");
 
-        JavaServiceResult res = service.createUser(newUser);
+        JavaServiceResult res = null;
+        try {
+            res = service.createUser(newUser);
+        } catch (ServiceException e) {
+            Assert.fail();
+        }
 
         Assert.assertNotNull(res);
         Assert.assertEquals(Http.Status.CREATED, res.getHttpStatus());
@@ -85,9 +116,15 @@ public class UserCreateServiceJavaImplTest {
 
         User newUser = TestHelper.userFactory(null, "totoLogin", "l3g@lPwd", "l3g@lPwdNotMatching", "toto@toto.fr");
 
-        JavaServiceResult res = service.createUser(newUser);
+        boolean exception = false;
+        try {
+            service.createUser(newUser);
+        } catch (ServiceException e) {
+            exception = true;
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.BAD_REQUEST, e.getHttpStatus());
+        }
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.BAD_REQUEST, res.getHttpStatus());
+        Assert.assertTrue("exception should be true", exception);
     }
 }

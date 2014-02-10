@@ -5,6 +5,7 @@ import com.google.inject.Inject;
 import controllers.actions.credentials.CredentialsCheckerAction;
 import controllers.actions.httpHeaders.CacheControlAction;
 import models.user.User;
+import org.myweb.services.ServiceException;
 import org.myweb.services.crud.delete.DeleteServiceRest;
 import org.myweb.services.crud.get.GetServiceRest;
 import org.myweb.services.crud.query.QueryServiceRest;
@@ -30,7 +31,7 @@ public class UserCtrl extends Controller {
     private DeleteServiceRest deleteServiceRest;
 
     @Transactional(readOnly = true)
-    public Result get(Long id){
+    public Result get(Long id) throws ServiceException {
         return getServiceRest.get(User.class, id).buildPlayCtrlResult();
     }
 
@@ -40,17 +41,17 @@ public class UserCtrl extends Controller {
     }
 
     @Transactional(readOnly = false)
-    public Result create(){
+    public Result create() throws ServiceException {
         return userCreateServiceRest.createUser(request().body().asJson()).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
-    public Result update(Long id){
+    public Result update(Long id) throws ServiceException {
         return userUpdateServiceRest.updateUser(request().body().asJson(), id).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
-    public Result delete(Long id){
+    public Result delete(Long id) throws ServiceException {
         return deleteServiceRest.delete(User.class, id).buildPlayCtrlResult();
     }
 

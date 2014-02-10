@@ -6,6 +6,7 @@ import org.myweb.db.Dao;
 import org.myweb.db.DaoException;
 import org.myweb.db.DaoObject;
 import org.myweb.services.JavaServiceResult;
+import org.myweb.services.ServiceException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +29,7 @@ public class QueryCinemaByCountyServiceJavaImpl implements QueryCinemaByCountySe
     @Override
     public JavaServiceResult load(
             @NotNull Class<? extends DaoObject> clazz, int page, int itemPerPage, @NotNull String countyName
-    ) {
+    ) throws ServiceException {
 
         List<? extends DaoObject> entityList;
 
@@ -38,7 +39,8 @@ public class QueryCinemaByCountyServiceJavaImpl implements QueryCinemaByCountySe
         try {
             entityList = dao.namedQueryWithPagination("Cinema.findByCountyName", clazz, params, page, itemPerPage);
         } catch (DaoException e) {
-            return JavaServiceResult.buildServiceResult(BAD_REQUEST);
+            throw new ServiceException(
+                    QueryCinemaByCountyServiceJavaImpl.class.getName(), BAD_REQUEST, e.getMessage(), e, "user msg");
         }
 
         if(entityList == null || entityList.size() == 0) {

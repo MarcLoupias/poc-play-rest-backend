@@ -9,6 +9,7 @@ import org.myweb.db.Dao;
 import org.myweb.db.DaoException;
 import org.myweb.db.DaoObject;
 import org.myweb.services.JavaServiceResult;
+import org.myweb.services.ServiceException;
 import org.myweb.utils.rest.FilterParserService;
 import org.myweb.utils.rest.FilterParserServiceException;
 import play.i18n.Messages;
@@ -30,6 +31,7 @@ public class QueryServiceJavaImpl implements QueryServiceJava {
     @NotNull
     @Override
     public JavaServiceResult load(@NotNull Class<? extends DaoObject> clazz) {
+
         List<? extends DaoObject> entityList;
 
         entityList = dao.load(clazz);
@@ -45,7 +47,7 @@ public class QueryServiceJavaImpl implements QueryServiceJava {
     @Override
     public JavaServiceResult load(
             @NotNull Class<? extends DaoObject> clazz, int page, int itemPerPage
-    ) {
+    ) throws ServiceException {
         return load(clazz, page, itemPerPage, (List<ImmutableTriple<String,String,String>>)null);
     }
 
@@ -54,16 +56,17 @@ public class QueryServiceJavaImpl implements QueryServiceJava {
     public JavaServiceResult load(
             @NotNull Class<? extends DaoObject> clazz, int page, int itemPerPage,
             @NotNull String filters
-    ) {
+    ) throws ServiceException {
+
         List< ImmutableTriple<String, String, String> > filterList = null;
 
         if(!filters.isEmpty()) {
             try {
                 filterList = filterParserService.parse(filters);
             } catch (FilterParserServiceException e) {
-                return JavaServiceResult.buildServiceResult(
-                        BAD_REQUEST,
-                        ExceptionUtils.getStackTrace(e),
+
+                throw new ServiceException(
+                        QueryServiceJavaImpl.class.getName(), BAD_REQUEST, ExceptionUtils.getStackTrace(e),
                         Messages.get("java.service.result.generic.error.msg")
                 );
             }
@@ -77,21 +80,16 @@ public class QueryServiceJavaImpl implements QueryServiceJava {
     public JavaServiceResult load(
             @NotNull Class<? extends DaoObject> clazz, int page, int itemPerPage,
             @Nullable List<ImmutableTriple<String,String,String>> filterList
-    ) {
+    ) throws ServiceException {
+
         List<? extends DaoObject> entityList;
 
         try {
             entityList = dao.load(clazz, page, itemPerPage, filterList);
-        } catch (IllegalArgumentException iae) {
-            return JavaServiceResult.buildServiceResult(
-                    BAD_REQUEST,
-                    ExceptionUtils.getStackTrace(iae),
-                    Messages.get("java.service.result.generic.error.msg")
-            );
-        } catch (DaoException e) {
-            return JavaServiceResult.buildServiceResult(
-                    INTERNAL_SERVER_ERROR,
-                    ExceptionUtils.getStackTrace(e),
+        } catch (IllegalArgumentException | DaoException e) {
+
+            throw new ServiceException(
+                    QueryServiceJavaImpl.class.getName(), BAD_REQUEST, ExceptionUtils.getStackTrace(e),
                     Messages.get("java.service.result.generic.error.msg")
             );
         }

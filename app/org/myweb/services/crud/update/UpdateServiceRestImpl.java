@@ -7,6 +7,7 @@ import org.jetbrains.annotations.Nullable;
 import org.myweb.db.DaoObject;
 import org.myweb.services.JavaServiceResult;
 import org.myweb.services.RestServiceResult;
+import org.myweb.services.ServiceException;
 import org.myweb.services.crud.get.GetServiceJava;
 import play.data.Form;
 import play.i18n.Messages;
@@ -30,12 +31,12 @@ public class UpdateServiceRestImpl implements UpdateServiceRest {
     @Override
     public RestServiceResult update(
             @NotNull Class<? extends DaoObject> clazz, @NotNull JsonNode jsContent, @Nullable Long entityId
-    ) {
+    ) throws ServiceException {
 
         if(entityId == null || entityId < 1l) {
-            return RestServiceResult.buildServiceResult(
-                    BAD_REQUEST,
-                    "put request without pojo id",
+
+            throw new ServiceException(
+                    UpdateServiceRestImpl.class.getName(), BAD_REQUEST, "put request without pojo id",
                     Messages.get("crud.update.error.id.missing")
             );
         }
@@ -45,23 +46,26 @@ public class UpdateServiceRestImpl implements UpdateServiceRest {
 
         if(entityForm.hasErrors()) {
 
-            return RestServiceResult.buildServiceResult(BAD_REQUEST, entityForm.errorsAsJson());
+            throw new ServiceException(
+                    UpdateServiceRestImpl.class.getName(), BAD_REQUEST, entityForm.errorsAsJson().asText(),
+                    "user msg", entityForm.errorsAsJson());
 
         } else {
             DaoObject entity = entityForm.bind(jsContent).get();
 
             if(entity.getId() == null || (entity.getId().longValue() != entityId.longValue()) ){
-                return RestServiceResult.buildServiceResult(
-                        BAD_REQUEST,
-                        "put request id differ from put content id",
+
+                throw new ServiceException(
+                        UpdateServiceRestImpl.class.getName(), BAD_REQUEST, "put request id differ from put content id",
                         Messages.get("crud.update.error.url.id.and.pojo.id.differ")
                 );
             }
 
             JavaServiceResult jsrLoad = getServiceJava.get(clazz, entityId);
             if(jsrLoad.getHttpStatus() == NOT_FOUND || jsrLoad.getSingleContent() == null) {
-                return RestServiceResult.buildServiceResult(
-                        NOT_FOUND,
+
+                throw new ServiceException(
+                        UpdateServiceRestImpl.class.getName(), NOT_FOUND,
                         "update request cant load entity to update",
                         Messages.get("crud.update.error.entity.not.found")
                 );

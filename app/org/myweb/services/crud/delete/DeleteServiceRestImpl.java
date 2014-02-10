@@ -6,11 +6,11 @@ import org.jetbrains.annotations.Nullable;
 import org.myweb.db.DaoObject;
 import org.myweb.services.JavaServiceResult;
 import org.myweb.services.RestServiceResult;
+import org.myweb.services.ServiceException;
 import org.myweb.services.crud.get.GetServiceJava;
 import play.i18n.Messages;
 
 import static play.mvc.Http.Status.BAD_REQUEST;
-import static play.mvc.Http.Status.NOT_FOUND;
 import static play.mvc.Http.Status.NO_CONTENT;
 
 public class DeleteServiceRestImpl implements DeleteServiceRest {
@@ -26,26 +26,19 @@ public class DeleteServiceRestImpl implements DeleteServiceRest {
 
     @NotNull
     @Override
-    public RestServiceResult delete(@NotNull Class<? extends DaoObject> clazz, @Nullable Long entityId) {
+    public RestServiceResult delete(@NotNull Class<? extends DaoObject> clazz, @Nullable Long entityId) throws ServiceException {
 
         if(entityId == null || entityId < 1l) {
-            return RestServiceResult.buildServiceResult(
-                    BAD_REQUEST,
-                    "delete request without delete id",
-                    Messages.get("crud.delete.error.id.missing")
-            );
+
+            throw new ServiceException(
+                    DeleteServiceRestImpl.class.getName(), BAD_REQUEST, "delete request without delete id",
+                    Messages.get("crud.delete.error.id.missing"));
         }
 
         JavaServiceResult jsrLoad = getServiceJava.get(clazz, entityId);
-        if(jsrLoad.getHttpStatus() == NOT_FOUND || jsrLoad.getSingleContent() == null) {
-            return RestServiceResult.buildServiceResult(
-                    NOT_FOUND,
-                    "delete request cant load entity to delete",
-                    Messages.get("crud.delete.error.entity.not.found")
-            );
-        }
 
         DaoObject dbEntity = jsrLoad.getSingleContent();
+        assert dbEntity != null;
 
         deleteServiceJava.remove(dbEntity);
 

@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import org.myweb.db.DaoObject;
 import org.myweb.services.JavaServiceResult;
 import org.myweb.services.RestServiceResult;
+import org.myweb.services.ServiceException;
 import play.data.Form;
 import play.libs.Json;
 
@@ -23,14 +24,17 @@ public class CreateServiceRestImpl implements CreateServiceRest {
 
     @NotNull
     @Override
-    public RestServiceResult create(@NotNull Class<? extends DaoObject> clazz, @NotNull JsonNode jsContent) {
+    public RestServiceResult create(@NotNull Class<? extends DaoObject> clazz, @NotNull JsonNode jsContent)
+            throws ServiceException {
 
         Form<? extends DaoObject> entityForm = Form.form(clazz);
         entityForm = entityForm.bind(jsContent);
 
         if(entityForm.hasErrors()) {
 
-            return RestServiceResult.buildServiceResult(BAD_REQUEST, entityForm.errorsAsJson());
+            throw new ServiceException(
+                    CreateServiceRestImpl.class.getName(), BAD_REQUEST, entityForm.errorsAsJson().asText(),
+                    "user msg", entityForm.errorsAsJson());
 
         } else {
             DaoObject entity = entityForm.bind(jsContent).get();

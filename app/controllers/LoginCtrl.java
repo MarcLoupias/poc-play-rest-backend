@@ -3,6 +3,7 @@ package controllers;
 import controllers.actions.httpHeaders.CORSimplAction;
 import com.google.inject.Inject;
 import controllers.actions.httpHeaders.CacheControlAction;
+import org.myweb.services.ServiceException;
 import org.myweb.services.user.login.UserLoginServiceRest;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
@@ -16,7 +17,7 @@ public class LoginCtrl extends Controller {
     private UserLoginServiceRest userLoginServiceRest;
 
     @Transactional(readOnly = false)
-    public Result login() {
+    public Result login() throws ServiceException {
         return userLoginServiceRest.loginUser(request().body().asJson()).buildPlayCtrlResult();
     }
 }

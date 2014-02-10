@@ -6,6 +6,7 @@ import controllers.actions.credentials.CredentialsCheckerAction;
 import controllers.actions.httpHeaders.CacheControlAction;
 import models.County;
 import org.myweb.services.JavaServiceResult;
+import org.myweb.services.ServiceException;
 import org.myweb.services.crud.create.CreateServiceRest;
 import org.myweb.services.crud.delete.DeleteServiceRest;
 import org.myweb.services.crud.get.GetServiceJava;
@@ -37,12 +38,12 @@ public class CountyCtrl extends Controller {
     private FilterParserService filterParserService;
 
     @Transactional(readOnly = true)
-    public Result get(Long id){
+    public Result get(Long id) throws ServiceException {
         return getServiceRest.get( County.class, id ).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = true)
-    public Result query(Integer page, Integer perPage, String filters) {
+    public Result query(Integer page, Integer perPage, String filters) throws ServiceException {
 
         JavaServiceResult jsr = getServiceJava.count(County.class, filters);
         if(jsr.getHttpStatus() != OK) {
@@ -56,17 +57,17 @@ public class CountyCtrl extends Controller {
     }
 
     @Transactional(readOnly = false)
-    public Result update(Long id){
+    public Result update(Long id) throws ServiceException {
         return updateServiceRest.update( County.class, request().body().asJson(), id ).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
-    public Result create(){
+    public Result create() throws ServiceException {
         return createServiceRest.create( County.class, request().body().asJson() ).buildPlayCtrlResult();
     }
 
     @Transactional(readOnly = false)
-    public Result delete(Long id){
+    public Result delete(Long id) throws ServiceException {
         return deleteServiceRest.delete( County.class, id ).buildPlayCtrlResult();
     }
 }

@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.myweb.db.DaoJpa;
+import org.myweb.services.ServiceException;
 import org.myweb.utils.test.TestHelper;
 import org.myweb.services.JavaServiceResult;
 import org.myweb.services.RestServiceResult;
@@ -42,7 +43,12 @@ public class UpdateServiceRestImplTest {
         countyA.setName("Lot en Quercy !");
         JsonNode jsCounty = Json.toJson(countyA);
 
-        RestServiceResult res = restService.update(County.class, jsCounty, countyA.getId());
+        RestServiceResult res = null;
+        try {
+            res = restService.update(County.class, jsCounty, countyA.getId());
+        } catch (ServiceException e) {
+            Assert.fail();
+        }
 
         Assert.assertNotNull(res);
         Assert.assertEquals(Http.Status.OK, res.getHttpStatus());
@@ -53,15 +59,27 @@ public class UpdateServiceRestImplTest {
 
         countyA.setName("Lot en Quercy !");
         JsonNode jsCounty = Json.toJson(countyA);
-        RestServiceResult res = restService.update(County.class, jsCounty, null);
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.BAD_REQUEST, res.getHttpStatus());
+        boolean exception = false;
+        try {
+            restService.update(County.class, jsCounty, null);
+        } catch (ServiceException e) {
+            exception = true;
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.BAD_REQUEST, e.getHttpStatus());
+        }
+        Assert.assertTrue("exception should be true", exception);
 
-        res = restService.update(County.class, jsCounty, 0l);
+        exception = false;
+        try {
+            restService.update(County.class, jsCounty, 0l);
+        } catch (ServiceException e) {
+            exception = true;
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.BAD_REQUEST, e.getHttpStatus());
+        }
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.BAD_REQUEST, res.getHttpStatus());
+        Assert.assertTrue("exception should be true", exception);
     }
 
     @Test
@@ -69,9 +87,16 @@ public class UpdateServiceRestImplTest {
 
         countyA.setName("Lot en Quercy !");
         JsonNode jsCounty = Json.toJson(countyA);
-        RestServiceResult res = restService.update(County.class, jsCounty, 333l);
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.BAD_REQUEST, res.getHttpStatus());
+        boolean exception = false;
+        try {
+            restService.update(County.class, jsCounty, 333l);
+        } catch (ServiceException e) {
+            exception = true;
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.BAD_REQUEST, e.getHttpStatus());
+        }
+
+        Assert.assertTrue("exception should be true", exception);
     }
 }

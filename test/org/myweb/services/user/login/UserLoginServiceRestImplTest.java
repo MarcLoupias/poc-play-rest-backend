@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.myweb.db.Dao;
+import org.myweb.services.ServiceException;
 import org.myweb.utils.security.SecurityUtilsService;
 import org.myweb.utils.session.SessionUtilsService;
 import org.myweb.utils.test.TestHelper;
@@ -83,7 +84,12 @@ public class UserLoginServiceRestImplTest {
                 TestHelper.userLoginAttemptFactory(user.getEmail(), user.getLogin(), user.getNewPassword())
         );
 
-        RestServiceResult res = service.loginUser(jsUserLoginAttempt);
+        RestServiceResult res = null;
+        try {
+            res = service.loginUser(jsUserLoginAttempt);
+        } catch (ServiceException e) {
+            Assert.fail();
+        }
 
         Assert.assertNotNull(res);
         Assert.assertEquals(Http.Status.OK, res.getHttpStatus());
@@ -96,10 +102,16 @@ public class UserLoginServiceRestImplTest {
                 TestHelper.userLoginAttemptFactory(user.getEmail(), user.getLogin(), "wrong_l3g@lPwd")
         );
 
-        RestServiceResult res = service.loginUser(jsUserLoginAttempt);
+        boolean exception = false;
+        try {
+            service.loginUser(jsUserLoginAttempt);
+        } catch (ServiceException e) {
+            exception = true;
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.UNAUTHORIZED, e.getHttpStatus());
+        }
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.UNAUTHORIZED, res.getHttpStatus());
+        Assert.assertTrue("exception should be true", exception);
     }
 
     @Test
@@ -109,7 +121,12 @@ public class UserLoginServiceRestImplTest {
                 TestHelper.userLoginAttemptFactory("", user.getLogin(), user.getNewPassword())
         );
 
-        RestServiceResult res = service.loginUser(jsUserLoginAttempt);
+        RestServiceResult res = null;
+        try {
+            res = service.loginUser(jsUserLoginAttempt);
+        } catch (ServiceException e) {
+            Assert.fail();
+        }
 
         Assert.assertNotNull(res);
         Assert.assertEquals(Http.Status.OK, res.getHttpStatus());
@@ -122,7 +139,12 @@ public class UserLoginServiceRestImplTest {
                 TestHelper.userLoginAttemptFactory(user.getEmail(), "", user.getNewPassword())
         );
 
-        RestServiceResult res = service.loginUser(jsUserLoginAttempt);
+        RestServiceResult res = null;
+        try {
+            res = service.loginUser(jsUserLoginAttempt);
+        } catch (ServiceException e) {
+            Assert.fail();
+        }
 
         Assert.assertNotNull(res);
         Assert.assertEquals(Http.Status.OK, res.getHttpStatus());
@@ -135,10 +157,16 @@ public class UserLoginServiceRestImplTest {
                 TestHelper.userLoginAttemptFactory("emailnotfound@toto.fr", "loginNotFound", user.getNewPassword())
         );
 
-        RestServiceResult res = service.loginUser(jsUserLoginAttempt);
+        boolean exception = false;
+        try {
+            service.loginUser(jsUserLoginAttempt);
+        } catch (ServiceException e) {
+            exception = true;
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.NOT_FOUND, e.getHttpStatus());
+        }
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.NOT_FOUND, res.getHttpStatus());
+        Assert.assertTrue("exception should be true", exception);
     }
 
     @Test
@@ -148,10 +176,16 @@ public class UserLoginServiceRestImplTest {
                 TestHelper.userLoginAttemptFactory("", "loginNotFound", user.getNewPassword())
         );
 
-        RestServiceResult res = service.loginUser(jsUserLoginAttempt);
+        boolean exception = false;
+        try {
+            service.loginUser(jsUserLoginAttempt);
+        } catch (ServiceException e) {
+            exception = true;
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.NOT_FOUND, e.getHttpStatus());
+        }
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.NOT_FOUND, res.getHttpStatus());
+        Assert.assertTrue("exception should be true", exception);
     }
 
     @Test
@@ -161,9 +195,15 @@ public class UserLoginServiceRestImplTest {
                 TestHelper.userLoginAttemptFactory("emailnotfound@toto.fr", "", user.getNewPassword())
         );
 
-        RestServiceResult res = service.loginUser(jsUserLoginAttempt);
+        boolean exception = false;
+        try {
+            service.loginUser(jsUserLoginAttempt);
+        } catch (ServiceException e) {
+            exception = true;
+            Assert.assertNotNull(e);
+            Assert.assertEquals(Http.Status.NOT_FOUND, e.getHttpStatus());
+        }
 
-        Assert.assertNotNull(res);
-        Assert.assertEquals(Http.Status.NOT_FOUND, res.getHttpStatus());
+        Assert.assertTrue("exception should be true", exception);
     }
 }
