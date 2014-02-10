@@ -23,7 +23,9 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+import static play.mvc.Http.Status.*;
 import static play.mvc.Results.*;
+import static play.mvc.Results.internalServerError;
 
 public class Global extends GlobalSettings {
 
@@ -55,12 +57,7 @@ public class Global extends GlobalSettings {
 
                 if(admin == null) {
                     admin = modelFactoryHelper.userFactory(null, "admin", "@dm1nPwd", "@dm1nPwd", "admin@domain.tld");
-
-                    JavaServiceResult res = userCreateService.createUser(admin);
-
-                    if(res.getHttpStatus() != Http.Status.CREATED) {
-                        Logger.error("[Application Start] Impossible to create admin account : " + res.getErrorMsg());
-                    }
+                    userCreateService.createUser(admin);
                 }
             }
         });
@@ -98,6 +95,32 @@ public class Global extends GlobalSettings {
         Logger.info("Application shutdown...");
     }
 
+    private SimpleResult buildPlayCtrlResult(ServiceException se) {
+        switch(se.getHttpStatus()) {
+            case BAD_REQUEST: {
+                if(se.getUserMessage() != null) {
+                    return badRequest(se.getUserMessage());
+                } else if (se.getSerializedFormErrors() != null) {
+                    return badRequest(se.getSerializedFormErrors());
+                } else {
+                    return badRequest();
+                }
+            }
+            case UNAUTHORIZED: {
+                return unauthorized(se.getUserMessage());
+            }
+            case NOT_FOUND: {
+                return notFound(se.getUserMessage());
+            }
+            case INTERNAL_SERVER_ERROR: {
+                return internalServerError(se.getUserMessage());
+            }
+            default: {
+                return internalServerError(Messages.get("global.onerror"));
+            }
+        }
+    }
+
     // when an exception is thrown by a controller
     public Promise<SimpleResult> onError(RequestHeader request, Throwable t) {
 
@@ -119,11 +142,16 @@ public class Global extends GlobalSettings {
         }
 
         if(t instanceof ServiceException) {
-            // TODO logger ici
-            Logger.error(t.getMessage());
-            // TODO gérer le type de retour en fonction du httpStatus de ServiceException
-            return Promise.<SimpleResult>pure(
-                    internalServerError(Messages.get("global.onerror.rollback-exception"))
+            sb.append(t.getMessage());
+
+            Logger.error(sb.toString());
+
+            String recipient = Play.application().configuration().getString("tech.mail");
+            String subject = "[poc-play-rest-backend] A ServiceException occurred ...";
+            mailerService.sendTechTextEmail(recipient, subject, sb.toString());
+
+            return Promise.pure(
+                    buildPlayCtrlResult((ServiceException) t)
             );
         }
 

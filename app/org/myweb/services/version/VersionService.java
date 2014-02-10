@@ -1,9 +1,12 @@
 package org.myweb.services.version;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.myweb.services.RestServiceResult;
+import org.myweb.services.ServiceException;
 import play.Play;
 import play.libs.Json;
 
+import static play.mvc.Http.Status.INTERNAL_SERVER_ERROR;
 import static play.mvc.Http.Status.OK;
 
 public class VersionService {
@@ -35,7 +38,7 @@ public class VersionService {
 
     }
 
-    public RestServiceResult getShortVersion() {
+    public RestServiceResult getShortVersion() throws ServiceException {
         try {
             ShortVersion v = new ShortVersion();
             v.appName = appInfos.BuildInfo.name();
@@ -43,11 +46,13 @@ public class VersionService {
             return RestServiceResult.buildServiceResult(OK, Json.toJson(v));
 
         } catch (Exception e) {
-            return RestServiceResult.buildGenericServiceResultError(e);
+            throw new ServiceException(
+                    VersionService.class.getName(), INTERNAL_SERVER_ERROR, ExceptionUtils.getStackTrace(e), "user msg"
+            );
         }
     }
 
-    public RestServiceResult getLongVersion() {
+    public RestServiceResult getLongVersion() throws ServiceException {
         try {
             LongVersion v = new LongVersion();
             v.appName = appInfos.BuildInfo.name();
@@ -65,7 +70,9 @@ public class VersionService {
             return RestServiceResult.buildServiceResult(OK, Json.toJson(v));
 
         } catch (Exception e) {
-            return RestServiceResult.buildGenericServiceResultError(e);
+            throw new ServiceException(
+                    VersionService.class.getName(), INTERNAL_SERVER_ERROR, ExceptionUtils.getStackTrace(e), "user msg"
+            );
         }
     }
 }
