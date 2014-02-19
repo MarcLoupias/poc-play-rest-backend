@@ -2,8 +2,9 @@
 poc-play-rest-backend
 =====================
 
-
 Current [Play!] (http://www.playframework.com/) version is 2.2.1 (nov 2013)
+
+[![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png)](http://wtfpl.net)
 
 What is this ?
 --------------

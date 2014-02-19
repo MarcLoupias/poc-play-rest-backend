@@ -5,6 +5,7 @@ poc-play-rest-backend changelog
 0.0.1
 -----
 * Versioning convention changes. Following now [SemVer] (http://semver.org/) so started from scratch at 0.0.1.
+* Licence moves from MIT to the better suited [WTFPL] (http://www.wtfpl.net/faq/).
 * [CORS] (https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS) support added. Mandatory due to frontend served on a different Heroku app.
 * `Product` and `Category` models removed.
 * Filter and pagination support added on query/get WS.
