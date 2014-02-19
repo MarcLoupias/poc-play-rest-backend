@@ -45,7 +45,7 @@ public class UserLoginServiceRestImpl implements UserLoginServiceRest {
 
             throw new ServiceException(
                     UserLoginServiceRestImpl.class.getName(), BAD_REQUEST, userLoginAttemptForm.errorsAsJson().asText(),
-                    "user msg", userLoginAttemptForm.errorsAsJson());
+                    Messages.get("global.malformed.request"), userLoginAttemptForm.errorsAsJson());
 
         } else {
             UserLoginAttempt userLoginAttempt = userLoginAttemptForm.bind(jsContent).get();

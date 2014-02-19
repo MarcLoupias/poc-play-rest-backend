@@ -7,6 +7,7 @@ import org.myweb.db.DaoException;
 import org.myweb.db.DaoObject;
 import org.myweb.services.JavaServiceResult;
 import org.myweb.services.ServiceException;
+import play.i18n.Messages;
 
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +41,9 @@ public class QueryCinemaByCountyServiceJavaImpl implements QueryCinemaByCountySe
             entityList = dao.namedQueryWithPagination("Cinema.findByCountyName", clazz, params, page, itemPerPage);
         } catch (DaoException e) {
             throw new ServiceException(
-                    QueryCinemaByCountyServiceJavaImpl.class.getName(), BAD_REQUEST, e.getMessage(), e, "user msg");
+                    QueryCinemaByCountyServiceJavaImpl.class.getName(), BAD_REQUEST, e.getMessage(), e,
+                    Messages.get("global.malformed.request")
+            );
         }
 
         if(entityList == null || entityList.size() == 0) {

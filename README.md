@@ -33,6 +33,7 @@ What is done and you can read or pick ?
 * A home-made login system using [NIST recommendations] (http://csrc.nist.gov/publications/nistpubs/800-132/nist-sp800-132.pdf)
 * [Play action composition example for controllers credentials] (http://www.playframework.com/documentation/2.2.1/JavaActionsComposition)
 * [Dependency Injection] (http://en.wikipedia.org/wiki/Dependency_injection) with [Google Guice] (http://code.google.com/p/google-guice/)
+* [CORS] (https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS) support
 
 Installation
 ------------
@@ -42,7 +43,7 @@ Installation
 Running the application locally and play with it
 ------------------------------------------------
 1. Enter in your project root directory in the console.
-2. Run the app with `play run` command.
+2. Run the app with `play run` command. (`play "run 8080"` to run it on the 8080 port)
 3. Go to http://localhost:9000/version with your favourite browser.
 
 To manually run the app without a front-end, i use the [RESTClient plugin] (https://addons.mozilla.org/fr/firefox/addon/restclient/) for Firefox.
@@ -82,6 +83,7 @@ Version number management
 We use [sbt-buildinfo plugin] (https://github.com/sbt/sbt-buildinfo).
 Version number is set in `build.sbt` in the Play! regular way.
 Open a play console then type `reload` to see changes.
+We follow [SemVer] (http://semver.org/) convention.
 
 Heroku Deployment
 -----------------
@@ -115,6 +117,5 @@ Areas of improvements
 * I don't know how to run only unit tests without integration tests with Play! via Ant in a simple way.
 * I don't know how to rollback the database after each integration test without deleting each record used manually.
 * Transactions are functional but i have to work on [concurrency] (https://blogs.oracle.com/enterprisetechtips/entry/locking_and_concurrency_in_java).
-* My next step is to build an [AngularJs] (http://angularjs.org/) + [Bootstrap] (http://getbootstrap.com/) front-end to plug on this back-end.
 * I need also to work on continuous integration.
 

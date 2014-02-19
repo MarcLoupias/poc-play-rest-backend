@@ -14,7 +14,12 @@
     <property name="env.PPRB_DB_USER" value="myweb_db_user"/>
     <property name="env.PPRB_DB_PWD" value="password"/>
     <property name="env.PPRB_DB_URL" value="${db.jdbc.url}/${db.name.pprb}"/>
+    <property name="env.PPRB_CORS_ACCESS_CONTROL_ALLOW_ORIGIN" value="http://127.0.0.1:9000"/>
     <property name="env.PPRB_TECH_EMAIL" value="techmail@fake.tld"/>
+    <property name="env.PPRB_NOREPLY_EMAIL" value="noreply@poc-play-rest-backed.org"/>
+    <property name="env.PPRB_MAILER_SMTP_URL" value="uselessInTestMode"/>
+    <property name="env.PPRB_MAILER_SMTP_USERNAME" value="uselessInTestMode"/>
+    <property name="env.PPRB_MAILER_SMTP_PWD" value="uselessInTestMode"/>
 
     <property name="play.dir" value="/home/marco/dev/tools/play-2"/>
 
@@ -43,7 +48,12 @@
         <echo>env.USERNAME: ${env.USERNAME}</echo>
         <echo>env.PPRB_DB_USER: ${env.PPRB_DB_USER}</echo>
         <echo>env.PPRB_DB_PWD: ${env.PPRB_DB_PWD}</echo>
+        <echo>env.PPRB_CORS_ACCESS_CONTROL_ALLOW_ORIGIN: ${env.PPRB_CORS_ACCESS_CONTROL_ALLOW_ORIGIN}</echo>
         <echo>env.PPRB_TECH_EMAIL: ${env.PPRB_TECH_EMAIL}</echo>
+        <echo>env.PPRB_NOREPLY_EMAIL: ${env.PPRB_NOREPLY_EMAIL}</echo>
+        <echo>env.PPRB_MAILER_SMTP_URL: ${env.PPRB_MAILER_SMTP_URL}</echo>
+        <echo>env.PPRB_MAILER_SMTP_USERNAME: ${env.PPRB_MAILER_SMTP_USERNAME}</echo>
+        <echo>env.PPRB_MAILER_SMTP_PWD: ${env.PPRB_MAILER_SMTP_PWD}</echo>
     </target>
 
     <target name="delete-report">
@@ -71,7 +81,12 @@
             <env key="PPRB_DB_USER" value="${env.PPRB_DB_USER}"/>
             <env key="PPRB_DB_PWD" value="${env.PPRB_DB_PWD}"/>
             <env key="PPRB_DB_URL" value="${env.PPRB_DB_URL}"/>
+            <env key="PPRB_CORS_ACCESS_CONTROL_ALLOW_ORIGIN" value="${env.PPRB_CORS_ACCESS_CONTROL_ALLOW_ORIGIN}"/>
             <env key="PPRB_TECH_EMAIL" value="${env.PPRB_TECH_EMAIL}"/>
+            <env key="PPRB_NOREPLY_EMAIL" value="${env.PPRB_NOREPLY_EMAIL}"/>
+            <env key="PPRB_MAILER_SMTP_URL" value="${env.PPRB_MAILER_SMTP_URL}"/>
+            <env key="PPRB_MAILER_SMTP_USERNAME" value="${env.PPRB_MAILER_SMTP_USERNAME}"/>
+            <env key="PPRB_MAILER_SMTP_PWD" value="${env.PPRB_MAILER_SMTP_PWD}"/>
             <arg value="test"/>
         </exec>
     </target>

@@ -63,7 +63,7 @@ public class UserUpdateServiceRestImpl implements UserUpdateServiceRest {
 
             throw new ServiceException(
                     UserUpdateServiceRestImpl.class.getName(), BAD_REQUEST, userForm.errorsAsJson().asText(),
-                    "user msg", userForm.errorsAsJson());
+                    Messages.get("global.malformed.request"), userForm.errorsAsJson());
 
         } else {
             User formUser = userForm.bind(jsContent).get();

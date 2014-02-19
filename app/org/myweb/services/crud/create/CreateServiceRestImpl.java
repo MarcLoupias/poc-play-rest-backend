@@ -8,6 +8,7 @@ import org.myweb.services.JavaServiceResult;
 import org.myweb.services.RestServiceResult;
 import org.myweb.services.ServiceException;
 import play.data.Form;
+import play.i18n.Messages;
 import play.libs.Json;
 
 import static play.mvc.Http.Status.BAD_REQUEST;
@@ -34,7 +35,7 @@ public class CreateServiceRestImpl implements CreateServiceRest {
 
             throw new ServiceException(
                     CreateServiceRestImpl.class.getName(), BAD_REQUEST, entityForm.errorsAsJson().asText(),
-                    "user msg", entityForm.errorsAsJson());
+                    Messages.get("global.malformed.request"), entityForm.errorsAsJson());
 
         } else {
             DaoObject entity = entityForm.bind(jsContent).get();

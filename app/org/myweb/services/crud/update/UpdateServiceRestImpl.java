@@ -48,7 +48,7 @@ public class UpdateServiceRestImpl implements UpdateServiceRest {
 
             throw new ServiceException(
                     UpdateServiceRestImpl.class.getName(), BAD_REQUEST, entityForm.errorsAsJson().asText(),
-                    "user msg", entityForm.errorsAsJson());
+                    Messages.get("global.malformed.request"), entityForm.errorsAsJson());
 
         } else {
             DaoObject entity = entityForm.bind(jsContent).get();

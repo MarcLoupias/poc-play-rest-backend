@@ -1,8 +1,11 @@
 package org.myweb.utils.mail;
 
+import com.google.inject.Inject;
 import com.sun.mail.smtp.SMTPTransport;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.jetbrains.annotations.NotNull;
+import org.myweb.utils.config.EnvConfigService;
+import org.myweb.utils.config.EnvConfigServiceException;
 import play.Logger;
 import play.Play;
 
@@ -13,8 +16,25 @@ import java.util.Properties;
 
 public class MailUtilsServiceJavamailImpl implements MailUtilsService {
 
+    private final EnvConfigService envConfigService;
+
+    @Inject
+    public MailUtilsServiceJavamailImpl(EnvConfigService envConfigService) {
+        this.envConfigService = envConfigService;
+    }
+
     public void sendTechTextEmail(@NotNull String recipient, @NotNull String subject, @NotNull String textContent) {
-        sendTextEmail("noreply@poc-play-rest-backed.org", recipient, subject, textContent);
+        String sender;
+        try {
+            sender = envConfigService.getEnvVarAsString(EnvConfigService.PPRB_NOREPLY_EMAIL);
+        } catch (EnvConfigServiceException e) {
+            Logger.error("Exception when trying to get PPRB_NOREPLY_EMAIL env var :\n" + ExceptionUtils.getStackTrace(e));
+            return;
+        }
+        if(sender == null) {
+            sender = "noreply@poc-play-rest-backed.org";
+        }
+        sendTextEmail(sender, recipient, subject, textContent);
     }
 
     public void sendTextEmail(
@@ -26,12 +46,29 @@ public class MailUtilsServiceJavamailImpl implements MailUtilsService {
         }
 
         String smtpHostName, smtpAuthUser, smtpAuthPwd;
-        smtpHostName = "smtp.sendgrid.net";
+
 
         try {
+            smtpHostName = envConfigService.getEnvVarAsString(EnvConfigService.PPRB_MAILER_SMTP_URL);
+            smtpAuthUser = envConfigService.getEnvVarAsString(EnvConfigService.PPRB_MAILER_SMTP_USERNAME);
+            smtpAuthPwd = envConfigService.getEnvVarAsString(EnvConfigService.PPRB_MAILER_SMTP_PWD);
 
-            smtpAuthUser = System.getenv("SENDGRID_USERNAME");
-            smtpAuthPwd = System.getenv("SENDGRID_PASSWORD");
+            if(smtpHostName == null) {
+                Logger.warn("Mailer url is not set. Impossible to send an email.");
+                return;
+            }
+            if(smtpAuthUser == null && smtpAuthPwd == null) {
+                Logger.warn("Mailer username and pwd are not set. Impossible to send an email.");
+                return;
+            }
+            if(smtpAuthUser == null) {
+                Logger.warn("Mailer username is not set. Impossible to send an email.");
+                return;
+            }
+            if(smtpAuthPwd == null) {
+                Logger.warn("Mailer password is not set. Impossible to send an email.");
+                return;
+            }
 
             Properties props = new Properties();
             props.put("mail.transport.protocol", "smtp");

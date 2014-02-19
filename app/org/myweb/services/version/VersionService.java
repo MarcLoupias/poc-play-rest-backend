@@ -4,6 +4,7 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.myweb.services.RestServiceResult;
 import org.myweb.services.ServiceException;
 import play.Play;
+import play.i18n.Messages;
 import play.libs.Json;
 
 import static play.mvc.Http.Status.INTERNAL_SERVER_ERROR;
@@ -47,7 +48,8 @@ public class VersionService {
 
         } catch (Exception e) {
             throw new ServiceException(
-                    VersionService.class.getName(), INTERNAL_SERVER_ERROR, ExceptionUtils.getStackTrace(e), "user msg"
+                    VersionService.class.getName(), INTERNAL_SERVER_ERROR, ExceptionUtils.getStackTrace(e),
+                    Messages.get("java.service.result.generic.error.msg")
             );
         }
     }
@@ -71,7 +73,8 @@ public class VersionService {
 
         } catch (Exception e) {
             throw new ServiceException(
-                    VersionService.class.getName(), INTERNAL_SERVER_ERROR, ExceptionUtils.getStackTrace(e), "user msg"
+                    VersionService.class.getName(), INTERNAL_SERVER_ERROR, ExceptionUtils.getStackTrace(e),
+                    Messages.get("java.service.result.generic.error.msg")
             );
         }
     }

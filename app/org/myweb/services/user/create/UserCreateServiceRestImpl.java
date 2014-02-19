@@ -9,6 +9,7 @@ import org.myweb.services.JavaServiceResult;
 import org.myweb.services.RestServiceResult;
 import org.myweb.services.ServiceException;
 import play.data.Form;
+import play.i18n.Messages;
 import play.libs.Json;
 
 import static play.mvc.Http.Status.BAD_REQUEST;
@@ -36,7 +37,7 @@ public class UserCreateServiceRestImpl implements UserCreateServiceRest {
 
             throw new ServiceException(
                     UserCreateServiceRestImpl.class.getName(), BAD_REQUEST, userForm.errorsAsJson().asText(),
-                    "user msg", userForm.errorsAsJson());
+                    Messages.get("global.malformed.request"), userForm.errorsAsJson());
 
         } else {
             User formUser = userForm.bind(jsContent).get();

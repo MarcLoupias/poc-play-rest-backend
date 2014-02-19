@@ -16,10 +16,13 @@ import org.myweb.services.crud.update.*;
 
 import org.myweb.services.user.check.*;
 import org.myweb.services.user.create.*;
+import org.myweb.services.user.infos.UserInfosServiceRest;
+import org.myweb.services.user.infos.UserInfosServiceRestImpl;
 import org.myweb.services.user.login.*;
 import org.myweb.services.user.logout.UserLogoutServiceRest;
 import org.myweb.services.user.logout.UserLogoutServiceRestImpl;
 import org.myweb.services.user.update.*;
+import org.myweb.utils.config.*;
 import org.myweb.utils.mail.*;
 import org.myweb.utils.rest.FilterParserService;
 import org.myweb.utils.rest.FilterParserServiceImpl;
@@ -30,6 +33,14 @@ import play.Play;
 public class PocPlayRestBackendModule extends AbstractModule {
     @Override
     protected void configure() {
+
+        bind(SystemGetEnvWrapper.class).to(SystemGetEnvWrapperImpl.class);
+        bind(EnvConfigService.class).to(EnvConfigServiceImpl.class);
+        if(Play.isDev()) {
+            bind(EnvConfigCheckerService.class).to(EnvConfigCheckerServiceDevImpl.class);
+        } else {
+            bind(EnvConfigCheckerService.class).to(EnvConfigCheckerServiceProdImpl.class);
+        }
 
         bind(MailUtilsService.class).to(MailUtilsServiceJavamailImpl.class);
         bind(SecurityUtilsService.class).to(SecurityUtilsServiceImpl.class);
@@ -53,6 +64,7 @@ public class PocPlayRestBackendModule extends AbstractModule {
         bind(QueryCinemaByCountyServiceJava.class).to(QueryCinemaByCountyServiceJavaImpl.class);
         bind(QueryCinemaByCountyServiceRest.class).to(QueryCinemaByCountyServiceRestImpl.class);
 
+        bind(UserInfosServiceRest.class).to(UserInfosServiceRestImpl.class);
         bind(UserCheckEmailServiceJava.class).to(UserCheckEmailServiceJavaImpl.class);
         bind(UserCheckLoginServiceJava.class).to(UserCheckLoginServiceJavaImpl.class);
         bind(UserCreateServiceJava.class).to(UserCreateServiceJavaImpl.class);
