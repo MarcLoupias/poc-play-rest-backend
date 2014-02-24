@@ -8,6 +8,7 @@ export PPRB_DB_URL="jdbc:mysql://localhost/myweb"
 export PPRB_DB_USER="myweb_db_user"
 export PPRB_DB_PWD="password"
 
+# list of allowed origin is not currenty supported
 export PPRB_CORS_ACCESS_CONTROL_ALLOW_ORIGIN="http://127.0.0.1:9000"
 
 export PPRB_TECH_EMAIL="junk@marc-loupias.fr"
