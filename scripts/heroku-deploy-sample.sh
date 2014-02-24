@@ -15,12 +15,9 @@ heroku config:set PPRB_CORS_ACCESS_CONTROL_ALLOW_ORIGIN=<YOUR_FRONTEND_URL>
 
 # mailer config
 # ~~~~~~~~~~~~~
-USERNAME=heroku config:get <heroku_mailer_provider_username_env_var>
-PWD=heroku config:get <heroku_mailer_provider_pwd_env_var>
-
 heroku config:set PPRB_MAILER_SMTP_URL=<mailer_provider_url>
-heroku config:set PPRB_MAILER_SMTP_USERNAME=$USERNAME
-heroku config:set PPRB_MAILER_SMTP_PWD=$PWD
+heroku config:set PPRB_MAILER_SMTP_USERNAME=<heroku_mailer_provider_username>
+heroku config:set PPRB_MAILER_SMTP_PWD=<heroku_mailer_provider_pwd>
 
 # noreply email
 # ~~~~~~~~~~~~~
