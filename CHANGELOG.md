@@ -2,7 +2,7 @@
 poc-play-rest-backend changelog
 ===============================
 
-0.0.1
+0.1.0
 -----
 * Versioning convention changes. Following now [SemVer] (http://semver.org/) so started from scratch at 0.0.1.
 * Licence moves from MIT to the better suited [WTFPL] (http://www.wtfpl.net/faq/).

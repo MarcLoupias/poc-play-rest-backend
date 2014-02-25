@@ -101,10 +101,25 @@ public class Global extends GlobalSettings {
     }
 
     private void onStartMailTech() {
-        String recipient = Play.application().configuration().getString("tech.mail");
+        String recipient = null;
+        boolean mailerConfigOK = true;
+        try {
+            recipient = envConfigService.getEnvVarAsString(EnvConfigService.PPRB_TECH_EMAIL);
+            if(recipient == null) {
+                throw new EnvConfigServiceException("PPRB_TECH_EMAIL is not set.");
+            }
+        } catch (EnvConfigServiceException e) {
+            mailerConfigOK = false;
+            Logger.error("Exception when trying to get PPRB_TECH_EMAIL env var :\n" + ExceptionUtils.getStackTrace(e));
+        }
+        if(!mailerConfigOK){
+            Logger.error("[onStart] PPRB_TECH_EMAIL is not set or cannot be retrieved. Can't start app.");
+            System.exit(-1);
+        }
         String subject = "[poc-play-rest-backend] Application started";
         StringBuilder textContent = new StringBuilder();
         textContent.append("The application started.");
+
         mailerService.sendTechTextEmail(recipient, subject, textContent.toString());
     }
 
