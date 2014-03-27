@@ -317,24 +317,6 @@ public class Global extends GlobalSettings {
         ));
     }
 
-    private void sleepInDevMode() {
-        // this is to see loader directive in action on frontend ...
-        Long queryProcessingDelay;
-        try {
-            queryProcessingDelay = envConfigService.getEnvVarAsLong(EnvConfigService.DEV_QUERY_PROCESSING_DELAY);
-        } catch (EnvConfigServiceException e) {
-            queryProcessingDelay = null;
-        }
-
-        if(Play.isDev() && queryProcessingDelay != null) {
-            try {
-                Thread.sleep(queryProcessingDelay);
-            } catch (InterruptedException e) {
-                Logger.error("[Global.onRequest]" + ExceptionUtils.getStackTrace(e));
-            }
-        }
-    }
-
     private void logIncomingRequest(Request request) {
         StringBuilder sb = new StringBuilder();
         sb.append("[http request] ");
@@ -349,8 +331,6 @@ public class Global extends GlobalSettings {
 
     // before each request
     public Action onRequest(Request request, Method actionMethod) {
-
-        sleepInDevMode();
 
         logIncomingRequest(request);
 

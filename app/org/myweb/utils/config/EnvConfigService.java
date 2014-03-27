@@ -13,8 +13,6 @@ public interface EnvConfigService {
 
     public static String PPRB_CORS_ACCESS_CONTROL_ALLOW_ORIGIN = "PPRB_CORS_ACCESS_CONTROL_ALLOW_ORIGIN";
 
-    public static String DEV_QUERY_PROCESSING_DELAY = "DEV_QUERY_PROCESSING_DELAY";
-
     @Nullable
     public String getEnvVarAsString(@NotNull String key) throws EnvConfigServiceException;
 

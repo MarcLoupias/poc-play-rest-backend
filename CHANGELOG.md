@@ -2,6 +2,10 @@
 poc-play-rest-backend changelog
 ===============================
 
+0.1.1
+-----
+* Attempt to fix slow wake up on Heroku when to front query the back for the first time after sleep.
+
 0.1.0
 -----
 * Versioning convention changes. Following now [SemVer] (http://semver.org/) so started from scratch at 0.0.1.
